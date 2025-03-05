@@ -1,0 +1,16 @@
+/*전체적인 css정의*/
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+body.dark {
+    background: #1b2137;
+  }
+body.light {
+  background: #f6f9fe;
+}
+
+body.dark.header {
+  background: #3c496e;
+}

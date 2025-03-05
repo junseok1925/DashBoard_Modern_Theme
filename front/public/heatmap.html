@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <title>.</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t0gdynkrzk&amp;submodules=panorama,geocoder,drawing,visualization"></script>
+   <style>
+      .buttons {
+         position: absolute;
+         top: 0;
+         left: 0;
+         z-index: 1000;
+         padding: 5;
+      }
+
+      .buttons .control-btn {
+         /* margin: 10px 2px 2px 10px;
+         color : darkblue;
+         border-radius: 5px;
+         cursor: pointer;
+         padding : 10px; */
+         border-radius: 10px;    
+         border: 0;
+         padding: 5.5px 25px;
+         margin : 4.8px;
+         display: inline-block;
+         text-align: center;
+         font-weight: bold;
+         font-size:12pt;
+         color: white;
+         background: rgba(117,166,252,0.99);
+           box-shadow: 0px 4px 0px rgba(168,179,202,1);
+      }
+
+      .control-btn:hover {
+         top: 4px; 
+       box-shadow: 0 0 gray; 
+       background: rgba(168,179,202,0.8);   
+      }
+
+      .buttons2 {
+         position: absolute;
+         top: 43px;
+         left: 5px;
+         z-index: 1000;
+         padding: 5;
+      }
+
+      .buttons2 .control-btn2 {
+         /* margin: 10px 2px 2px 10px;
+         color : darkblue;
+         border-radius: 5px;
+         cursor: pointer;
+         padding : 10px; */
+         border-radius: 5px;    
+         border: 0;
+         padding: 3px 15px;
+         margin : 3px;
+         display: inline-block;
+         text-align: center;
+         font-weight: bold;
+         font-size:11pt;
+         color: white;
+         background: rgb(134, 140, 155);   
+      /*box-shadow: 0px 4px 0px rgba(168,179,202,1);*/
+      }
+
+      .control-btn2:hover {
+         top: 4px; 
+       box-shadow: 0 0 gray; 
+       background: rgba(168,179,202,0.8);   
+      }
+
+      .button {    
+    border-radius: 10px;    
+    border: 0;
+    padding: 5.5px 25px;
+    margin : 4.8px;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    font-size:12pt;
+    color: white;
+    
+    background: rgba(117,166,252,0.99);
+    box-shadow: 0px 4px 0px rgba(168,179,202,1);
+  }
+  .heatimg {
+         position: absolute;
+         top: 70%;
+         right: 0;
+         z-index: 10;
+         padding: 5;
+      }
+   </style>
+</head>
+<body>
+<div id="map" style="width:100%; height:780px;">
+   <div class="buttons">
+      <input id="toZonePos1" type="button" value="영일대 권역" class="control-btn" />
+      <input id="toZonePos2" type="button" value="송도해수욕장 권역" class="control-btn" />
+      <input id="toZonePos3" type="button" value="이가리 권역" class="control-btn" />
+      <input id="toZonePos4" type="button" value="내연산/보경사" class="control-btn" />
+      <input id="toZonePos5" type="button" value="호미곶면 권역" class="control-btn" />
+      <input id="toZonePos6" type="button" value="남포항 권역" class="control-btn" />
+
+   </div>      
+  <img  class="heatimg" src="./images/heatmap2.png" />
+   <br />
+   <!-- 영일대 권역 -->
+   <div id="buttons1" class="buttons2" style="display: none;">
+      <input id="toZonePos1_1" type="button" value="영일대해수욕장" class="control-btn2" />
+      <input id="toZonePos1_2" type="button" value="스페이스워크" class="control-btn2" />
+      <input id="toZonePos1_3" type="button" value="해상스카이워크" class="control-btn2" />
+   </div>
+   <!-- 송도해수욕장 권역 -->
+   <div id="buttons2" class="buttons2" style="display: none;">
+      <input id="toZonePos2_1" type="button" value="송도해수욕장" class="control-btn2" />
+      <input id="toZonePos2_2" type="button" value="송도송림테마거리(솔밭도시숲)" class="control-btn2" />
+   </div>
+   <!-- 이가리 권역 -->
+   <div id="buttons3" class="buttons2" style="display: none;">
+      <input id="toZonePos3_1" type="button" value="이가리닻전망대" class="control-btn2" />
+      <input id="toZonePos3_2" type="button" value="사방기념공원" class="control-btn2" />
+   </div>
+   <!-- 보경사 권역 -->
+   <div id="buttons4" class="buttons2" style="display: none;">
+      <!-- <input id="toZonePos4_1" type="button" value="보경사" class="control-btn2" /> -->
+   </div>
+   <!-- 호미곶면 권역 -->
+   <div id="buttons5" class="buttons2" style="display: none;">
+      <input id="toZonePos5_1" type="button" value="연오랑세오녀" class="control-btn2" />
+      <input id="toZonePos5_2" type="button" value="호미곶해맞이공원" class="control-btn2" />
+      <input id="toZonePos5_3" type="button" value="일본인가옥거리" class="control-btn2" />
+   </div>
+   <!-- 남포항 권역 -->
+   <div id="buttons6" class="buttons2" style="display: none;">
+      <input id="toZonePos6_1" type="button" value="오어사" class="control-btn2" />
+      <input id="toZonePos6_2" type="button" value="일월문화공원" class="control-btn2" />
+      <input id="toZonePos6_3" type="button" value="장기유배문화체험촌" class="control-btn2" />
+   </div>
+   <script>
+
+   $(document).ready(function() { // 페이지가 로딩이 완료되면 실행해라
+    // 모든 버튼 그룹을 숨기는 함수
+    function hideAllButtonsExcept(buttonGroupToShow) {
+        $(".buttons2").hide(); // 모든 버튼 그룹을 숨김
+        $(buttonGroupToShow).show(); // 특정 버튼 그룹만 보임
+    }
+
+    // 영일대 권역
+    $("#toZonePos1").on("click", function(e) {
+        e.preventDefault();
+        // 먼저 옵션을 설정한 후
+        map.setOptions({
+            minZoom: 15,
+            maxZoom: 15
+        });
+        map.setZoom(14);
+        map.panTo(zonePos1);  // setCenter 대신 panTo 사용 ( 더 부드럽게 이동함)
+        hideAllButtonsExcept("#buttons1");  //버튼 그룹 보이기
+    });
+
+    // 송도해수욕장 권역
+    $("#toZonePos2").on("click", function(e) {
+      e.preventDefault();
+        // 먼저 옵션을 설정한 후
+        map.setOptions({
+            minZoom: 15,
+            maxZoom: 15
+        });
+        // 줌을 변경
+        map.setZoom(15);
+        map.panTo(zonePos2);  // setCenter 대신 panTo 사용 ( 더 부드럽게 이동함)
+
+        hideAllButtonsExcept("#buttons2");  //버튼 그룹 보이기
+    });
+    // 이가리 권역
+    $("#toZonePos3").on("click", function(e) {
+        e.preventDefault();
+        // 먼저 옵션을 설정한 후
+        map.setOptions({
+            minZoom: 14,
+            maxZoom: 15
+        });
+        
+        // 줌을 변경
+        map.setZoom(14);
+        map.panTo(zonePos3);  // setCenter 대신 panTo 사용 ( 더 부드럽게 이동함)
+
+        hideAllButtonsExcept("#buttons3");  //버튼 그룹 보이기
+    });
+    // 보경사 권역
+    $("#toZonePos4").on("click", function(e) {
+        e.preventDefault();
+        map.setOptions({
+            minZoom: 17,
+            maxZoom: 19
+        });
+        
+        // 줌을 변경
+        map.setZoom(17);
+        map.panTo(zonePos4);  // setCenter 대신 panTo 사용 ( 더 부드럽게 이동함)
+
+        hideAllButtonsExcept("#buttons4");  //버튼 그룹 보이기
+    });
+    // 호미곶면 권역
+    $("#toZonePos5").on("click", function(e) {
+        e.preventDefault();
+        // 먼저 옵션을 설정한 후
+        map.setOptions({
+         minZoom: 16,
+            maxZoom: 17
+        });
+        
+        // 줌을 변경
+        map.setZoom(16);
+        map.panTo(zonePos5);  // setCenter 대신 panTo 사용 ( 더 부드럽게 이동함)
+
+        hideAllButtonsExcept("#buttons5");  //버튼 그룹 보이기
+    });
+    // 남포항 권역
+    $("#toZonePos6").on("click", function(e) {
+      e.preventDefault();
+        // 먼저 옵션을 설정한 후
+        map.setOptions({
+            minZoom: 18,
+            maxZoom: 19
+        });
+        
+        // 줌을 변경
+        map.setZoom(18);
+        map.panTo(zonePos6);  // setCenter 대신 panTo 사용 ( 더 부드럽게 이동함)
+
+        hideAllButtonsExcept("#buttons6");  //버튼 그룹 보이기
+    });
+   
+
+      // 하위 버튼 요소 클릭 이벤트 핸들러
+      // 영일대 권역 하위 지역
+      // 영일대 해수욕장장
+   $("#toZonePos1_1").on("click", function(e) {
+         e.preventDefault();
+         map.setZoom(14);
+         map.panTo(zonePos1_1);
+      });
+      // 스페이스워크
+      $("#toZonePos1_2").on("click", function(e) {
+         e.preventDefault();
+         map.setZoom(14);
+         map.panTo(zonePos1_2);
+      });
+      //해상스카이워크
+      $("#toZonePos1_3").on("click", function(e) {
+         e.preventDefault();
+         map.setZoom(14);
+         map.panTo(zonePos1_3);
+      });
+      
+
+      // 송도해수욕장 권역 하위 지역
+      $("#toZonePos2_1").on("click", function(e) {
+         e.preventDefault();
+         map.panTo(zonePos2_1);
+      });
+      $("#toZonePos2_2").on("click", function(e) {
+         e.preventDefault();
+         map.panTo(zonePos2_2);
+      });
+
+
+      // 이가리 권역 하위 지역
+      // 이가리 닻 전망대대
+      $("#toZonePos3_1").on("click", function(e) {
+         e.preventDefault();
+         map.setOptions({
+            minZoom: 14,
+            maxZoom: 15
+        });
+         map.setZoom(15);
+         map.panTo(zonePos3_1);
+      });
+      $("#toZonePos3_2").on("click", function(e) {
+         e.preventDefault();
+         map.panTo(zonePos3_2);
+      });
+
+      // 보경사 권역 하위 지역
+      // 보경사
+      $("#toZonePos4_1").on("click", function(e) {
+         e.preventDefault();
+         map.panTo(zonePos4_1);
+      });
+
+      // 호미곶면 권역 하위 지역
+      // 호미곶면면
+      $("#toZonePos5_1").on("click", function(e) {
+         e.preventDefault();
+         map.panTo(zonePos5_1);
+      });
+      $("#toZonePos5_2").on("click", function(e) {
+         e.preventDefault();
+         map.panTo(zonePos5_2);
+      });
+      $("#toZonePos5_3").on("click", function(e) {
+         e.preventDefault();
+         map.panTo(zonePos5_3);
+      });
+
+      // 남포항 권역 하위 지역
+      // 남포항항
+      $("#toZonePos6_1").on("click", function(e) {
+         e.preventDefault();
+         map.panTo(zonePos6_1);
+      });
+      $("#toZonePos6_2").on("click", function(e) {
+         e.preventDefault();
+         map.panTo(zonePos6_2);
+      });
+      $("#toZonePos6_3").on("click", function(e) {
+         e.preventDefault();
+         map.panTo(zonePos6_3);
+      });
+
+
+});
+
+      // 권역별
+      var BasePOS = new naver.maps.LatLng(36.052217072569476, 129.3809082484708);
+      var zonePos1 = new naver.maps.LatLng(36.063131972882324, 129.39111341139406); // 영일대
+      var zonePos2 = new naver.maps.LatLng(36.03653488953558, 129.3784391089228);  // 송도해수욕장
+      var zonePos3 = new naver.maps.LatLng(36.178181532437485, 129.38864992919827);  // 이가리
+      var zonePos4 = new naver.maps.LatLng(36.250577766057226, 129.3188343014415);  //보경사
+      var zonePos5 = new naver.maps.LatLng(36.0772152724515, 129.5675672417058);  // 호미곶면
+      var zonePos6 = new naver.maps.LatLng(35.96556674365414, 129.42831092504898);  // 남포항
+
+
+      // 영일대 권역 하위 지역
+      var zonePos1_1 = new naver.maps.LatLng(36.05728431361192, 129.3784534019805);   // 영일대해수욕장
+      var zonePos1_2 = new naver.maps.LatLng(36.06514642329311, 129.39101904361524);  // 스페이스워크
+      var zonePos1_3 = new naver.maps.LatLng(36.07232550155056, 129.41323419834518);  // 해상스카이워크
+
+
+      // 송도해수욕장 권역 하위 지역
+      var zonePos2_1 = new naver.maps.LatLng(36.0371223051078, 129.37983249368);   // 송도해수욕장
+      var zonePos2_2 = new naver.maps.LatLng(36.04178548275359, 129.37451595048103);  // 송도솔밭도시숲
+
+
+      // 이가리 권역 하위 지역
+      var zonePos3_1 = new naver.maps.LatLng(36.187911349301984, 129.37924261609876);   // 이가리닻전망대
+      var zonePos3_2 = new naver.maps.LatLng(36.1648893728964, 129.395779711833);  // 사방기념공원
+
+      // 보경사 권역 하위 지역
+      var zonePos4_1 = new naver.maps.LatLng(36.250577766057226, 129.3188343014415);   // 보경사
+
+      // 호미곶면 권역 하위 지역
+      var zonePos5_1 = new naver.maps.LatLng(36.00275191265595, 129.45944750840118);// 연오랑세오녀
+      var zonePos5_2 = new naver.maps.LatLng(36.077797142530414, 129.56700627788888);// 호미곶해맞이공원
+      var zonePos5_3 = new naver.maps.LatLng(35.991524172951735,129.56123527532696);// 일본인가옥거리
+
+      // 남포항 권역 하위 지역
+      var zonePos6_1 = new naver.maps.LatLng(35.92667530615955, 129.3695140505898);   // 오어사
+      var zonePos6_2 = new naver.maps.LatLng(35.96556674365414, 129.42831092504898);  // 일월문화공원
+      var zonePos6_3 = new naver.maps.LatLng(35.90304311074411, 129.48609794463303);  // 장기유배문화체험촌
+      
+      var mapOptions = {
+          center: BasePOS,
+         draggable: true,
+         pinchZoom: true,
+            scrollWheel: true,
+            keyboardShortcuts: true,
+            disableDoubleTapZoom: true,
+            disableDoubleClickZoom: true,
+            disableTwoFingerTapZoom: true,
+         minZoom: 14, //지도의 최소 줌 레벨
+         maxZoom: 14,
+      };
+
+      var map = new naver.maps.Map('map', mapOptions);
+      map.setMapTypeId(naver.maps.MapTypeId["NORMAL"]);
+
+      /*API변경*/
+      //var sendinfo = 'http://sacheonchallenge.toysmythiot.com:8000/apis/getHeatData';
+      //var sendinfo = 'http://54.180.158.22:8000/v1/Gasi/DeviceCountDay';
+      var sendinfo = 'http://14.63.184.15:8000/v1/POHANG_TOURISM/DeviceCountHourly';
+
+      var CustomOverlay = null;
+
+      // 유동량 포인트를 저장하는    배열
+      var peopleposlist = new Array();
+
+      function fn_heatmap (data) {
+         var toZonePos1Ele = document.getElementById("toZonePos1");
+         var toZonePos2Ele = document.getElementById("toZonePos2");
+         var toZonePos3Ele = document.getElementById("toZonePos3");
+         var toZonePos4Ele = document.getElementById("toZonePos4");
+         var toZonePos5Ele = document.getElementById("toZonePos5");
+         var toZonePos6Ele = document.getElementById("toZonePos6");
+         
+         var obj = [
+            // 영일대 권역
+            {zone:"영일대해수욕장/해상누각", weight:'0.8', lat : '36.06223524179668', lng : '129.38185381914022', data: 0},
+            {zone:"영일대해수욕장/해상누각", weight:'0.8', lat : '36.06160812732174', lng : '129.383033341293', data: 0},
+            {zone:"영일대해수욕장/해상누각", weight:'0.8', lat : '36.06055799357942', lng : '129.3803385069878', data: 0},
+            {zone:"영일대해수욕장/해상누각", weight:'0.8', lat : '36.059069022289194', lng : '129.37932271438248 ', data: 0},
+            {zone:"영일대해수욕장/해상누각", weight:'0.8', lat : '36.05852338395874', lng : '129.37912319214936', data: 0},
+            {zone:"영일대해수욕장/해상누각", weight:'0.8', lat : '36.05728431361192', lng : '129.3784534019805', data: 0},
+            {zone:"영일대해수욕장/해상누각", weight:'0.8', lat : '36.05601503395015', lng : '129.37794361420111', data: 0},
+            {zone:"영일대해수욕장/해상누각", weight:'0.8', lat : '36.05484227004869', lng : '129.37756434857235', data: 0},
+            {zone:"영일대해수욕장/해상누각", weight:'0.8', lat : '36.05364028255513', lng : '129.3775226286707 ', data: 0},
+            {zone:"스페이스워크(환호공원)", weight:'0.8', lat : '36.06514642329311', lng : '129.39101904361524', data: 0},
+            {zone:"스페이스워크(환호공원)", weight:'0.8', lat : '36.067255660001216', lng : '129.39232581390536', data: 0},
+            {zone:"스페이스워크(환호공원)", weight:'0.8', lat : '36.066204398600995', lng : '129.39522502165093', data: 0},
+            {zone:"해상스카이워크", weight:'0.8', lat : '36.07232550155056', lng : '129.41323419834518', data: 0},
+            {zone:"해상스카이워크", weight:'0.8', lat : '36.07232550155056', lng : '129.41323419834518', data: 0},
+         
+            // 송도해수욕장 권역
+            {zone:"송도해수욕장", weight:'0.8', lat : '36.0410589207742', lng : '129.377363241107', data: 0},   
+            {zone:"송도해수욕장", weight:'0.8', lat : '36.0402090815193', lng : '129.377737051293', data: 0},   
+            {zone:"송도해수욕장", weight:'0.8', lat : '36.0381949579403', lng : '129.378439134702', data: 0},   
+            {zone:"송도해수욕장", weight:'0.8', lat : '36.0371223051078', lng : '129.378917148518', data: 0},   
+            {zone:"송도해수욕장", weight:'0.8', lat : '36.0356535421833', lng : '129.37983249368', data: 0},   
+            {zone:"송도해수욕장", weight:'0.8', lat : '36.0331549044419', lng : '129.381792778635', data: 0},
+            {zone:"송도송림테마거리(솔밭도시숲)", weight:'0.8', lat : '36.04178548275359', lng : '129.37451595048103', data: 0},   
+            {zone:"송도송림테마거리(솔밭도시숲)", weight:'0.8', lat : '36.04071930740792', lng : '129.37603149147782', data: 0},   
+            {zone:"송도송림테마거리(솔밭도시숲)", weight:'0.8', lat : '36.042713619123624', lng : '129.37576001009054', data: 0},
+            {zone:"송도송림테마거리(솔밭도시숲)", weight:'0.8', lat : '36.04496338921595', lng : '129.37458923831474', data: 0},   
+            
+            // 이가리 권역
+            {zone:'이가리 닻 전망대', weight:'0.8', lat : '36.187911349301984', lng : '129.37924261609876', data: 0},   
+            {zone:'사방기념공원', weight:'0.8', lat : '36.16466012705706', lng : '129.39564217611277', data: 0},   
+            {zone:'사방기념공원', weight:'0.8', lat : '36.165917335259095', lng : '129.39658046935432 ', data: 0},   
+            
+            // 보경사 권역
+            {zone:'내연산/보경사', weight:'0.8', lat : '36.250577766057226', lng : '129.3188343014415', data: 0},   
+            {zone:'내연산/보경사', weight:'0.8', lat : '36.249203683299854', lng : '129.3200364048153', data: 0},   
+
+            // 호미곶면 권역
+            {zone:'연오랑세오녀 테마공원(귀비고)', weight:'0.8', lat : '36.00275191265595', lng : '129.45944750840118', data: 0},
+            {zone:'연오랑세오녀 테마공원(귀비고)', weight:'0.8', lat : '36.00303943320797', lng : '129.46102264799572', data: 0},
+            {zone:'연오랑세오녀 테마공원(귀비고)', weight:'0.8', lat : '36.00328962866291', lng : '129.46156266156177', data: 0},
+
+            {zone:'호미곶 해맞이광장', weight:'0.8', lat : '36.0772152724515', lng : '129.5675672417058', data: 0},   
+            {zone:'호미곶 해맞이광장', weight:'0.8', lat : '36.07690888867906', lng : '129.56641415176696', data: 0},   
+            {zone:'호미곶 해맞이광장', weight:'0.8', lat : '36.076539930707945', lng : '129.56649926499236', data: 0},   
+            {zone:'호미곶 해맞이광장', weight:'0.8', lat : '36.07656217189485', lng : '129.56777351091617', data: 0},   
+            {zone:'호미곶 해맞이광장', weight:'0.8', lat : '36.076406143628404', lng : '129.56937767583116', data: 0},   
+            {zone:'호미곶 해맞이광장', weight:'0.8', lat : '36.077110748530124', lng : '129.56950049688672', data: 0},   
+            {zone:'호미곶 해맞이광장', weight:'0.8', lat : '36.07749479058551', lng : '129.56997219375884', data: 0},   
+
+            {zone:'구룡포 일본인가옥거리', weight:'0.8', lat : '35.99082711178995', lng : '129.56065287477495 ', data: 0},   
+            {zone:'구룡포 일본인가옥거리', weight:'0.8', lat : '35.991365270703135', lng : '129.5598166349181 ', data: 0},   
+            {zone:'구룡포 일본인가옥거리', weight:'0.8', lat : '35.990383514285696', lng : '129.56043620750145 ', data: 0},   
+            {zone:'구룡포 일본인가옥거리', weight:'0.8', lat : '35.99142826964769', lng : '129.56097996017112 ', data: 0},   
+            {zone:'구룡포 일본인가옥거리', weight:'0.8', lat : '35.99051426488444', lng : '129.5613799872402', data: 0},   
+
+
+            // 남포항 권역
+            {zone:'오어사', weight:'0.8', lat : '35.92667530615955', lng : '129.3695140505898', data: 0},
+
+            {zone:'일월문화공원', weight:'0.8', lat : '35.96556674365414', lng : '129.42831092504898', data: 0},
+            {zone:'일월문화공원', weight:'0.8', lat : '35.96589890489778', lng : '129.43020522046967', data: 0},
+
+            {zone:'장기유배문화체험촌', weight:'0.8', lat : '35.90304311074411', lng : '129.48609794463303', data: 0},
+      ]
+         // 맥스
+         var define_max = 1000;
+         //존 별 데이터 값 넣기
+         for(var j of data){
+            console.log('j.zone',j.zone);
+            for(var i of obj){
+               if (String(j.zone) === i.zone){
+                  i.data += j.data;
+               }   
+            }
+         }
+         var mydata = [];
+         for(var i=0; i < obj.length; i++){
+            var calValue = ((obj[i].weight * obj[i].data) / define_max);
+            if(calValue > 5){
+               calValue = 5;
+            }
+            mydata.push({
+               weight : calValue,
+               location : [obj[i].lng, obj[i].lat]
+            })
+         }
+      console.log(mydata);
+         mydata.push({
+            weight : '0.1',
+            location : [0,0]
+         })
+         var heatmap = new naver.maps.visualization.HeatMap({
+            map: map,
+            data: mydata,
+            radius : 50,
+            opacity : '0.5',
+            colorMap : "PORTLAND",
+         });
+
+   naver.maps.Event.addListener(map, 'zoom_changed', function() {
+    var currentZoom = map.getZoom();
+      var adjustedRadius;
+
+    // 줌 레벨에 따라 반경 조정 (예시: 줌 레벨에 비례해 반경을 고정)
+    if (currentZoom <= 12) {
+        adjustedRadius = 30;  // 줌 레벨이 낮을 때 반경 작게
+    } else if (currentZoom <= 14) {
+        adjustedRadius = 50;  // 중간 줌 레벨일 때 반경 중간
+    } else {
+        adjustedRadius = 70;  // 줌 레벨이 높을 때 반경 크게
+    }
+
+    // 히트맵 반경 업데이트
+    heatmap.setOptions({
+        radius: adjustedRadius
+    });
+});
+
+      }
+
+
+      function inits(){
+
+         $.getJSON(sendinfo, {}, function (data) {
+            if(data != null) { 
+               fn_heatmap(data);
+               console.log('a',data)
+            }
+         });
+      }
+
+
+      window.onload=function(){
+         inits();
+      }
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+    "apps": [
+        {
+            "name": "front",
+            "cwd": "C:/Users/rkdwn/Desktop/pohang_origin/front",
+            "script": "npm",
+            "args": "run dev"
+        }
+    ]
+}

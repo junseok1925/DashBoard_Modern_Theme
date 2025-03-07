@@ -77,6 +77,7 @@ const Block = styled.div`
     border: none;
     font-weight: bold;
     font-size: 15px;
+    color: white;
   }
 `;
 
@@ -90,28 +91,28 @@ const StatusBlock = styled.div`
   }
 
   .back_0 {
-    background-color: rgb(50, 50, 50);
+    background-color: #6babf1;
   }
   .back_1 {
-    background-color: rgb(50, 50, 50);
+    background-color: #69b1f3;
   }
   .back_2 {
-    background-color: rgb(50, 50, 50);
+    background-color: #6cbbf0;
   }
   .back_3 {
-    background-color: rgb(50, 50, 50);
+    background-color: #72c5ee;
   }
   .back_4 {
-    background-color: rgb(50, 50, 50);
+    background-color: #6eccdc;
   }
   .back_5 {
-    background-color: rgb(50, 50, 50);
+    background-color: #6cd0d1;
   }
   .back_6 {
-    background-color: rgb(50, 50, 50);
+    background-color: #6bd3cd;
   }
   .back_7 {
-    background-color: rgb(50, 50, 50);
+    background-color: #69d7c2;
   }
 
   .division {
@@ -241,7 +242,6 @@ function DashSoleInfo({ theme, zone, scanners, zonedatas }) {
   const getAPIdata1 = async () => {
     try {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_pohang_URL}/DeviceCountHourly?unit=1d-1h`);
-      console.log("response", response.data);
 
       for (let i of response.data) {
         for (let j of zoneData) {
@@ -259,7 +259,6 @@ function DashSoleInfo({ theme, zone, scanners, zonedatas }) {
       setZoneInfoAll(new Map(zoneVisitMap));
     } catch (err) {
       console.error(err);
-      console.log("금일방문재시작");
       setTimeout(getAPIdata1, 2000);
     }
   };
@@ -267,7 +266,7 @@ function DashSoleInfo({ theme, zone, scanners, zonedatas }) {
   const getAPIdata2 = async () => {
     // 재방문객 데이터 가져오기
     try {
-      const response2 = await axios.get(`http://14.63.184.15:8000/v1/POHANG_TOURISM/DeviceCountRevisit`);
+      const response2 = await axios.get(`${process.env.NEXT_PUBLIC_API_pohang_URL}/DeviceCountRevisit`);
 
       for (let i of response2.data) {
         for (let j of zoneData) {
@@ -321,14 +320,11 @@ function DashSoleInfo({ theme, zone, scanners, zonedatas }) {
       const resultData = deviceResponse.data;
 
       for (var i of resultData) {
-        // console.log("api상 맥주소", i.MAC);
         for (var j of scanners) {
           if (i.MAC == j.mac) {
-            // console.log("동일한 맥주소", i.MAC);
             if (i.ALIVE === 1) {
               zoneDataMap.set(j.zone, { good: zoneDataMap.get(j.zone).good + 1, error: zoneDataMap.get(j.zone).error });
             } else if (i.ALIVE === 0) {
-              console.log("동일한 맥주소 0", i.MAC);
               zoneDataMap.set(j.zone, { good: zoneDataMap.get(j.zone).good, error: zoneDataMap.get(j.zone).error + 1 });
             }
             continue;
@@ -339,9 +335,6 @@ function DashSoleInfo({ theme, zone, scanners, zonedatas }) {
     } catch (err) {
       console.error(err);
     }
-
-    // console.log("zoneDataMap ", zoneDataMap);
-    // console.log("deviceAll ", deviceAll);
   };
 
   useEffect(() => {
@@ -374,9 +367,8 @@ function DashSoleInfo({ theme, zone, scanners, zonedatas }) {
     const onClickZoneDevice = () => {
       setDeviceStatus(!deviceStatus);
     };
-    // console.log("스캐너상태", deviceAll);
     return (
-      <div className={`fpa_box ${back}`}>
+      <div className={`fpa_box ${back}`} style={{ background: "linear-gradient(to bottom, #44A9FF, #4165E5)" }}>
         <div className="fpa_box_table">
           <div className="tr">
             <div className="td onclickdevice">
@@ -420,9 +412,15 @@ function DashSoleInfo({ theme, zone, scanners, zonedatas }) {
         <button className="tr onclickalldevice" onClick={onClickAllZoneDevice}>
           개소명
         </button>
-        <div className="tr">금일방문</div>
-        <div className="tr">재방문</div>
-        <div className="tr">체류시간</div>
+        <div className="tr" style={{ color: "white" }}>
+          금일방문
+        </div>
+        <div className="tr" style={{ color: "white" }}>
+          재방문
+        </div>
+        <div className="tr" style={{ color: "white" }}>
+          체류시간
+        </div>
       </div>
       <div className="lightback">
         <StatusBlock className="light">

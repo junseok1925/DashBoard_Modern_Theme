@@ -13,24 +13,16 @@ const BarChart = ({ daylabel, label, datas, theme }) => {
         data: datas,
         //label: "방문객 수",
         label: label,
-        backgroundColor: [
-          "rgba(107, 171, 241, 0.5)",
-          "rgba(105, 177, 243, 0.5)",
-          "rgba(108, 187, 240, 0.5)",
-          "rgba(114, 197, 238, 0.5)",
-          "rgba(110, 204, 220, 0.5)",
-          "rgba(69, 199, 193, 0.4)",
-          "rgba(75, 192, 192, 0.4)",
-        ], //bar색상
-        borderColor: [
-          "rgba(107, 171, 241, 1)",
-          "rgba(105, 177, 243, 1)",
-          "rgba(108, 187, 240, 1)",
-          "rgba(114, 197, 238, 1)",
-          "rgba(110, 204, 220, 1)",
-          "rgba(69, 199, 193, 1)",
-          "rgba(75, 192, 192, 1)",
-        ],
+        backgroundColor: ["#4077F8", "#3E8BFF", "#399AFF", "#4AAAFF", "#68BAFF", "#95CEFF", "#BFE0FF"], //bar색상
+        // borderColor: [
+        //   "rgba(105, 177, 243, 1)",
+        //   "rgba(105, 176, 243, 0.25)",
+        //   "rgba(105, 177, 243, 1)",
+        //   "rgba(105, 177, 243, 1)",
+        //   "rgba(105, 177, 243, 1)",
+        //   "rgba(105, 177, 243, 1)",
+        //   "rgba(105, 177, 243, 1)",
+        // ],
         borderWidth: 1.5,
         borderRadius: 4,
         fill: true,
@@ -77,10 +69,13 @@ const BarChart = ({ daylabel, label, datas, theme }) => {
     scales: {
       x: {
         grid: {
-          color: "rgba(255,255,255,0)",
           //drawBorder: true,
           //borderColor: 'gray',
           fontColor: "rgba(246, 36, 89, 1)",
+          color: "rgba(255, 255, 255, 0.3)",
+        },
+        ticks: {
+          color: "white", // X축 라벨(글자) 색상을 흰색으로
         },
 
         stacked: true,
@@ -104,13 +99,16 @@ const BarChart = ({ daylabel, label, datas, theme }) => {
             else if (value.toString().length > 5) return Math.floor(value / 10000).toLocaleString("ko-KR") + "만";
             else return value.toLocaleString("ko-KR");
           },
+          color: "white", // Y축 라벨(글자) 색상을 흰색으로
+        },
+        grid: {
+          color: "rgba(255, 255, 255, 0.3)", // Y축 그리드 선을 흰색으로
         },
         //stacked: true,
       },
     },
     // onClick: function(evt, element) {
     //     // onClickNot working element null
-    //     console.log(evt, element);	//클릭시 이벤트 추가 가능
     // }
   };
 

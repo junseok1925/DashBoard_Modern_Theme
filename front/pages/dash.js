@@ -11,6 +11,7 @@ import DashTotalInfo from "../components/info/DashTotalInfo";
 import DashAreaInfo from "../components/info/DashAreaInfo";
 import DashSoleInfo from "../components/info/DashSoleInfo";
 import charticon from "../public/images/chart_icon.png";
+import charticon2 from "../public/images/chart_icon2.png";
 import nexticon from "../public/images/next.png";
 import previcon from "../public/images/prev.png";
 
@@ -22,14 +23,13 @@ import { LOAD_MY_INFO_REQUEST } from "../reducers/auth";
 import { LOAD_ZONELISTS_REQUEST, LOAD_SCANNERLISTS_REQUEST } from "../reducers/scanner";
 import wrapper from "../store/configureStore";
 import Script from "next/script";
-import styled from "styled-components";
+import styled, { withTheme } from "styled-components";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Mapp = styled.div`
-  font-family: 'Pretendard', sans-serif;
   background-color: #1b2137;
   margin-top:100px
   width: 100%;
@@ -99,36 +99,36 @@ const Mapp = styled.div`
     background: rgba(168,179,202,0.8);
   }
 
-.tourOn {
-  border-radius: 10px;    
-  border: 0;
-  background: rgb(100, 100, 100);
-  box-shadow: 0px 4px 8px rgba(50, 50, 50, 0.5);
-  margin: 3px;
-  display: inline-block;
-  color: white;
-  font-weight: bolder;
-  font-size: 13pt;
-  padding: 5px;
-  width: 85px;
-  text-align: center;
-  transition: all 0.3s ease-in-out;
-}
+  .tourOn {
+    border-radius: 10px;    
+    border: 0;
+    //background: linear-gradient(to right, #75A6FC, #75A6FC, rgba(255,255,255,0.3));
+    background: rgba(117,166,252,1);
+    box-shadow: 0px 4px 0px rgba(168,179,202,1);
+    margin : 3px;
+    display: inline-block;
+    color:white;
+    font-weight: bolder;
+    font-size: 13pt;
+    padding: 3px;
+    width: 85px;
+    text-align: center;
+  }
 
-.tourOff {
-  border-radius: 10px;    
-  border: 0;
-  background: rgb(150, 150, 150);
-  margin: 3px;
-  display: inline-block;
-  color: white;
-  font-weight: bolder;
-  font-size: 13pt;
-  padding: 5px;
-  width: 85px;
-  text-align: center;
-  transition: all 0.3s ease-in-out;
-}
+  .tourOff {
+    border-radius: 10px;    
+    border: 0;
+    background: rgba(168,179,202,1);
+    box-shadow:inset 4px 4px rgba(140,140,140,0.8); 
+    margin : 3px;
+    display: inline-block;
+    color:white;
+    font-weight: bolder;
+    font-size: 13pt;
+    padding: 3px;
+    width: 85px;
+    text-align: center;
+  }
 
   .scanner {
     background: linear-gradient(to right, #75A6FC, #F2D9D8);
@@ -160,8 +160,6 @@ const Mapp = styled.div`
 `;
 
 const Background = styled.div`
-  font-family: 'Pretendard', sans-serif;
-
   height:820px;
   .iframeBox {
     position:relative
@@ -185,10 +183,11 @@ const Background = styled.div`
   .overlaydash {
     width: 450px;
     height: 820px;
-    background: rgba(0, 0, 0, 0.7);
+    background: #22222E;
     transform: translate(0px, 0px);
     transition-duration: 0.5s;
     //z-index:1;
+    opacity: 0.8;
   }
 
   .trans {
@@ -217,10 +216,10 @@ const Background = styled.div`
     display: grid;
     width: 430px;
     height: 820px;
-    background: rgba(0, 0, 0, 0.7);
+    background: #22222E;
     //z-index:1;
     //text-align: center;
-    
+    opacity: 0.8;
   }
 
   .overlaychart {
@@ -241,22 +240,24 @@ const Background = styled.div`
 
   .charttitle {
     font-weight:bold;
-    font-size: 12pt;
-    color: white;
+    font-size: 11pt;
+    color: black;
     margin-bottom:15px;
     margin-left: -20px;
   }
  
+  .darkback{
+    .overlay{
+    background: rgba(146,155,180,0.4);
+  }}
 
   .scannerbtn {
     margin: 30px;
   }
-
-  .zoneleft {
+.zoneleft {
   margin: 0;
-  margin-left: 10px;
-  margin-top: 10px;
-  }
+  margin-left: 12px;
+}
 
 
   .zone {
@@ -274,14 +275,14 @@ const Background = styled.div`
   }
 
   .zoneSelct {
-    background-color: rgb(50, 50, 50);
-    font-size: 11.5pt;
+    //background: rgba(117,166,252,1);
+    background-color: #6babf1;
   }
 
   .zoneNotSelct {
-    top: 20px; 
-    background: rgb(100, 100, 100);
-    font-size: 11.5pt;
+   // top: 20px; 
+    //box-shadow:inset 4px 4px rgba(140,140,140,0.8); 
+    background: rgb(93, 99, 114);
   }
   
   .total2 {
@@ -290,15 +291,11 @@ const Background = styled.div`
   
   .infotitle {
     //margin-left: 197px;
-    margin-top: 20px;
+    margin-top: 5px;
     font-weight:bolder;
     font-size: 13.5pt;
-    color:rgb(255, 255, 255);
+    color: #303030;
     text-align: center;
-  }
-
-  .totalinfo{
-  margin-top: 10px;
   }
 
 `;
@@ -440,7 +437,6 @@ const Dash = () => {
               // ALIVE 값에 따라 상태 설정
               j.status = i.ALIVE === 1 ? "ON" : "OFF";
               // j.status = "ON";
-              console.log("j.status", j.status);
               j.info = ScannerStatus(j);
             }
           }
@@ -1629,11 +1625,13 @@ const Dash = () => {
           </div>
           <div className="overlayleft">
             <div className="overlaydash">
-              <div className="infotitle">권역 전체 방문객</div>
-              <div className="totalinfo">
-                <DashTotalInfo theme={me ? me.theme : ""} zone={"포항관광지 전체"} />
+              <div className="infotitle" style={{ color: "white" }}>
+                권역 전체 방문객
               </div>
-              <div className="infotitle">권역별 방문객</div>
+              <DashTotalInfo theme={me ? me.theme : ""} zone={"포항관광지 전체"} />
+              <div className="infotitle" style={{ color: "white" }}>
+                권역별 방문객
+              </div>
               <div className="zoneleft">
                 {[
                   { value: "영일대 권역", label: "영일대" },
@@ -1657,8 +1655,9 @@ const Dash = () => {
             <div className="overlaychart">
               <br />
               <div>
-                <div className="charttitle">
-                  <Image src={charticon} width={10} height={10} />{" "}
+                <div className="charttitle" style={{ color: "white", display: "flex", alignItems: "center" }}>
+                  <Image src={charticon2} width={15} height={15} style={{ verticalAlign: "middle" }} />
+                  &nbsp;&nbsp;
                   {zoneSection == "영일대 권역"
                     ? "영일대 권역 "
                     : zoneSection == "송도해수욕장 권역"
@@ -1710,8 +1709,9 @@ const Dash = () => {
               </div>
               <br />
               <div>
-                <div className="charttitle">
-                  <Image src={charticon} width={10} height={10} />{" "}
+                <div className="charttitle" style={{ color: "white", display: "flex", alignItems: "center" }}>
+                  <Image src={charticon2} width={15} height={15} style={{ verticalAlign: "middle" }} />
+                  &nbsp;&nbsp;
                   {zoneSection == "영일대 권역"
                     ? "영일대 권역 "
                     : zoneSection == "송도해수욕장 권역"
@@ -1766,8 +1766,9 @@ const Dash = () => {
                 ""
               ) : (
                 <div>
-                  <div className="charttitle">
-                    <Image src={charticon} width={10} height={10} />{" "}
+                  <div className="charttitle" style={{ color: "white", display: "flex", alignItems: "center" }}>
+                    <Image src={charticon2} width={15} height={15} style={{ verticalAlign: "middle" }} />
+                    &nbsp;&nbsp;
                     {zoneSection == "영일대 권역"
                       ? "영일대 권역 "
                       : zoneSection == "송도해수욕장 권역"

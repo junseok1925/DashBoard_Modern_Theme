@@ -67,12 +67,12 @@ const Header = () => {
     <HeaderBlock>
       <div className={me && me.theme === "dark" ? "darkblock" : "lightblock"}>
         <Wrapper>
-          <div style={{ display: "flex", width: "10%", padding: "0.3%" }}>
+          {/* <div style={{ display: "flex", width: "10%", padding: "0.3%" }}>
             <Link href="/dash" className="top_link">
               <Image src={pohang_logo} className="top_logo" style={{ cursor: "pointer" }} />
             </Link>
-          </div>
-          <div to="/dash" className="logo" style={{ fontSize: "160%", fontWeight: "bold", paddingTop: "0.5%" }}>
+          </div> */}
+          <div to="/dash" className="logo" style={{ fontSize: "160%", fontWeight: "700", paddingTop: "0.5%", marginLeft: "38%" }}>
             포항 주요 관광지 유동인구 분석 빅데이터
           </div>
           <div className="right">

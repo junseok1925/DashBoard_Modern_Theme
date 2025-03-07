@@ -14,26 +14,8 @@ const DoughnutChart = ({ datas, label }) => {
       {
         label: "# of Votes",
         data: datas,
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.4)",
-          "rgba(255, 159, 64, 0.3)",
-          "rgba(255, 206, 86, 0.4)",
-          "rgba(75, 192, 192, 0.4)",
-          "rgba(54, 162, 235, 0.4)",
-          "rgba(70, 65, 217, 0.4)",
-          "rgba(153, 102, 255, 0.4)",
-          "rgba(243, 51, 145, 0.4)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(255, 159, 64, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(70, 65, 217, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(243, 51, 145, 0.9)",
-        ],
+        backgroundColor: ["#4077F8", "#4042C5", "#95CEFF", "rgba(75, 192, 192, 0.4)", "rgba(54, 162, 235, 0.4)", "rgba(70, 65, 217, 0.4)", "rgba(153, 102, 255, 0.4)", "rgba(243, 51, 145, 0.4)"],
+        borderColor: ["#4077F8", "#4042C5", "#95CEFF", "rgba(75, 192, 192, 1)", "rgba(54, 162, 235, 1)", "rgba(70, 65, 217, 1)", "rgba(153, 102, 255, 1)", "rgba(243, 51, 145, 0.9)"],
         borderWidth: 1,
         cutout: "45%",
       },
@@ -46,6 +28,13 @@ const DoughnutChart = ({ datas, label }) => {
       legend: {
         display: true,
         position: "bottom",
+        labels: {
+          color: "white", // ⬅ 여기! 라벨(Labels) 글자를 흰색으로 설정
+          font: {
+            size: 12, // ✅ 글자 크기 조정 (원하는 크기로 변경 가능)
+            weight: "bold", // ✅ 굵기 설정 (Bold 적용)
+          },
+        },
       },
       title: {
         display: false,
@@ -67,22 +56,13 @@ const DoughnutChart = ({ datas, label }) => {
             total += ctx.dataset.data[i];
           }
           let result = (value / total) * 100;
-          if (result <= 15) {
+          if (result <= 5) {
             return "";
           } else {
             return result.toFixed(1) + "%";
           }
         },
-        color: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(255, 159, 64, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(70, 65, 217, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(243, 51, 145, 0.9)",
-        ],
+        color: ["white", "white", "white", "white", "white", "white", "white", "white"],
         // backgroundColor: '#404040'
         weight: "bold",
         textShadowBlur: 1,
@@ -109,3 +89,4 @@ const DoughnutChart = ({ datas, label }) => {
 };
 
 export default DoughnutChart;
+("");

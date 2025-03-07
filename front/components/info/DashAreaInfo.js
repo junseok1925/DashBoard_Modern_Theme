@@ -7,7 +7,6 @@ import axios from "axios";
 const StatusBlock = styled.div`
   margin-bottom: 15px;
   display: grid;
-  font-family: "Pretendard", sans-serif;
 
   .fpa_box {
     width: 98%;
@@ -21,7 +20,7 @@ const StatusBlock = styled.div`
   }
 
   .section {
-    background-color: rgb(50, 50, 50);
+    background-color: #6babf1;
   }
 
   .fpa_box_table {
@@ -32,7 +31,7 @@ const StatusBlock = styled.div`
   }
 
   .fpa_title {
-    font-size: 15px;
+    font-size: 20px;
     color: white;
     font-weight: bold;
   }
@@ -51,8 +50,8 @@ const StatusBlock = styled.div`
   }
 
   .fpa_num1 {
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 19px;
+    font-weight: normal;
     color: white;
   }
 `;
@@ -85,7 +84,7 @@ function DashAreaInfo({ zone }) {
     }
   };
 
-  // 현재, 오늘, 이달 방문객 데이터 처리
+  // 현재, 오늘방문객 데이터 처리
   const processVisitorData = (data, setDataFunction, zone, initialTime) => {
     let latestTime = initialTime;
 
@@ -147,6 +146,7 @@ function DashAreaInfo({ zone }) {
     }
   };
 
+  // 이달의 방문객
   const processMonthlyData = (data, setDataFunction, zone) => {
     // 권역 데이터 초기화
     const dataTotal = {
@@ -200,7 +200,7 @@ function DashAreaInfo({ zone }) {
 
   return (
     <StatusBlock className="container">
-      <div className={zone === "전체" ? "fpa_box all" : "fpa_box section"}>
+      <div className={zone === "전체" ? "fpa_box all" : "fpa_box section"} style={{ background: "linear-gradient(to bottom, #44A9FF, #4165E5)" }}>
         <div className="fpa_box_table">
           <div className="tr">
             <div className="td">

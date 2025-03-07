@@ -16,9 +16,7 @@ const App = ({ Component }) => (
       <meta property="og:image" url={logo} />
       <title>Pohang</title>
 
-      <script
-        src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t0gdynkrzk&submodules=visualization&amp;submodules=panorama,geocoder,drawing,visualization`}
-      ></script>
+      <script src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t0gdynkrzk&submodules=visualization&amp;submodules=panorama,geocoder,drawing,visualization`}></script>
     </Head>
     <ThemeProvider theme={theme}>
       <Component />

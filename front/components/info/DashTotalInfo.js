@@ -12,7 +12,6 @@ import wrapper from "../../store/configureStore";
 const StatusBlock = styled.div`
   margin-top: 0px;
   margin-bottom: 7px;
-  font-family: "Pretendard", sans-serif;
 
   display: grid;
 
@@ -24,7 +23,7 @@ const StatusBlock = styled.div`
   }
 
   .all {
-    background: rgb(50, 50, 50);
+    background: linear-gradient(to bottom, #44a9ff, #4165e5);
   }
 
   .section {
@@ -39,7 +38,7 @@ const StatusBlock = styled.div`
     margin: 10px 5px 10px 0;
   }
   .fpa_title {
-    font-size: 15px;
+    font-size: 20px;
     color: white;
     font-weight: bold;
   }
@@ -57,7 +56,7 @@ const StatusBlock = styled.div`
     border-right: solid 0;
   }
   .fpa_num1 {
-    font-size: 15px;
+    font-size: 19px;
     font-weight: normal;
     color: white;
   }
@@ -138,8 +137,6 @@ function DashTotalInfo({ zone }) {
           timeTemp = i.time; // 해당 데이터의 time을 timeTemp로 업데이트
         }
       }
-      console.log("zone", zone);
-      console.log("zoneData3", zoneData3);
 
       // 현재 방문객 수 설정
       setTodayVisitorTotal(zoneData1.data || "0");

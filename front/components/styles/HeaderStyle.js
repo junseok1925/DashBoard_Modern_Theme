@@ -9,13 +9,13 @@ export const HeaderBlock = styled.div`
   width: 100%;
   height: 3.8rem;
   color: white;
-  font-family: "Pretendard", sans-serif;
   .iframe {
     width: 100%;
     height: 100%;
   }
   .lightblock {
-    background: linear-gradient(to left, #68d9bd, #75beff);
+    // background: linear-gradient(to left,rgb(59, 107, 95), black);
+    background: #22222e;
     box-shadow: 5px 5px 5px #b1b1b1;
     //border-bottom: solid 10px gray;
   }
@@ -24,16 +24,16 @@ export const HeaderBlock = styled.div`
   }
   .logoutbtn {
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
     font-size: 1rem;
     font-weight: bold;
     padding: 0.25rem 1rem;
-    color: white;
+    color: black;
     outline: none;
     cursor: pointer;
-    background: #7b8df8;
-    width: 150px;
-    height: 40px;
+    background: white;
+    width: 110px;
+    height: 35px;
     font-size: 15pt;
     font-weight: normal;
     &:hover {
@@ -45,6 +45,7 @@ export const HeaderBlock = styled.div`
   }
 
   .menu {
+    height: 40px;
     margin-top: 5px;
     cursor: pointer;
   }

@@ -22,12 +22,12 @@ export const App = styled.div`
     top: 65px;
     left: 91%;
     transform: translate(-50%);
-    background: white;
+    background: gray;
     z-index: 100;
     width: 250px;
     border-radius: 5px;
     text-align: center;
-    color: black;
+    color: white;
     box-shadow: 0 0 2px gray;
   }
   .title {

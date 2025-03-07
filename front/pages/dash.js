@@ -214,7 +214,7 @@ const Background = styled.div`
     top:110px;
     right: 0;
     display: grid;
-    width: 430px;
+    width: 450px;
     height: 820px;
     background: #22222E;
     //z-index:1;
@@ -276,7 +276,8 @@ const Background = styled.div`
 
   .zoneSelct {
     //background: rgba(117,166,252,1);
-    background-color: #6babf1;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
   }
 
   .zoneNotSelct {

@@ -30,13 +30,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Mapp = styled.div`
+
   background-color: #1b2137;
   margin-top:100px
   width: 100%;
   height: 820px;
   .map{
     width: 100%;
-    height: 820px;
+    height: 840px;
   }
   .overlaybtn {
    //z-index: 1;
@@ -59,7 +60,6 @@ const Mapp = styled.div`
     //margin : 7px;
     display: inline-block;
     text-align: center;
-    font-weight: bold;
     font-size:11pt;
     color: white;
     
@@ -99,41 +99,41 @@ const Mapp = styled.div`
     background: rgba(168,179,202,0.8);
   }
 
-  .tourOn {
-    border-radius: 10px;    
-    border: 0;
-    //background: linear-gradient(to right, #75A6FC, #75A6FC, rgba(255,255,255,0.3));
-    background: rgba(117,166,252,1);
-    box-shadow: 0px 4px 0px rgba(168,179,202,1);
-    margin : 3px;
-    display: inline-block;
-    color:white;
-    font-weight: bolder;
-    font-size: 13pt;
-    padding: 3px;
-    width: 85px;
-    text-align: center;
-  }
+ 
+.tourOn {
+  border-radius: 10px;    
+  border: 0;
+  background:  rgba(117,166,252,1);
+  box-shadow: 0px 4px 8px rgba(50, 50, 50, 0.5);
+  margin: 3px;
+  display: inline-block;
+  color: white;
+  font-size: 13pt;
+  font-weight: 600;
+  padding: 3px;
+  width: 85px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
 
-  .tourOff {
-    border-radius: 10px;    
-    border: 0;
-    background: rgba(168,179,202,1);
-    box-shadow:inset 4px 4px rgba(140,140,140,0.8); 
-    margin : 3px;
-    display: inline-block;
-    color:white;
-    font-weight: bolder;
-    font-size: 13pt;
-    padding: 3px;
-    width: 85px;
-    text-align: center;
-  }
+.tourOff {
+  border-radius: 10px;    
+  border: 0;
+  background: rgb(150, 150, 150);
+  margin: 3px;
+  display: inline-block;
+  color: white;
+  font-size: 13pt;
+  font-weight: 600;
+  padding: 3px;
+  width: 85px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
 
   .scanner {
     background: linear-gradient(to right, #75A6FC, #F2D9D8);
     color:white;
-    font-weight: bolder;
     font-size: 15pt;
     padding: 6px;
     width: 90px;
@@ -150,7 +150,7 @@ const Mapp = styled.div`
     position:absolute;
     top: 50%;
 		//right: 10px;
-    right: 435px;
+    right: 455px;
     display:grid;
   }
   .prev {
@@ -160,6 +160,11 @@ const Mapp = styled.div`
 `;
 
 const Background = styled.div`
+  // 전역 폰트 설정
+  font-family: "Pretendard", sans-serif;
+  
+
+
   height:820px;
   .iframeBox {
     position:relative
@@ -187,7 +192,7 @@ const Background = styled.div`
     transform: translate(0px, 0px);
     transition-duration: 0.5s;
     //z-index:1;
-    opacity: 0.8;
+    opacity: 0.9;
   }
 
   .trans {
@@ -206,7 +211,6 @@ const Background = styled.div`
     display: grid;
     text-align: center;
     grid-template-columns:2.2fr 1fr 1fr 1fr;
-    font-weight: bold;
   }
 
   .overlayright {
@@ -219,7 +223,7 @@ const Background = styled.div`
     background: #22222E;
     //z-index:1;
     //text-align: center;
-    opacity: 0.8;
+    opacity: 0.9;
   }
 
   .overlaychart {
@@ -239,7 +243,6 @@ const Background = styled.div`
   }
 
   .charttitle {
-    font-weight:bold;
     font-size: 11pt;
     color: black;
     margin-bottom:15px;
@@ -266,8 +269,7 @@ const Background = styled.div`
     border: 0;    
     display: inline-block;
     color:white;
-    font-weight: bolder;
-    font-size: 13pt;
+    font-size: 16px;
     padding: 2px;
     width: 137.5px;
     margin:  1px 1px 0 1px;
@@ -275,14 +277,11 @@ const Background = styled.div`
   }
 
   .zoneSelct {
-    //background: rgba(117,166,252,1);
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
   }
 
   .zoneNotSelct {
-   // top: 20px; 
-    //box-shadow:inset 4px 4px rgba(140,140,140,0.8); 
     background: rgb(93, 99, 114);
   }
   
@@ -293,10 +292,10 @@ const Background = styled.div`
   .infotitle {
     //margin-left: 197px;
     margin-top: 5px;
-    font-weight:bolder;
-    font-size: 13.5pt;
+    font-size: 18px;
     color: #303030;
     text-align: center;
+    font-weight: 600;
   }
 
 `;
@@ -818,7 +817,7 @@ const Dash = () => {
             position: new naver.maps.LatLng(i.textlat, i.textlon),
             title: i.zonename,
             icon: {
-              content: '<div style="text-align:center; font-size:13pt; color:' + i.boundcolor + '; font-weight:bolder; text-shadow:1px 1px 1px #000;">' + i.zonename + "</div>",
+              content: '<div style="text-align:center; font-size:13pt; color:' + i.boundcolor + '; font-weight:600; text-shadow:1px 1px 1px #000;">' + i.zonename + "</div>",
             },
           });
         }

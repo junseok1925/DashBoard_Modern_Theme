@@ -139,7 +139,7 @@ export const Wrapper = styled(Responsive)`
   background: rgba(0, 0, 0, 0);
 
   .logo {
-    font-size: 35px;
+    font-size: 28px;
     font-weight: 500;
     margin: 3px 0 0 80px;
     float: left;

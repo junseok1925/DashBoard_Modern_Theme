@@ -31,9 +31,8 @@ const StatusBlock = styled.div`
   }
 
   .fpa_title {
-    font-size: 20px;
+    font-size: 16px;
     color: white;
-    font-weight: bold;
   }
 
   .tr {
@@ -50,8 +49,7 @@ const StatusBlock = styled.div`
   }
 
   .fpa_num1 {
-    font-size: 19px;
-    font-weight: normal;
+    font-size: 16px;
     color: white;
   }
 `;

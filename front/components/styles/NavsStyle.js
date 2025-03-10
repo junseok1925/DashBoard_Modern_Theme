@@ -79,11 +79,10 @@ export const Block = styled.div`
 
 export const Topnavmenu = styled.div`
   //margin-left:9%;
-  margin-bottom: 11px;
+  margin-bottom: 17px;
   width: 100%;
   //height: 50px;
   text-align: center;
-  color: white;
 
   .top_menu_b {
     text-transform: uppercase;
@@ -91,9 +90,8 @@ export const Topnavmenu = styled.div`
     border: 0;
     height: 100%;
     text-align: center;
-    color: #70727b;
-    font-size: 25px;
-    font-weight: 400;
+    color: #606e8e;
+    font-size: 20px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
@@ -101,6 +99,7 @@ export const Topnavmenu = styled.div`
     margin: 0 1px 0 1px;
     border-radius: 0 0 5px 5px;
     box-shadow: 0 7px 5px -5px #8392a7 inset;
+    opacity: 0.9;
   }
   .top_menu_b:hover,
   .top_menu_b:active,
@@ -109,7 +108,7 @@ export const Topnavmenu = styled.div`
     color: #cccfd8;
   }
   .top_menu_b_on {
-    width: 340px;
+    width: 320px;
     background: #21212e;
     color: #fff;
   }

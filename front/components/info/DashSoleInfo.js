@@ -34,7 +34,6 @@ const Block = styled.div`
     .fpa_title {
       font-size: 15px;
       color: white;
-      font-weight: normal;
     }
 
     .td {
@@ -47,8 +46,7 @@ const Block = styled.div`
       border-right: solid 0;
     }
     .fpa_num1 {
-      font-size: 22px;
-      font-weight: normal;
+      font-size: 14px;
       color: white;
     }
     .fpa_num2 {
@@ -75,7 +73,6 @@ const Block = styled.div`
   .onclickalldevice {
     background: rgba(255, 255, 255, 0);
     border: none;
-    font-weight: bold;
     font-size: 15px;
     color: white;
   }
@@ -140,9 +137,8 @@ const StatusBlock = styled.div`
     height: 100%;
     line-height: 300%;
     .fpa_title {
-      font-size: 17.5px;
+      font-size: 16px;
       color: white;
-      font-weight: 500;
     }
     .first {
       display: flex;
@@ -156,7 +152,6 @@ const StatusBlock = styled.div`
     .fpa_title {
       font-size: 15px;
       color: white;
-      font-weight: 500;
     }
   }
   .tr .td {
@@ -409,16 +404,16 @@ function DashSoleInfo({ theme, zone, scanners, zonedatas }) {
   return (
     <Block>
       <div className="column">
-        <button className="tr onclickalldevice" onClick={onClickAllZoneDevice}>
+        <button className="tr onclickalldevice" onClick={onClickAllZoneDevice} style={{ fontWeight: "600" }}>
           개소명
         </button>
-        <div className="tr" style={{ color: "white" }}>
+        <div className="tr" style={{ color: "white", fontWeight: "600" }}>
           금일방문
         </div>
-        <div className="tr" style={{ color: "white" }}>
+        <div className="tr" style={{ color: "white", fontWeight: "600" }}>
           재방문
         </div>
-        <div className="tr" style={{ color: "white" }}>
+        <div className="tr" style={{ color: "white", fontWeight: "600" }}>
           체류시간
         </div>
       </div>

@@ -10,6 +10,8 @@ import wrapper from "../../store/configureStore";
 
 //인디케이터 디자인
 const StatusBlock = styled.div`
+  font-family: "Pretendard", sans-serif;
+
   margin-top: 0px;
   margin-bottom: 7px;
 
@@ -31,6 +33,8 @@ const StatusBlock = styled.div`
   }
 
   .fpa_box_table {
+    font-size: 16px;
+
     width: 100%;
     height: 100%;
     text-align: center;
@@ -38,9 +42,7 @@ const StatusBlock = styled.div`
     margin: 10px 5px 10px 0;
   }
   .fpa_title {
-    font-size: 20px;
     color: white;
-    font-weight: bold;
   }
   .fpa_box_table .tr {
     display: grid;
@@ -56,7 +58,6 @@ const StatusBlock = styled.div`
     border-right: solid 0;
   }
   .fpa_num1 {
-    font-size: 19px;
     font-weight: normal;
     color: white;
   }
@@ -72,7 +73,6 @@ const StatusBlock = styled.div`
       line-height: 170%;
     }
     .fpa_title {
-      font-size: 20px;
       color: #f39700;
       font-weight: normal;
     }
@@ -87,7 +87,6 @@ const StatusBlock = styled.div`
       border-right: solid 0;
     }
     .fpa_num1 {
-      font-size: 18px;
       font-weight: normal;
       color: white;
     }

@@ -27,7 +27,6 @@ const AuthFormBlock = styled.div`
     margin-top: 0.7rem;
     font-size: 27pt;
     font-weight: 900;
-    font-family: "NanumSquareRoundEB";
   }
 
   .pw {

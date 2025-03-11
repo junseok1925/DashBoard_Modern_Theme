@@ -33,11 +33,18 @@ const AuthFormBlock = styled.div`
     margin-bottom: 50px;
   }
   .pw {
-    font-size: 10pt;
-    font-weigt: normal;
+    width: 400px;
+    font-weight: 600;
+    &::placeholder {
+      color: #a8b3ca; /* placeholder 색상 변경 */
+    }
   }
-  .id {
-    margin-top: 45px;
+  .id,
+  .name {
+    width: 400px;
+    &::placeholder {
+      color: #a8b3ca; /* placeholder 색상 변경 */
+    }
   }
   .form-control2 {
     margin-top: 12px;
@@ -49,7 +56,6 @@ const AuthFormBlock = styled.div`
   }
   .sectionText {
     font-size: 12pt;
-    font-weigt: normal;
     color: rgba(0, 0, 0, 0.6);
   }
 `;
@@ -58,15 +64,17 @@ const AuthFormBlock = styled.div`
  * 스타일링된 input
  */
 const StyledInput = styled.input`
+  font-family: "Pretendard";
+  font-weight: 600;
+
   font-size: 0.9rem;
   border: none;
   background: rgba(255, 255, 255, 0.8);
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #a8b3ca;
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
   outline: none;
   width: 100%;
-  font-family: "Pretend", sans-serif;
   &:focus {
     color: $oc-teal-7;
     border-bottom: 1px solid gray;
@@ -182,9 +190,17 @@ const RegisterForm = () => {
         </div>
         <form onSubmit={onSubmitForm}>
           <StyledInput className="id" autoComplete="username" name="username" onChange={onChangeId} value={userid} placeholder=" 아이디" />
-          <StyledInput autoComplete="name" name="name" onChange={onChangeUsername} value={username} placeholder=" 이름" />
-          <StyledInput autoComplete="new-password" name="password" onChange={onChangePassword} value={password} placeholder=" 비밀번호(영문,특수문자,숫자 포함 8자 이상) " type="password" />
-          <StyledInput autoComplete="new-password" name="passwordConfirm" onChange={onChangePasswordConfirm} value={passwordConfirm} placeholder=" 비밀번호 확인" type="password" />
+          <StyledInput className="name" autoComplete="name" name="name" onChange={onChangeUsername} value={username} placeholder=" 이름" />
+          <StyledInput
+            className="pw"
+            autoComplete="new-password"
+            name="password"
+            onChange={onChangePassword}
+            value={password}
+            placeholder=" 비밀번호(영문,특수문자,숫자 포함 8자 이상) "
+            type="password"
+          />
+          <StyledInput className="pw" autoComplete="new-password" name="passwordConfirm" onChange={onChangePasswordConfirm} value={passwordConfirm} placeholder=" 비밀번호 확인" type="password" />
           {/* 부서 선택 부분 제거 */}
           {error && <ErrorMessage>{error}</ErrorMessage>}
           <ButtonWithMarginTop loginpage fullWidth style={{ marginTop: "1rem" }} loading={signUpLoading}>

@@ -66,7 +66,8 @@ const Mapp = styled.div`
   }
   
    .blue {
-    background: rgba(0,112,192,0.3);
+    background: rgba(117, 166, 252,0.7);
+    //background: rgba(64, 66, 197,0.5);
   }
   .br {
     background: rgba(172,145,115,0.3);
@@ -103,12 +104,12 @@ const Mapp = styled.div`
 .tourOn {
   border-radius: 10px;    
   border: 0;
-  background:  rgba(117,166,252,1);
+  background:  rgb(255, 255, 255);
   box-shadow: 0px 4px 8px rgba(50, 50, 50, 0.5);
   margin: 3px;
   display: inline-block;
-  color: white;
-  font-size: 13pt;
+  color: #21212e;
+  font-size: 16px;
   font-weight: 600;
   padding: 3px;
   width: 85px;
@@ -119,11 +120,11 @@ const Mapp = styled.div`
 .tourOff {
   border-radius: 10px;    
   border: 0;
-  background: rgb(150, 150, 150);
+  background: #333344;
   margin: 3px;
   display: inline-block;
   color: white;
-  font-size: 13pt;
+  font-size: 16px;
   font-weight: 600;
   padding: 3px;
   width: 85px;
@@ -244,6 +245,7 @@ const Background = styled.div`
 
   .charttitle {
     font-size: 11pt;
+    font-weight: 600;
     color: black;
     margin-bottom:15px;
     margin-left: -20px;

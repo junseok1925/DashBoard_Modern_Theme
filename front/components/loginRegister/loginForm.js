@@ -17,6 +17,9 @@ import wrapper from "../../store/configureStore";
  */
 
 const AuthFormBlock = styled.div`
+  font-family: "Pretendard";
+  font-weight: 600;
+
   p {
     margin: 0;
     color: gray;
@@ -26,16 +29,21 @@ const AuthFormBlock = styled.div`
     font-weight: 900;
     font-family: "NanumSquareRoundEB";
   }
-  .logo {
-    width: 270px;
-    margin-bottom: 50px;
-  }
+
   .pw {
-    font-size: 10pt;
-    font-weigt: normal;
+    width: 400px;
+    font-weight: 600;
+    &::placeholder {
+      color: #a8b3ca; /* placeholder 색상 변경 */
+    }
   }
   .id {
     margin-top: 45px;
+    width: 400px;
+    font-weight: 600;
+    &::placeholder {
+      color: #a8b3ca; /* placeholder 색상 변경 */
+    }
   }
 `;
 
@@ -45,13 +53,12 @@ const AuthFormBlock = styled.div`
 const StyledInput = styled.input`
   font-size: 1rem;
   border: none;
-  background: rgba(255, 255, 255, 0.8);
-  border-bottom: 1px solid gray;
+  background: rgba(255, 255, 255, 1);
+  border-bottom: 1px solid #a8b3ca;
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
   outline: none;
   width: 100%;
-  font-family: "NanumSquareRoundR";
   &:focus {
     color: $oc-teal-7;
     border-bottom: 1px solid gray;
@@ -65,10 +72,10 @@ const StyledInput = styled.input`
  * 폼 하단에 로그인 혹은 회원가입 링크를 보여줌
  */
 const Footer = styled.div`
-  margin-top: 2rem;
+  margin-top: 3rem;
   text-align: right;
   a {
-    color: gray;
+    color: #a8b3ca;
     text-decoration: underline;
     &:hover {
       color: gray;
@@ -84,10 +91,11 @@ const ButtonWithMarginTop = styled(Button)`
  * 에러를 보여줍니다
  */
 const ErrorMessage = styled.div`
+  margin-top: 1rem;
+  margin-bottom: -2rem;
   color: red;
   text-align: center;
   font-size: 0.875rem;
-  margin-top: 1rem;
 `;
 
 const LoginForm = ({ section }) => {
@@ -121,26 +129,10 @@ const LoginForm = ({ section }) => {
           <Image className="logo" src={top_logo} />
         </div>
         <form onSubmit={onSubmitForm}>
-          <StyledInput
-            className="id"
-            autoComplete="username"
-            name="username"
-            onChange={onChangeId}
-            placeholder=" 아이디"
-          />
-          <StyledInput
-            autoComplete="new-password"
-            name="password"
-            onChange={onChangePassword}
-            placeholder=" 비밀번호 "
-            type="password"
-          />
+          <StyledInput className="id" autoComplete="username" name="username" onChange={onChangeId} placeholder=" 아이디" />
+          <StyledInput className="pw" autoComplete="new-password" name="password" onChange={onChangePassword} placeholder=" 비밀번호 " type="password" />
           {logInError && <ErrorMessage>{logInError}</ErrorMessage>}
-          <ButtonWithMarginTop
-            loginpage
-            fullWidth
-            style={{ marginTop: "1rem" }}
-          >
+          <ButtonWithMarginTop loginpage fullWidth style={{ marginTop: "3rem" }}>
             로그인
           </ButtonWithMarginTop>
         </form>
@@ -153,21 +145,18 @@ const LoginForm = ({ section }) => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) =>
-    async ({ req }) => {
-      const cookie = req ? req.headers.cookie : "";
-      //쿠키 공유되는 문제 해결
-      axios.defaults.headers.Cookie = "";
-      if (req && cookie) {
-        axios.defaults.headers.Cookie = cookie;
-      }
-      store.dispatch({
-        type: LOAD_MY_INFO_REQUEST,
-      });
-      store.dispatch(END);
-      await store.sagaTask.toPromise();
-    }
-);
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req }) => {
+  const cookie = req ? req.headers.cookie : "";
+  //쿠키 공유되는 문제 해결
+  axios.defaults.headers.Cookie = "";
+  if (req && cookie) {
+    axios.defaults.headers.Cookie = cookie;
+  }
+  store.dispatch({
+    type: LOAD_MY_INFO_REQUEST,
+  });
+  store.dispatch(END);
+  await store.sagaTask.toPromise();
+});
 
 export default LoginForm;

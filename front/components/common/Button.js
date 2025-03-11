@@ -2,13 +2,12 @@
  * 버튼디자인 컴포넌트
  */
 
-import React from 'react';
-import styled, { css } from 'styled-components';
-
+import React from "react";
+import styled, { css } from "styled-components";
 
 const buttonStyle = css`
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   font-size: 1rem;
   font-weight: bold;
   padding: 0.25rem 1rem;
@@ -21,7 +20,7 @@ const buttonStyle = css`
     background: gray;
   }
 
-  ${props =>
+  ${(props) =>
     props.fullWidth && //버튼 기본으로 만든거 말고 다른 디자인의 버튼을 사용하고 싶을시
     css`
       padding-top: 0.75rem;
@@ -30,25 +29,25 @@ const buttonStyle = css`
       font-size: 1.125rem;
     `}
 
-  ${props =>
+  ${(props) =>
     props.cyan &&
     css`
-      background: #0062AA;
+      background: #0062aa;
       &:hover {
         background: #306080;
       }
     `}
-
-  ${props =>
+   //로그인 버튼
+  ${(props) =>
     props.loginpage &&
     css`
-      background: #00A2A8;
+      background: #3366ff;
       &:hover {
-        background: #AC904D;
+        background: #3366ff;
       }
     `}
 
-  ${props =>
+  ${(props) =>
     props.login &&
     css`
       background: #242d4c;
@@ -61,21 +60,21 @@ const buttonStyle = css`
       }
     `}
 
-    ${props =>
-      props.nav &&
-      css`
-        background: #242d4c;
-        width: 140px;
-        height: 30px;
-        font-size: 12pt;
-        font-weight: lighter;
-        box-shadow: -5px -2px 5px -5px black inset;
-        &:hover {
-          background: #d59866;
-        }
-      `}
+    ${(props) =>
+    props.nav &&
+    css`
+      background: #242d4c;
+      width: 140px;
+      height: 30px;
+      font-size: 12pt;
+      font-weight: lighter;
+      box-shadow: -5px -2px 5px -5px black inset;
+      &:hover {
+        background: #d59866;
+      }
+    `}
 
-  ${props =>
+  ${(props) =>
     props.white &&
     css`
       border: solid;
@@ -87,25 +86,20 @@ const buttonStyle = css`
       }
     `}
 
-    ${props =>
-      props.black&&
-      css`
-        border: solid;
-        border-color: gray;
-      `}
+    ${(props) =>
+    props.black &&
+    css`
+      border: solid;
+      border-color: gray;
+    `}
 `;
 
 const StyledButton = styled.button`
   ${buttonStyle}
 `;
 
-
-const Button = props => {
-  return props.to ? (
-    <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
-  ) : (
-    <StyledButton {...props} />
-  );
+const Button = (props) => {
+  return props.to ? <StyledLink {...props} cyan={props.cyan ? 1 : 0} /> : <StyledButton {...props} />;
 };
 
 export default Button;

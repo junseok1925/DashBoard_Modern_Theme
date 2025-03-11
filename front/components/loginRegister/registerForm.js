@@ -66,7 +66,7 @@ const StyledInput = styled.input`
   padding-top: 0.5rem;
   outline: none;
   width: 100%;
-  font-family: "NanumSquareRoundR";
+  font-family: "Pretend", sans-serif;
   &:focus {
     color: $oc-teal-7;
     border-bottom: 1px solid gray;
@@ -107,9 +107,7 @@ const ErrorMessage = styled.div`
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-  const { signUpDone, signUpLoading, signUpError } = useSelector(
-    (state) => state.auth
-  );
+  const { signUpDone, signUpLoading, signUpError } = useSelector((state) => state.auth);
   const [userid, onChangeId] = useInput("");
   const [username, onChangeUsername] = useInput("");
   const [password, onChangePassword] = useInput("");
@@ -135,8 +133,7 @@ const RegisterForm = () => {
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      let password1RegExp =
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/; // 비밀번호 조건
+      let password1RegExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/; // 비밀번호 조건
 
       // 부서 선택이 없으므로 section 관련 코드는 삭제
       // const section = "4";  //부서 선택을 없애므로 여기서 기본값을 설정해도 되지만, section은 더 이상 사용하지 않음
@@ -148,9 +145,7 @@ const RegisterForm = () => {
         setError("비밀번호를 입력해주세요");
       } else if (!password1RegExp.test(password)) {
         //비밀번호 조건에 맞지 않을 시
-        setError(
-          "비밀번호는 최소 하나의 문자, 숫자, 특수문자 포함. 8자리 이상으로 입력하세요"
-        );
+        setError("비밀번호는 최소 하나의 문자, 숫자, 특수문자 포함. 8자리 이상으로 입력하세요");
         // } else if (password.includes(ko2enId)) {
         //   setError("아이디가 포함된 비밀번호를 등록이 불가합니다.");
       } else if (password === passwordConfirm) {
@@ -161,7 +156,7 @@ const RegisterForm = () => {
         });
 
         return 0;
-      } 
+      }
       //새비번과 새비번확인이 다를시
       else if (password !== passwordConfirm) {
         setError("비밀번호가 다릅니다.");
@@ -186,45 +181,13 @@ const RegisterForm = () => {
           <Image className="logo" src={top_logo} />
         </div>
         <form onSubmit={onSubmitForm}>
-          <StyledInput
-            className="id"
-            autoComplete="username"
-            name="username"
-            onChange={onChangeId}
-            value={userid}
-            placeholder=" 아이디"
-          />
-          <StyledInput
-            autoComplete="name"
-            name="name"
-            onChange={onChangeUsername}
-            value={username}
-            placeholder=" 이름"
-          />
-          <StyledInput
-            autoComplete="new-password"
-            name="password"
-            onChange={onChangePassword}
-            value={password}
-            placeholder=" 비밀번호(영문,특수문자,숫자 포함 8자 이상) "
-            type="password"
-          />
-          <StyledInput
-            autoComplete="new-password"
-            name="passwordConfirm"
-            onChange={onChangePasswordConfirm}
-            value={passwordConfirm}
-            placeholder=" 비밀번호 확인"
-            type="password"
-          />
+          <StyledInput className="id" autoComplete="username" name="username" onChange={onChangeId} value={userid} placeholder=" 아이디" />
+          <StyledInput autoComplete="name" name="name" onChange={onChangeUsername} value={username} placeholder=" 이름" />
+          <StyledInput autoComplete="new-password" name="password" onChange={onChangePassword} value={password} placeholder=" 비밀번호(영문,특수문자,숫자 포함 8자 이상) " type="password" />
+          <StyledInput autoComplete="new-password" name="passwordConfirm" onChange={onChangePasswordConfirm} value={passwordConfirm} placeholder=" 비밀번호 확인" type="password" />
           {/* 부서 선택 부분 제거 */}
           {error && <ErrorMessage>{error}</ErrorMessage>}
-          <ButtonWithMarginTop
-            loginpage
-            fullWidth
-            style={{ marginTop: "1rem" }}
-            loading={signUpLoading}
-          >
+          <ButtonWithMarginTop loginpage fullWidth style={{ marginTop: "1rem" }} loading={signUpLoading}>
             사용자 등록
           </ButtonWithMarginTop>
         </form>

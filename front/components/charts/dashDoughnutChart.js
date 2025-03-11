@@ -29,10 +29,10 @@ const DoughnutChart = ({ datas, label }) => {
         display: true,
         position: "bottom",
         labels: {
-          color: "white", // ⬅ 여기! 라벨(Labels) 글자를 흰색으로 설정
+          color: "white",
           font: {
-            size: 12, // ✅ 글자 크기 조정 (원하는 크기로 변경 가능)
-            // weight: "600", // ✅ 굵기 설정 (이미 dash.js에서 전역적으로 스타일 조정 완료)
+            size: 12,
+            //weight: "600",
           },
         },
       },
@@ -41,30 +41,19 @@ const DoughnutChart = ({ datas, label }) => {
         text: "실시간 방문객",
         font: {
           size: 16,
-          // weight: "600", // ✅ 굵기 설정 (이미 dash.js에서 전역적으로 스타일 조정 완료)
         },
       },
       datalabels: {
-        font: {
-          size: 12,
-          // weight: "600", // ✅ 굵기 설정 (이미 dash.js에서 전역적으로 스타일 조정 완료)
-        },
         display: true,
         formatter: (value, ctx) => {
-          let total = 0;
-          for (let i = 0; i < datas.length; i++) {
-            total += ctx.dataset.data[i];
-          }
+          let total = ctx.dataset.data.reduce((acc, val) => acc + val, 0);
           let result = (value / total) * 100;
-          if (result <= 5) {
-            return "";
-          } else {
-            return result.toFixed(1) + "%";
-          }
+          return result <= 5 ? "" : result.toFixed(1) + "%";
         },
-        color: ["white", "white", "white", "white", "white", "white", "white", "white"],
-        // backgroundColor: '#404040'
-        weight: "bold",
+        color: "white",
+        font: (context) => ({
+          size: 12,
+        }),
         textShadowBlur: 7,
         textShadowColor: "black",
       },
@@ -89,4 +78,3 @@ const DoughnutChart = ({ datas, label }) => {
 };
 
 export default DoughnutChart;
-("");

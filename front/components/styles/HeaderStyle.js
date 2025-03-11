@@ -23,22 +23,26 @@ export const HeaderBlock = styled.div`
     background: #3c496e;
   }
   .logoutbtn {
-    border: none;
-    border-radius: 15px;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0.25rem 1rem;
-    color: black;
-    outline: none;
-    cursor: pointer;
-    background: white;
-    width: 110px;
-    height: 35px;
-    font-size: 15pt;
-    font-weight: normal;
+    border-radius: 10px;    
+    border: 0;
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 4px 8px rgba(50, 50, 50, 0.5);
+    margin: 3px;
+    display: inline-block;
+    color: #21212e;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 3px;
+    width: 85px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
     &:hover {
-      background: #d59866;
+      background: #333344; /* 검은색 배경 */
+      border: 1px solid #ffffff; /* 하얀색 테두리 */
+      color: #ffffff; /* 글자색 흰색으로 변경 */
     }
+  }
+
   }
   .darkblock .logoutbtn {
     background: #242d4c;
@@ -148,8 +152,7 @@ export const Wrapper = styled(Responsive)`
     display: flex;
     align-items: center;
     margin-right: 0px;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 24px;
   }
   .admin {
     width: 30px;

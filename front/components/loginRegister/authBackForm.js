@@ -1,11 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Image from "next/image";
-import background_login from "../../public/images/background_login.jpg";
-
-/**
- * 회원가입 / 로그인 페이지의 레이아웃을 담당하는 컴포넌트입니다.(배경)
- */
 
 /* 화면 전체를 채움 */
 const AuthTemplateBlock = styled.div`
@@ -18,15 +12,7 @@ const AuthTemplateBlock = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  .background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.7;
-  }
+  background: linear-gradient(to top, #ffffff, #c0e8ff, #59c8ff); /* 그라데이션 추가 */
 `;
 
 /* 흰색 박스 */
@@ -40,21 +26,21 @@ const WhiteBox = styled.div`
   }
   .logo {
     position: relative;
-    width: 80px;
+    width: 100px;
   }
   position: relative;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.025);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
   padding: 2rem;
-  width: 360px;
-  background: rgba(255, 255, 255, 0.75);
-  border-radius: 2px;
+  width: 480px;
+  height: 520px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 20px;
 `;
 
 // children 은 AuthTemplate 컴포넌트 사이에 AuthTable 컴포넌트가 있는데 AuthTable의 페이지를 보여주려고 할 때 사용한다. -> page/LoginPage확인
 const AuthBackForm = ({ children }) => {
   return (
     <AuthTemplateBlock>
-      <Image className="background" src={background_login} layout="fill" alt="background" />
       <WhiteBox>
         <div className="logo-area">{children}</div>
       </WhiteBox>

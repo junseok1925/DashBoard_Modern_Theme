@@ -66,6 +66,10 @@ const Chart = ({ labels, label, datas, theme }) => {
         anchor: "end", //start , end
         align: "top", //top bottom middle 데이터 라벨 표시 위치
         color: ["white"],
+        font: {
+          size: 16,
+          weight: 600,
+        },
         formatter: function (value, context) {
           //데이터 값이 0 이면 출력 안함
           if (context.dataset.label !== "전체") {

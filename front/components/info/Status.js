@@ -79,13 +79,13 @@ const StatusBlock = styled.div`
   .fpa_num3 {
     font-size: 16px;
     margin: 0 0 0 5px;
-    color: #e5004f;
+    color: #00b7ee;
   }
 
   .fpa_num3_1 {
     font-size: 14px;
     margin: 0 0 0 5px;
-    color: #00b7ee;
+    color: #e5004f;
   }
   .fpa_num4 {
     font-size: 16px;

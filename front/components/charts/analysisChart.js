@@ -108,7 +108,7 @@ const Chart = ({ labels, label, datas, theme }) => {
       //       }],
       x: {
         grid: {
-          color: "rgba(255,255,255,0.5)",
+          color: "rgba(255,255,255,0.3)",
           drawBorder: true,
           borderColor: "white",
         },
@@ -125,7 +125,7 @@ const Chart = ({ labels, label, datas, theme }) => {
       },
       y: {
         grid: {
-          color: "rgba(255,255,255,0.5)",
+          color: "rgba(255,255,255,0.3)",
           borderColor: "white",
         },
         ticks: {

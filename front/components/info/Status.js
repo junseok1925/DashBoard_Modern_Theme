@@ -27,14 +27,16 @@ const StatusBlock = styled.div`
   margin: 0 5px 0 0;
   height: 143px;
 
+  // font 전역설정
+  font-family: "Pretendard", sans-serif;
+
   .fpa_box {
     display: absolute;
     /* width: 65.5%; */
-    margin: 5px 1% 5px 1%;
+    margin: 10px 1% 5px 1%;
     height: 130px;
-    background-color: white;
+    background: #2d2d42;
     border-radius: 7px;
-    box-shadow: 0px 0px 5px #cccccc;
   }
 
   .fpa_box_table {
@@ -44,11 +46,13 @@ const StatusBlock = styled.div`
     line-height: 170%;
     margin: 1px 5px 0 0;
     padding-top: 10px;
+    background: #2d2d42;
+    border-radius: 8px;
   }
   .fpa_title {
-    font-size: 15px;
-    color: #f39700;
-    font-weight: bold;
+    font-size: 16px;
+    color: #f8c140;
+    font-weight: 600;
   }
   .fpa_box_table .tr {
     display: grid;
@@ -64,16 +68,16 @@ const StatusBlock = styled.div`
     border-right: solid 0;
   }
   .fpa_num1 {
-    font-size: 22px;
-    font-weight: bold;
-    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
   }
   .fpa_num2 {
-    font-size: 14px;
-    color: black;
+    font-size: 16px;
+    color: white;
   }
   .fpa_num3 {
-    font-size: 14px;
+    font-size: 16px;
     margin: 0 0 0 5px;
     color: #e5004f;
   }
@@ -84,8 +88,8 @@ const StatusBlock = styled.div`
     color: #00b7ee;
   }
   .fpa_num4 {
-    font-size: 14px;
-    color: black;
+    font-size: 16px;
+    color: white;
   }
 
   .eia_box {

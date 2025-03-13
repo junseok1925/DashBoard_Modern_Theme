@@ -37,9 +37,9 @@ export const Block = styled.div`
   }
   .lightblock {
     // display: flex;
-    background: rgba(34, 34, 46, 0.8);
+    background: #606e8e;
     /* ✅ 테두리 추가 */
-    border: 0.1px solid rgba(34, 34, 46, 0.8);
+    border: 0.1px solid rgba(34, 34, 46, 0);
     .curtime {
       color: black;
       left: 10%;
@@ -83,6 +83,7 @@ export const Topnavmenu = styled.div`
   width: 100%;
   //height: 50px;
   text-align: center;
+  font-family: "Pretendard", sans-serif;
 
   .top_menu_b {
     text-transform: uppercase;
@@ -99,23 +100,22 @@ export const Topnavmenu = styled.div`
     margin: 0 1px 0 1px;
     border-radius: 0 0 5px 5px;
     box-shadow: 0 7px 5px -5px #8392a7 inset;
-    opacity: 0.9;
   }
   .top_menu_b:hover,
   .top_menu_b:active,
   .top_menu_b:focus {
-    background: rgb(45, 47, 51);
+    background: linear-gradient(to top, rgb(56, 56, 68), rgb(64, 64, 109));
     color: #cccfd8;
   }
   .top_menu_b_on {
     width: 320px;
-    background: #21212e;
+    background: linear-gradient(to top, #2b2b35, #303052);
     color: #fff;
   }
 
   .top_menu_b_off {
     width: 340px;
-    background: #333344;
+    background: linear-gradient(to top, #3b4d74, #51518b);
     color: #fff;
   }
 

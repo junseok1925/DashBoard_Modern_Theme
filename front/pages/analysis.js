@@ -19,13 +19,24 @@ import currenticon from "../public/images/top_analysis_icon4.png";
 import reicon from "../public/images/top_analysis_icon5.png";
 
 const Background = styled.div`
-  background-color: #f6f9fe;
+ // font 전역 설정
+  font-family: "Pretendard", sans-serif;
+
+  .lightback { 
+    background-color: #12121e;
+    position: relative; 
+    z-index: 0; 
+
+  .nav {
+    position: relative; 
+    z-index: 1;
+  }
 
   .total_graph_view {
     width: 49.4%;
     margin: 5px 5px 5px 5px;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px #cccccc;
+    //box-shadow: 0px 0px 5px #cccccc;
   }
   .pos_left {
     float: left;
@@ -40,19 +51,20 @@ const Background = styled.div`
     float: left;
     margin: 5px 5px 0 1%;
   }
+
   .total_graph_box_title {
     display: flex;
     width: 100%;
     height: 40px;
-    background-color: #fff;
-    font-weight: 900;
-    font-size: 15pt;
+    background-color: gray;
+    font-weight: 600;
+    font-size: 20px;
     border-radius: 5px 5px 0 0;
     border-bottom: solid 1px #e4e4e4;
     text-align: left;
-    color: #6e6e6e;
+    color: white;
     align-items: center;
-  }
+  } 
   .img {
     margin-top: 100px;
   }
@@ -65,7 +77,7 @@ const Background = styled.div`
   }
 
   .total_graph {
-    background-color: #fff;
+    background-color: gray;
     border-radius: 0 0 5px 5px;
     padding: 10px 5px 0 0;
     height: 280px;
@@ -86,51 +98,28 @@ const Background = styled.div`
   .chartZoneButton {
     border-radius: 5px;
     border: 0;
-
     display: inline-block;
     color: white;
-    font-weight: bolder;
-    font-size: 13pt;
+    font-weight: 600;
+    font-size: 16px;
     padding: 5px;
     width: 140px;
     margin: 4.5px;
     text-align: center;
+
+    background: #a6b9ca
+  }
+  .chartZoneButton:hover,
+  .chartZoneButton:active,
+  .chartZoneButton:focus{
+      background:#4077f8
   }
 
-  .zoneBt1 {
-    background: rgba(243, 51, 145, 0.6);
-  }
-  .zoneBt2 {
-    background: rgba(150, 103, 211, 0.6);
-  }
-  .zoneBt3 {
-    background: rgba(108, 128, 209, 0.7);
-  }
-  .zoneBt4 {
-    background: rgba(11, 115, 161, 0.7);
-  }
-  .zoneBt5 {
-    background: rgba(17, 159, 102, 0.7);
-  }
-  .zoneBt6 {
-    background: rgba(213, 118, 13, 0.7);
-  }
-  .zoneBt7 {
-    background: rgba(214, 114, 94, 0.9);
-  }
-  .zoneBt8 {
-    background: rgba(243, 51, 145, 0.6);
-  }
-  .zoneBt9 {
-    background: rgba(150, 103, 211, 0.6);
-  }
-  .zoneBt10 {
-    background: rgba(108, 128, 209, 0.7);
-  }
+ 
   .chart {
-    width: 98%;
+    width: 99%;
     height: 100%;
-    margin-left: 1%;
+    // margin-left: 1%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -204,7 +193,7 @@ const Home = () => {
   const Ligari = ["이가리 닻 전망대", "사방기념공원"];
   const BogyeongTmp = ["내연산/보경사"];
   const Homigot = ["연오랑세오녀 테마공원(귀비고)", "호미곶 해맞이광장", "구룡포 일본인가옥거리"];
-  const Nampo = ["오어사", "일월문화공원", "장기유배문화체험존"];
+  const Nampo = ["오어사", "일월문화공원", "장기유배문화체험촌"];
   const zoneNampo = ["첨성대존", "국립경주박물관", "연꽃단지"];
 
   const zoneYeongil = ["황리단길 권역", "동부사적지 권역", "불국사 권역", "경주 대릉원", "동궁과월지존", "사적관리존", "신경주역 일대", "보문단지 일대", "동부해안가 일대"];
@@ -263,36 +252,11 @@ const Home = () => {
         } else if (i.zone === Homigot[2]) {
           arrHomigot[2] = i.data;
         } else if (i.zone === Nampo[0]) {
-          // 남포동 권역
+          // 남포항 권역
           arrNampo[0] = i.data;
         } else if (i.zone === Nampo[1]) {
           arrNampo[1] = i.data;
         } else if (i.zone === Nampo[2]) {
-          arrNampo[0] = i.data;
-        } else if (i.zone_id === zoneYeongil[1]) {
-          arrYeongil[1] = i.data;
-        } else if (i.zone_id === zoneYeongil[2]) {
-          arrYeongil[2] = i.data;
-        } else if (i.zone_id === zoneYeongil[3]) {
-          arrYeongil[3] = i.data;
-          arrDR = i.data; //대릉원
-        } else if (i.zone_id === zoneYeongil[4]) {
-          arrYeongil[4] = i.data;
-          arrDG = i.data; //동궁과월지
-        } else if (i.zone_id === zoneYeongil[5]) {
-          arrYeongil[5] = i.data;
-        } else if (i.zone_id === zoneYeongil[6]) {
-          arrYeongil[6] = i.data;
-        } else if (i.zone_id === zoneYeongil[7]) {
-          arrYeongil[7] = i.data;
-        } else if (i.zone_id === zoneYeongil[8]) {
-          arrYeongil[8] = i.data;
-        } //사적관리
-        else if (i.zone_id === zoneNampo[0]) {
-          arrNampo[0] = i.data;
-        } else if (i.zone_id === zoneNampo[1]) {
-          arrNampo[1] = i.data;
-        } else if (i.zone_id === zoneNampo[2]) {
           arrNampo[2] = i.data;
         }
       }
@@ -311,6 +275,7 @@ const Home = () => {
      */
     try {
       const responseYesterdayStack = await axios.get(`http://14.63.184.15:8000/v1/POHANG_TOURISM/DeviceCountDay?from=${firstday}&to=${today}`);
+      console.log(`http://14.63.184.15:8000/v1/POHANG_TOURISM/DeviceCountDay?from=${firstday}&to=${today}`);
       // `${process.env.NEXT_PUBLIC_API_pohang_URL}/DeviceCountDay?from=${firstday}&to=${today}`
       //const responseYesterdayStack = await axios.get(`http://54.180.158.22:8000/v1/Gasi/DeviceCountDay?from=${yearFirst}&to=${today}`);
       let arrYeongil = [0, 0, 0];
@@ -345,35 +310,11 @@ const Home = () => {
         } else if (i.zone === Homigot[2]) {
           arrHomigot[2] = arrHomigot[2] + i.data;
         } else if (i.zone === Nampo[0]) {
+          // 남포항 권역
           arrNampo[0] = arrNampo[0] + Number(i.data);
         } else if (i.zone === Nampo[1]) {
           arrNampo[1] = arrNampo[1] + Number(i.data);
         } else if (i.zone === Nampo[2]) {
-          arrNampo[0] = arrNampo[0] + Number(i.data);
-        } else if (i.zone === zoneYeongil[1]) {
-          arrYeongil[1] = arrYeongil[1] + Number(i.data);
-        } else if (i.zone === zoneYeongil[2]) {
-          arrYeongil[2] = arrYeongil[2] + Number(i.data);
-        } else if (i.zone === zoneYeongil[3]) {
-          arrYeongil[3] = arrYeongil[3] + Number(i.data);
-          arrDR = arrDR + Number(i.data); //대릉원
-        } else if (i.zone === zoneYeongil[4]) {
-          arrYeongil[4] = arrYeongil[4] + Number(i.data);
-          arrDG = arrDG + Number(i.data); //동궁과월지
-        } else if (i.zone === zoneYeongil[5]) {
-          arrYeongil[5] = arrYeongil[5] + Number(i.data);
-        } else if (i.zone === zoneYeongil[6]) {
-          arrYeongil[6] = arrYeongil[6] + Number(i.data);
-        } else if (i.zone === zoneYeongil[7]) {
-          arrYeongil[7] = arrYeongil[7] + Number(i.data);
-        } else if (i.zone === zoneYeongil[8]) {
-          arrYeongil[8] = arrYeongil[8] + Number(i.data);
-        } //사적관리
-        else if (i.zone === zoneNampo[0]) {
-          arrNampo[0] = arrNampo[0] + Number(i.data);
-        } else if (i.zone === zoneNampo[1]) {
-          arrNampo[1] = arrNampo[1] + Number(i.data);
-        } else if (i.zone === zoneNampo[2]) {
           arrNampo[2] = arrNampo[2] + Number(i.data);
         }
       }
@@ -435,36 +376,11 @@ const Home = () => {
         } else if (i.zone === Homigot[2]) {
           arrHomigot[2] = i.data;
         } else if (i.zone === Nampo[0]) {
-          // 남포동 권역
+          // 남포항 권역
           arrNampo[0] = i.data;
         } else if (i.zone === Nampo[1]) {
           arrNampo[1] = i.data;
         } else if (i.zone === Nampo[2]) {
-          arrNampo[0] = i.data;
-        } else if (i.zone_id === zoneYeongil[1]) {
-          arrYeongil[1] = i.data;
-        } else if (i.zone_id === zoneYeongil[2]) {
-          arrYeongil[2] = i.data;
-        } else if (i.zone_id === zoneYeongil[3]) {
-          arrYeongil[3] = i.data;
-          arrDR = i.data; //대릉원
-        } else if (i.zone_id === zoneYeongil[4]) {
-          arrYeongil[4] = i.data;
-          arrDG = i.data; //동궁과월지
-        } else if (i.zone_id === zoneYeongil[5]) {
-          arrYeongil[5] = i.data;
-        } else if (i.zone_id === zoneYeongil[6]) {
-          arrYeongil[6] = i.data;
-        } else if (i.zone_id === zoneYeongil[7]) {
-          arrYeongil[7] = i.data;
-        } else if (i.zone_id === zoneYeongil[8]) {
-          arrYeongil[8] = i.data;
-        } //사적관리
-        else if (i.zone_id === zoneNampo[0]) {
-          arrNampo[0] = i.data;
-        } else if (i.zone_id === zoneNampo[1]) {
-          arrNampo[1] = i.data;
-        } else if (i.zone_id === zoneNampo[2]) {
           arrNampo[2] = i.data;
         }
       }
@@ -535,37 +451,12 @@ const Home = () => {
           arrHomigot[1] = i.data;
         } else if (i.zone === Homigot[2]) {
           arrHomigot[2] = i.data;
+          // 남포항 권역
         } else if (i.zone === Nampo[0]) {
-          // 남포동 권역
           arrNampo[0] = i.data;
         } else if (i.zone === Nampo[1]) {
           arrNampo[1] = i.data;
         } else if (i.zone === Nampo[2]) {
-          arrNampo[0] = i.data;
-        } else if (i.zone_id === zoneYeongil[1]) {
-          arrYeongil[1] = i.data;
-        } else if (i.zone_id === zoneYeongil[2]) {
-          arrYeongil[2] = i.data;
-        } else if (i.zone_id === zoneYeongil[3]) {
-          arrYeongil[3] = i.data;
-          arrDR = i.data; //대릉원
-        } else if (i.zone_id === zoneYeongil[4]) {
-          arrYeongil[4] = i.data;
-          arrDG = i.data; //동궁과월지
-        } else if (i.zone_id === zoneYeongil[5]) {
-          arrYeongil[5] = i.data;
-        } else if (i.zone_id === zoneYeongil[6]) {
-          arrYeongil[6] = i.data;
-        } else if (i.zone_id === zoneYeongil[7]) {
-          arrYeongil[7] = i.data;
-        } else if (i.zone_id === zoneYeongil[8]) {
-          arrYeongil[8] = i.data;
-        } //사적관리
-        else if (i.zone_id === zoneNampo[0]) {
-          arrNampo[0] = i.data;
-        } else if (i.zone_id === zoneNampo[1]) {
-          arrNampo[1] = i.data;
-        } else if (i.zone_id === zoneNampo[2]) {
           arrNampo[2] = i.data;
         }
       }

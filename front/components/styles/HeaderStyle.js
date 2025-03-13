@@ -16,8 +16,7 @@ export const HeaderBlock = styled.div`
   .lightblock {
     // background: linear-gradient(to left,rgb(59, 107, 95), black);
     background: #22222e;
-    box-shadow: 5px 5px 5px #b1b1b1;
-    //border-bottom: solid 10px gray;
+/    //border-bottom: solid 10px gray;
   }
   .darkblock {
     background: #3c496e;

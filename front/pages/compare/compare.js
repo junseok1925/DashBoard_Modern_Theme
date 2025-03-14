@@ -21,11 +21,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Background = styled.div`
-  background-color: #f6f9fe;
+  background-color: black;
+  font-family: "Pretendard", sans-serif;
 
-  .darkback {
-    background-color: #1b2137;
-  }
   .iframeBox {
     width: 100%;
     height: 830px;
@@ -35,15 +33,38 @@ const Background = styled.div`
     height: 100%;
   }
   .compare_list {
-    width: 100%;
+    width: 99%;
     height: 100%;
-    float: left;
+    float: center;
     margin: 0 0 0 0;
-    padding: 0px 10px 0 0;
+    padding: 0px 5px 0 10px;
   }
   .division {
+    background-color: black;
     display: grid;
     grid-template-columns: 2fr 2fr 2fr;
+  }
+
+  .slick-dots {
+    margin-top: 100px;
+    background-color: black;
+    padding: 10px 0;
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+  }
+
+  /* dots 개별 요소 색상 조정 */
+  .slick-dots li button:before {
+    color: white;
+    opacity: 0.5;
+  }
+
+  .slick-dots li.slick-active button:before {
+    color: white;
+    opacity: 1;
   }
 `;
 
@@ -264,7 +285,6 @@ const Compare = () => {
 
   useEffect(() => {
     setSettings({
-      dots: true,
       infinite: true,
       speed: 700,
       slidesToShow: 1,
@@ -282,7 +302,7 @@ const Compare = () => {
     <Background>
       <div className={"lightback"}>
         <Header page={"0"} />
-        <Nav value={"3"} bottomValue={"1"} />
+        <Nav value={"3"} bottomValue={"2"} />
         <Status theme={"light"} />
         <div className="compare_list">
           <Slider ref={slideEl} {...settings}>

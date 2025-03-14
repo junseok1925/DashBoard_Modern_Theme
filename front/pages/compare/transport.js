@@ -79,8 +79,7 @@ const Background = styled.div`
     //padding: 0% 5% 2% 5%;
     height: 34vh;
     border-radius: 15px;
-    box-shadow: 3px 3px 3px 3px gray;
-    text-align: center;
+z    text-align: center;
     align-items: center;
   }
   .zonebox2 {

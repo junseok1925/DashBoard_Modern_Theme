@@ -99,20 +99,20 @@ const Background = styled.div`
     border-radius: 5px;
     border: 0;
     display: inline-block;
-    color: white;
+    color: #b6b6d3;
     font-weight: 600;
     font-size: 16px;
     padding: 5px;
     width: 140px;
     margin: 4.5px;
     text-align: center;
-
-    background: #a6b9ca
+    background: #2d2d42
   }
   .chartZoneButton:hover,
   .chartZoneButton:active,
   .chartZoneButton:focus{
-      background:#4077f8
+      background:#4077f8;
+      color: white;
   }
 
  
@@ -590,28 +590,30 @@ const Home = () => {
               </div>
             </div>
             {/* <!--체류시간&체류인원--> */}
-            <div className="total_graph_view pos_left">
-              <div className="total_graph_box_title">
-                &nbsp;
-                <Image className="img" src={currenticon} margin-top={10} alt="..." />
-                <span className="title">&nbsp;체류시간</span>
-              </div>
-              <div className="total_graph">
-                <div id="visit3" className="chart">
-                  <Chart labels={label} label={"체류시간(분)"} datas={advVisitTimeGraph} theme={me && me.theme === "dark" ? "dark" : "light"} />
+            <div className="graph">
+              <div className="total_graph_view pos_left">
+                <div className="total_graph_box_title">
+                  &nbsp;
+                  <Image className="img" src={currenticon} margin-top={10} alt="..." />
+                  <span className="title">&nbsp;체류시간</span>
+                </div>
+                <div className="total_graph">
+                  <div id="visit3" className="chart">
+                    <Chart labels={label} label={"체류시간(분)"} datas={advVisitTimeGraph} theme={me && me.theme === "dark" ? "dark" : "light"} />
+                  </div>
                 </div>
               </div>
-            </div>
-            {/* <!--재방문객&재방문률--> */}
-            <div className="total_graph_view pos_right">
-              <div className="total_graph_box_title">
-                &nbsp;
-                <Image className="img" src={reicon} margin-top={10} alt="..." />
-                <span className="title">&nbsp;전일 재방문객</span>
-              </div>
-              <div className="total_graph">
-                <div id="visit4" className="chart">
-                  <Chart labels={label} label={"방문객수(명)"} datas={reVisitGraph} theme={me && me.theme === "dark" ? "dark" : "light"} />
+              {/* <!--재방문객&재방문률--> */}
+              <div className="total_graph_view pos_right">
+                <div className="total_graph_box_title">
+                  &nbsp;
+                  <Image className="img" src={reicon} margin-top={10} alt="..." />
+                  <span className="title">&nbsp;전일 재방문객</span>
+                </div>
+                <div className="total_graph">
+                  <div id="visit4" className="chart">
+                    <Chart labels={label} label={"방문객수(명)"} datas={reVisitGraph} theme={me && me.theme === "dark" ? "dark" : "light"} />
+                  </div>
                 </div>
               </div>
             </div>

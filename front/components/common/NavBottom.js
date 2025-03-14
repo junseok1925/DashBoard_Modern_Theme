@@ -80,13 +80,13 @@ function NavBottom({ value, theme }) {
             <Button nav className={value === "2" ? "top_analysis_b3 b3_on" : "top_analysis_b3 b3_off"} onClick={() => Router.push("/compare/floatpopulation")}>
               유동인구 분석
             </Button>
-            <Button nav className={value === "3" ? "top_analysis_b3 b3_on" : "top_analysis_b3 b3_off"} onClick={() => Router.push("/compare/congest")}>
+            <Button nav className={value === "4" ? "top_analysis_b3 b3_on" : "top_analysis_b3 b3_off"} onClick={() => Router.push("/compare/congest")}>
               혼잡도 분석
             </Button>
-            <Button nav className={value === "4" ? "top_analysis_b3 b3_on" : "top_analysis_b3 b3_off"} onClick={() => Router.push("/compare/environmental")}>
+            <Button nav className={value === "7" ? "top_analysis_b3 b3_on" : "top_analysis_b3 b3_off"} onClick={() => Router.push("/compare/environmental")}>
               환경정보 분석
             </Button>
-            <Button nav className={value === "5" ? "top_analysis_b3 b3_on" : "top_analysis_b3 b3_off"} onClick={() => Router.push("/compare/report")}>
+            <Button nav className={value === "6" ? "top_analysis_b3 b3_on" : "top_analysis_b3 b3_off"} onClick={() => Router.push("/compare/report")}>
               분석 리포트
             </Button>
           </div>

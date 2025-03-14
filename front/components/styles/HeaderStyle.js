@@ -22,17 +22,18 @@ export const HeaderBlock = styled.div`
     background: #3c496e;
   }
   .logoutbtn {
-    border-radius: 10px;    
+    border-radius: 7px;    
     border: 0;
     background: rgb(255, 255, 255);
     box-shadow: 0px 4px 8px rgba(50, 50, 50, 0.5);
-    margin: 3px;
+    margin: 5px;
     display: inline-block;
     color: #21212e;
     font-size: 16px;
     font-weight: 600;
-    padding: 3px;
-    width: 85px;
+    padding: 4px;
+    width: 100px;
+    height: 30px;
     text-align: center;
     transition: all 0.3s ease-in-out;
     &:hover {

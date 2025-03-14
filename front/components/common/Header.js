@@ -78,7 +78,7 @@ const Header = () => {
           <div className="right">
             {me ? me.username : ""} 님 &nbsp;&nbsp;
             <button className="logoutbtn" onClick={onLogout}>
-              LOGOUT{" "}
+              LOGOUT <img src="/images/logout_icon.png" className="logout" style={{ marginBottom: "4px" }} />
             </button>
             <div className="menu">
               <Menu me={me} />

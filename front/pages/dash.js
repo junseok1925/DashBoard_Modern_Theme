@@ -37,7 +37,7 @@ const Mapp = styled.div`
   height: 820px;
   .map{
     width: 100%;
-    height: 840px;
+    height: 820px;
   }
   .overlaybtn {
    //z-index: 1;
@@ -178,12 +178,12 @@ const Background = styled.div`
     height: 100%;
   }
   .overlayleft {
-    top:110px;
+    top:100px;
     position:absolute;
     display: grid;
     grid-template-columns: 5fr 1fr;
     width: 50px;
-    height: 820px;
+    height: 850px;
     //z-index:1;
   }
   .overlaydash {
@@ -216,7 +216,7 @@ const Background = styled.div`
 
   .overlayright {
     position:absolute;
-    top:110px;
+    top:100px;
     right: 0;
     display: grid;
     width: 450px;

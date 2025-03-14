@@ -45,27 +45,27 @@ const Background = styled.div`
     grid-template-columns: 2fr 2fr 2fr;
   }
 
-  .slick-dots {
-    margin-top: 100px;
-    background-color: black;
-    padding: 10px 0;
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-  }
+  // .slick-dots {
+  //   margin-top: 100px;
+  //   background-color: black;
+  //   padding: 10px 0;
+  //   position: absolute;
+  //   bottom: -30px;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  //   width: 100%;
+  // }
 
-  /* dots 개별 요소 색상 조정 */
-  .slick-dots li button:before {
-    color: white;
-    opacity: 0.5;
-  }
+  // /* dots 개별 요소 색상 조정 */
+  // .slick-dots li button:before {
+  //   color: white;
+  //   opacity: 0.5;
+  // }
 
-  .slick-dots li.slick-active button:before {
-    color: white;
-    opacity: 1;
-  }
+  // .slick-dots li.slick-active button:before {
+  //   color: white;
+  //   opacity: 1;
+  // }
 `;
 
 const Compare = () => {
@@ -302,7 +302,7 @@ const Compare = () => {
     <Background>
       <div className={"lightback"}>
         <Header page={"0"} />
-        <Nav value={"3"} bottomValue={"2"} />
+        <Nav value={"3"} bottomValue={"1"} />
         <Status theme={"light"} />
         <div className="compare_list">
           <Slider ref={slideEl} {...settings}>

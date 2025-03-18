@@ -537,82 +537,84 @@ const Home = () => {
   return (
     <Background>
       <div className="lightback">
-        <Header />
-        <Nav value={"2"} />
-        <Status theme="light" />
-        {/* <Chart /> */}
-        <div className="chartForm" onLoad={onYeongil}>
-          <div className="chartZone">
-            <button className="chartZoneButton zoneBt1" onClick={onYeongil}>
-              영일대 권역
-            </button>
-            <button className="chartZoneButton zoneBt2" onClick={onBogyeongTmp}>
-              보경사
-            </button>
-            <button className="chartZoneButton zoneBt3" onClick={onLigari}>
-              이가리 권역
-            </button>
-            <button className="chartZoneButton zoneBt4" onClick={onHomigot}>
-              <span style={{ fontSize: "1rem" }}>호미곶면 권역</span>
-            </button>
-            <button className="chartZoneButton zoneBt5" onClick={onSongdo}>
-              <span style={{ fontSize: "0.9rem" }}>송도해수욕장 권역</span>
-            </button>
-            <button className="chartZoneButton zoneBt6" onClick={onNampo}>
-              남포항 권역
-            </button>
-          </div>
-          <div>
-            {/* <!--오늘자 방문객--> */}
-            <div className="total_graph_view pos_left">
-              <div className="total_graph_box_title">
-                &nbsp;
-                <Image className="img" src={todayicon} alt="..." />
-                <span className="title">&nbsp;현재 방문객</span>
-              </div>
-              <div className="total_graph">
-                <div id="visit1" className="chart">
-                  <Chart labels={label} label={"방문객수(명)"} datas={todayVisitorGraph} theme={me && me.theme === "dark" ? "dark" : "light"} />
-                </div>
-              </div>
+        <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
+          <Header />
+          <Nav value={"2"} />
+          <Status theme="light" />
+          {/* <Chart /> */}
+          <div className="chartForm" onLoad={onYeongil}>
+            <div className="chartZone">
+              <button className="chartZoneButton zoneBt1" onClick={onYeongil}>
+                영일대 권역
+              </button>
+              <button className="chartZoneButton zoneBt2" onClick={onBogyeongTmp}>
+                보경사
+              </button>
+              <button className="chartZoneButton zoneBt3" onClick={onLigari}>
+                이가리 권역
+              </button>
+              <button className="chartZoneButton zoneBt4" onClick={onHomigot}>
+                <span style={{ fontSize: "1rem" }}>호미곶면 권역</span>
+              </button>
+              <button className="chartZoneButton zoneBt5" onClick={onSongdo}>
+                <span style={{ fontSize: "0.9rem" }}>송도해수욕장 권역</span>
+              </button>
+              <button className="chartZoneButton zoneBt6" onClick={onNampo}>
+                남포항 권역
+              </button>
             </div>
-            {/* <!--누적 방문객--> */}
-            <div className="total_graph_view pos_right">
-              <div className="total_graph_box_title">
-                &nbsp;
-                <Image className="img" src={stackicon} margin-top={10} alt="..." />
-                <span className="title">&nbsp;이달의 방문객</span>
-              </div>
-              <div className="total_graph">
-                <div id="visit2" className="chart">
-                  <Chart labels={label} label={"방문객수(명)"} datas={stackVisitorGraph} theme={me && me.theme === "dark" ? "dark" : "light"} />
-                </div>
-              </div>
-            </div>
-            {/* <!--체류시간&체류인원--> */}
-            <div className="graph">
+            <div>
+              {/* <!--오늘자 방문객--> */}
               <div className="total_graph_view pos_left">
                 <div className="total_graph_box_title">
                   &nbsp;
-                  <Image className="img" src={currenticon} margin-top={10} alt="..." />
-                  <span className="title">&nbsp;체류시간</span>
+                  <Image className="img" src={todayicon} alt="..." />
+                  <span className="title">&nbsp;현재 방문객</span>
                 </div>
                 <div className="total_graph">
-                  <div id="visit3" className="chart">
-                    <Chart labels={label} label={"체류시간(분)"} datas={advVisitTimeGraph} theme={me && me.theme === "dark" ? "dark" : "light"} />
+                  <div id="visit1" className="chart">
+                    <Chart labels={label} label={"방문객수(명)"} datas={todayVisitorGraph} theme={me && me.theme === "dark" ? "dark" : "light"} />
                   </div>
                 </div>
               </div>
-              {/* <!--재방문객&재방문률--> */}
+              {/* <!--누적 방문객--> */}
               <div className="total_graph_view pos_right">
                 <div className="total_graph_box_title">
                   &nbsp;
-                  <Image className="img" src={reicon} margin-top={10} alt="..." />
-                  <span className="title">&nbsp;전일 재방문객</span>
+                  <Image className="img" src={stackicon} margin-top={10} alt="..." />
+                  <span className="title">&nbsp;이달의 방문객</span>
                 </div>
                 <div className="total_graph">
-                  <div id="visit4" className="chart">
-                    <Chart labels={label} label={"방문객수(명)"} datas={reVisitGraph} theme={me && me.theme === "dark" ? "dark" : "light"} />
+                  <div id="visit2" className="chart">
+                    <Chart labels={label} label={"방문객수(명)"} datas={stackVisitorGraph} theme={me && me.theme === "dark" ? "dark" : "light"} />
+                  </div>
+                </div>
+              </div>
+              {/* <!--체류시간&체류인원--> */}
+              <div className="graph">
+                <div className="total_graph_view pos_left">
+                  <div className="total_graph_box_title">
+                    &nbsp;
+                    <Image className="img" src={currenticon} margin-top={10} alt="..." />
+                    <span className="title">&nbsp;체류시간</span>
+                  </div>
+                  <div className="total_graph">
+                    <div id="visit3" className="chart">
+                      <Chart labels={label} label={"체류시간(분)"} datas={advVisitTimeGraph} theme={me && me.theme === "dark" ? "dark" : "light"} />
+                    </div>
+                  </div>
+                </div>
+                {/* <!--재방문객&재방문률--> */}
+                <div className="total_graph_view pos_right">
+                  <div className="total_graph_box_title">
+                    &nbsp;
+                    <Image className="img" src={reicon} margin-top={10} alt="..." />
+                    <span className="title">&nbsp;전일 재방문객</span>
+                  </div>
+                  <div className="total_graph">
+                    <div id="visit4" className="chart">
+                      <Chart labels={label} label={"방문객수(명)"} datas={reVisitGraph} theme={me && me.theme === "dark" ? "dark" : "light"} />
+                    </div>
                   </div>
                 </div>
               </div>

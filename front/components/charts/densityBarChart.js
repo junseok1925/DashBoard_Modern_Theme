@@ -92,22 +92,25 @@ const BarChart = ({ daylabel, label, datas, theme }) => {
           //borderColor: 'gray',
           fontColor: "rgba(246, 36, 89, 1)",
         },
+        ticks: {
+          display: false,
+        },
 
         stacked: true,
       },
       y: {
-        max: 5,
+        max: 3,
         ticks: {
           font: {
             // [y축 폰트 스타일 변경]
             //family: 'Comic Sans MS',
-            size: 12,
+            size: 13,
             //weight: 'bold',
             lineHeight: 0.5,
           },
           display: true,
           beginAtZero: true,
-          maxTicksLimit: 6,
+          maxTicksLimit: 2,
           padding: 8,
           fontColor: "gray",
         },

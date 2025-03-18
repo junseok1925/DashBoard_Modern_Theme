@@ -22,7 +22,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Background = styled.div`
-  background-color: #f6f9fe;
+  font-family: "Pretendard", sans-serif;
+
+  background-color: black;
   .researchBox {
     display: grid;
     grid-template-columns: 2fr 7fr 0.1fr 3fr 0.7fr;
@@ -31,18 +33,14 @@ const Background = styled.div`
 
   .Sel_date {
     width: 100%;
-    background-color: white;
-    box-shadow: 0px 0px 5px #cccccc;
-    //margin: 5px 30px 5px auto;
+    background-color: #2d2d42;
+    margin: 0px 3px 0px 3px;
     padding: 5px 0 5px 0;
     border-radius: 5px;
     text-align: center;
-    color: black;
+    color: white;
   }
-  .stackinfo {
-    box-shadow: 0px 0px 5px #cccccc;
-    margin: 0;
-  }
+
   .button {
     text-transform: uppercase;
     border: 0;
@@ -55,7 +53,7 @@ const Background = styled.div`
     padding: 3px 15px 3px 15px;
     margin: 2px 4px 0px 4px;
     border-radius: 5px;
-    background: #7b8df8;
+    background: #4165e5;
 
     &:hover {
       background: #d59866;
@@ -65,7 +63,6 @@ const Background = styled.div`
     width: 100%;
     height: 100%;
     float: left;
-    margin: 0 0 0 0;
     padding: 5px 10px 0 0;
   }
   .division {
@@ -76,6 +73,31 @@ const Background = styled.div`
   .csv {
     color: white;
     text-decoration: none;
+  }
+
+  .slick-dots {
+    margin-top: 100px;
+    background-color: black;
+    padding: 10px 0;
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+  }
+  .slick-dots li button:before {
+    color: white;
+  }
+
+  .slick-dots li.slick-active button:before {
+    color: white;
+    opacity: 1;
+  }
+
+  .currentDateInput {
+    background-color: #2d2d42;
+    color: white;
+    border: 1.5px solid gray;
   }
 `;
 
@@ -591,34 +613,35 @@ const Floatpopulation = () => {
   return (
     <Background>
       <div className="lightback">
-        <Header page={"0"} />
-        <Nav value={"3"} bottomValue={"2"} />
-        <div className="researchBox" style={{ display: "flex", marginLeft: "5.5%", marginRight: "5.5%" }}>
-          <div></div>
+        <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
+          <Header page={"0"} />
+          <Nav value={"3"} bottomValue={"2"} />
+          <div className="researchBox" style={{ display: "flex", marginLeft: "5.5%", marginRight: "5.5%" }}>
+            <div></div>
 
-          <div className="Sel_date">
-            <b>유동인구</b> 분석기간 &nbsp;
-            <input type="date" id="currentDate" value={sttdate} onChange={(e) => setSttdate(e.target.value)} />
-            &nbsp;&nbsp;~&nbsp;&nbsp;
-            <input type="date" id="currentDate2" value={enddate} onChange={(e) => setEnddate(e.target.value)} />
-            &nbsp;
-            <button type="button " className="button" onClick={searchHandler}>
-              {" "}
-              검 색{" "}
-            </button>
-            <button type="button" className="button">
-              <CSVLink
-                className="csv"
-                data={excelData}
-                filename={"유동인구데이터-" + sttdate + "-" + enddate}
-                onClick={(event) => {
-                  // return false; // ???? You are stopping the handling of component
-                }}
-              >
-                다운로드
-              </CSVLink>
-            </button>
-            {/* <button type="button" className="button">
+            <div className="Sel_date">
+              <b>유동인구</b> 분석기간 &nbsp;
+              <input type="date" className="currentDateInput" value={sttdate} onChange={(e) => setSttdate(e.target.value)} />
+              &nbsp;&nbsp;~&nbsp;&nbsp;
+              <input type="date" className="currentDateInput" value={enddate} onChange={(e) => setEnddate(e.target.value)} />
+              &nbsp;
+              <button type="button " className="button" onClick={searchHandler}>
+                {" "}
+                검 색{" "}
+              </button>
+              <button type="button" className="button">
+                <CSVLink
+                  className="csv"
+                  data={excelData}
+                  filename={"유동인구데이터-" + sttdate + "-" + enddate}
+                  onClick={(event) => {
+                    // return false; // ???? You are stopping the handling of component
+                  }}
+                >
+                  다운로드
+                </CSVLink>
+              </button>
+              {/* <button type="button" className="button">
               <CSVLink
                 className="csv"
                 data={floatpepleExecels}
@@ -636,43 +659,43 @@ const Floatpopulation = () => {
                 시간별유동인구
               </CSVLink>
             </button> */}
+            </div>
+            <div></div>
+            <div></div>
           </div>
-          <div></div>
-          <div></div>
-        </div>
-        <StackStatistics className="stackinfo" Info={allInfo} theme="light" />
-
-        <div className="compare_list">
-          <Slider ref={slideEl} {...settings}>
-            <div>
-              <div className="division">
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_1} zoneName="영일대해수욕장/해상누각" zoneIndex="10" theme="light" />
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_2} zoneName="스페이스워크(환호공원)" zoneIndex="11" theme="light" />
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_3} zoneName="해상스카이워크" zoneIndex="12" theme="light" />
+          <StackStatistics className="stackinfo" Info={allInfo} theme="light" />
+          <div className="compare_list">
+            <Slider ref={slideEl} {...settings}>
+              <div>
+                <div className="division">
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_1} zoneName="영일대해수욕장/해상누각" zoneIndex="10" theme="light" />
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_2} zoneName="스페이스워크(환호공원)" zoneIndex="11" theme="light" />
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_3} zoneName="해상스카이워크" zoneIndex="12" theme="light" />
+                </div>
+                <div className="division">
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_4} zoneName="송도해수욕장" zoneIndex="13" theme="light" />
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_5} zoneName="송도송림테마거리(솔밭도시숲)" zoneIndex="14" theme="light" />
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_6} zoneName="이가리 닻 전망대" zoneIndex="15" theme="light" />
+                </div>
+                <div className="division">
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_7} zoneName="사방기념공원" zoneIndex="16" theme="light" />
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_8} zoneName="내연산/보경사" zoneIndex="17" theme="light" />
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo2_1} zoneName="연오랑세오녀 테마공원(귀비고)" zoneIndex="6" theme="light" />
+                </div>
               </div>
-              <div className="division">
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_4} zoneName="송도해수욕장" zoneIndex="13" theme="light" />
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_5} zoneName="송도송림테마거리(솔밭도시숲)" zoneIndex="14" theme="light" />
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_6} zoneName="이가리 닻 전망대" zoneIndex="15" theme="light" />
+              <div>
+                <div className="division">
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo2_2} zoneName="호미곶 해맞이광장" zoneIndex="1" theme="light" />
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo2_3} zoneName="구룡포 일본인가옥거리" zoneIndex="2" theme="light" />
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo2_4} zoneName="오어사" zoneIndex="3" theme="light" />
+                </div>
+                <div className="division">
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo2_5} zoneName="일월문화공원" zoneIndex="4" theme="light" />
+                  <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo2_6} zoneName="장기유배문화체험촌" zoneIndex="5" theme="light" />
+                </div>
               </div>
-              <div className="division">
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_7} zoneName="사방기념공원" zoneIndex="16" theme="light" />
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo1_8} zoneName="내연산/보경사" zoneIndex="17" theme="light" />
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo2_1} zoneName="연오랑세오녀 테마공원(귀비고)" zoneIndex="6" theme="light" />
-              </div>
-            </div>
-            <div>
-              <div className="division">
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo2_2} zoneName="호미곶 해맞이광장" zoneIndex="1" theme="light" />
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo2_3} zoneName="구룡포 일본인가옥거리" zoneIndex="2" theme="light" />
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo2_4} zoneName="오어사" zoneIndex="3" theme="light" />
-              </div>
-              <div className="division">
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo2_5} zoneName="일월문화공원" zoneIndex="4" theme="light" />
-                <FloatPopulationInfo className="zonebox" zoneInfo={zoneInfo2_6} zoneName="장기유배문화체험촌" zoneIndex="5" theme="light" />
-              </div>
-            </div>
-          </Slider>
+            </Slider>
+          </div>
         </div>
       </div>
     </Background>

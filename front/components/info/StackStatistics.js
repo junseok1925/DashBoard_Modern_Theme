@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const BoxBlock = styled.div`
   text-align: center;
+  font-family: "Pretendard", sans-serif;
   margin: 0 5.7% 10px 5.7%;
 
   .box_view_compare {
@@ -12,23 +13,21 @@ const BoxBlock = styled.div`
     padding: 0;
     float: left;
     border-radius: 5px;
-    box-shadow: 0px 0px 0px #cccccc;
   }
   .box_title {
     width: 100%;
     text-align: center;
-    font-size: 18px;
-    color: black;
-    //text-shadow: -1px 0px #313131, 0px 1px #313131, 1px 0px #313131, 0px -1px #313131;
-    font-weight: bolder;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
     padding: 5px 0 5px 0;
     border-radius: 5px 5px 0 0;
   }
   .box_content {
     padding: 0 0 10px 0;
     border-radius: 0 0 5px 5px;
-    background-color: white;
-    color: black;
+    background-color: #191931;
+    color: white;
     font-weight: normal;
     height: 100px;
     justify-content: center;
@@ -42,13 +41,13 @@ const BoxBlock = styled.div`
   }
 
   .box_content_title {
-    color: #f39700;
-    font-size: 18px;
+    color: #f8c140;
+    font-size: 20px;
   }
 
   .title_bg {
-    background-color: white;
-    border-bottom: solid 1px #e4e4e4;
+    background-color: #2d2d42;
+    border-bottom: solid 5px black;
   }
 
   .tr {
@@ -59,12 +58,9 @@ const BoxBlock = styled.div`
   .num {
     margin-top: 10px;
     font-size: 24px;
-    font-weight: bolder;
   }
   .light {
-    box-shadow: 0px 0px 5px #cccccc;
   }
-
 `;
 
 function StackStatistics({ Info, theme }) {

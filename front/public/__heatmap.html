@@ -1,436 +1,420 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 
     <title>.</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t0gdynkrzk&amp;submodules=panorama,geocoder,drawing,visualization"></script>
-	<style>
-		.buttons {
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: 1000;
-			padding: 5;
-		}
+    <style>
+      .buttons {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        padding: 5;
+      }
 
-		.buttons .control-btn {
-			/* margin: 10px 2px 2px 10px;
+      .buttons .control-btn {
+        /* margin: 10px 2px 2px 10px;
 			color : darkblue;
 			border-radius: 5px;
 			cursor: pointer;
 			padding : 10px; */
-			border-radius: 10px;    
-			border: 0;
-			padding: 5.5px 25px;
-			margin : 4.8px;
-			display: inline-block;
-			text-align: center;
-			font-weight: bold;
-			font-size:12pt;
-			color: white;
-			background: rgba(117,166,252,0.99);
-      box-shadow: 0px 4px 0px rgba(168,179,202,1);
-		}
+        border-radius: 10px;
+        border: 0;
+        padding: 5.5px 25px;
+        margin: 4.8px;
+        display: inline-block;
+        text-align: center;
+        font-weight: bold;
+        font-size: 12pt;
+        color: white;
+        background: rgba(117, 166, 252, 0.99);
+        box-shadow: 0px 4px 0px rgba(168, 179, 202, 1);
+      }
 
-		.control-btn:hover {
-			top: 4px; 
-    	box-shadow: 0 0 gray; 
-    	background: rgba(168,179,202,0.8);	
-		}
+      .control-btn:hover {
+        top: 4px;
+        box-shadow: 0 0 gray;
+        background: rgba(168, 179, 202, 0.8);
+      }
 
-		.buttons2 {
-			position: absolute;
-			top: 43px;
-			left: 5px;
-			z-index: 1000;
-			padding: 5;
-		}
+      .buttons2 {
+        position: absolute;
+        top: 43px;
+        left: 5px;
+        z-index: 1000;
+        padding: 5;
+      }
 
-		.buttons2 .control-btn2 {
-			/* margin: 10px 2px 2px 10px;
+      .buttons2 .control-btn2 {
+        /* margin: 10px 2px 2px 10px;
 			color : darkblue;
 			border-radius: 5px;
 			cursor: pointer;
 			padding : 10px; */
-			border-radius: 5px;    
-			border: 0;
-			padding: 3px 15px;
-			margin : 3px;
-			display: inline-block;
-			text-align: center;
-			font-weight: bold;
-			font-size:11pt;
-			color: white;
-			background: rgb(134, 140, 155);	
-      /*box-shadow: 0px 4px 0px rgba(168,179,202,1);*/
-		}
+        border-radius: 5px;
+        border: 0;
+        padding: 3px 15px;
+        margin: 3px;
+        display: inline-block;
+        text-align: center;
+        font-weight: bold;
+        font-size: 11pt;
+        color: white;
+        background: rgb(134, 140, 155);
+        /*box-shadow: 0px 4px 0px rgba(168,179,202,1);*/
+      }
 
-		.control-btn2:hover {
-			top: 4px; 
-    	box-shadow: 0 0 gray; 
-    	background: rgba(168,179,202,0.8);	
-		}
+      .control-btn2:hover {
+        top: 4px;
+        box-shadow: 0 0 gray;
+        background: rgba(168, 179, 202, 0.8);
+      }
 
-		.button {    
-    border-radius: 10px;    
-    border: 0;
-    padding: 5.5px 25px;
-    margin : 4.8px;
-    display: inline-block;
-    text-align: center;
-    font-weight: bold;
-    font-size:12pt;
-    color: white;
-    
-    background: rgba(117,166,252,0.99);
-    box-shadow: 0px 4px 0px rgba(168,179,202,1);
-  }
-  .heatimg {
-			position: absolute;
-			top: 70%;
-			right: 0;
-			z-index: 10;
-			padding: 5;
-		}
-	</style>
-</head>
-<body>
-<div id="map" style="width:100%; height:780px;">
-	<div class="buttons">
-		<input id="toZonePos1" type="button" value="황리단길전체" class="control-btn" />
-		<input id="toZonePos8" type="button" value="불국사" class="control-btn" />
-		<input id="toZonePos2" type="button" value="석굴암" class="control-btn" />
-		<input id="toZonePos3" type="button" value="봉황대고분" class="control-btn" />
-		<input id="toZonePos4" type="button" value="동궁과월지" class="control-btn" />
-		<input id="toZonePos5" type="button" value="첨성대" class="control-btn" />
-		<input id="toZonePos6" type="button" value="교촌마을" class="control-btn" />
-		<input id="toZonePos7" type="button" value="경주터미널" class="control-btn" />
-    <input id="toZonePos9" type="button" value="대릉원" class="control-btn" />
-	</div>		
-  <img  class="heatimg" src="./images/heatmap2.png" />
-	<br />
-	<div id="buttons2" class="buttons2" style="display: none;">
-		<input id="toZonePos1_1" type="button" value="중심거리1" class="control-btn2" />
-		<input id="toZonePos1_2" type="button" value="중심거리2" class="control-btn2" />
-		<input id="toZonePos1_3" type="button" value="중심거리3" class="control-btn2" />
-		<input id="toZonePos1_4" type="button" value="북동거리" class="control-btn2" />
-		<input id="toZonePos1_5" type="button" value="동남거리" class="control-btn2" />
-		<input id="toZonePos1_6" type="button" value="동방거리" class="control-btn2" />
-		<input id="toZonePos1_7" type="button" value="서방거리" class="control-btn2" />
-		<input id="toZonePos1_8" type="button" value="서남거리" class="control-btn2" />
-	</div>
+      .button {
+        border-radius: 10px;
+        border: 0;
+        padding: 5.5px 25px;
+        margin: 4.8px;
+        display: inline-block;
+        text-align: center;
+        font-weight: bold;
+        font-size: 12pt;
+        color: white;
 
-	
-</div>
-   <script>
-		$("#toZonePos1").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos1);
-			$("#buttons2").toggle();
-		});
+        background: rgba(117, 166, 252, 0.99);
+        box-shadow: 0px 4px 0px rgba(168, 179, 202, 1);
+      }
+      .heatimg {
+        position: absolute;
+        top: 70%;
+        right: 0;
+        z-index: 10;
+        padding: 5;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" style="width: 100%; height: 780px">
+      <div class="buttons">
+        <input id="toZonePos1" type="button" value="황리단길전체" class="control-btn" />
+        <input id="toZonePos8" type="button" value="불국사" class="control-btn" />
+        <input id="toZonePos2" type="button" value="석굴암" class="control-btn" />
+        <input id="toZonePos3" type="button" value="봉황대고분" class="control-btn" />
+        <input id="toZonePos4" type="button" value="동궁과월지" class="control-btn" />
+        <input id="toZonePos5" type="button" value="첨성대" class="control-btn" />
+        <input id="toZonePos6" type="button" value="교촌마을" class="control-btn" />
+        <input id="toZonePos7" type="button" value="경주터미널" class="control-btn" />
+        <input id="toZonePos9" type="button" value="대릉원" class="control-btn" />
+      </div>
+      <img class="heatimg" src="./images/heatmap2.png" />
+      <br />
+      <div id="buttons2" class="buttons2" style="display: none">
+        <input id="toZonePos1_1" type="button" value="중심거리1" class="control-btn2" />
+        <input id="toZonePos1_2" type="button" value="중심거리2" class="control-btn2" />
+        <input id="toZonePos1_3" type="button" value="중심거리3" class="control-btn2" />
+        <input id="toZonePos1_4" type="button" value="북동거리" class="control-btn2" />
+        <input id="toZonePos1_5" type="button" value="동남거리" class="control-btn2" />
+        <input id="toZonePos1_6" type="button" value="동방거리" class="control-btn2" />
+        <input id="toZonePos1_7" type="button" value="서방거리" class="control-btn2" />
+        <input id="toZonePos1_8" type="button" value="서남거리" class="control-btn2" />
+      </div>
+    </div>
+    <script>
+      $("#toZonePos1").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos1);
+        $("#buttons2").toggle();
+      });
 
-		$("#toZonePos2").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos2);
-		});
+      $("#toZonePos2").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos2);
+      });
 
-		$("#toZonePos3").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos3);
-		});
+      $("#toZonePos3").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos3);
+      });
 
-		$("#toZonePos4").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos4);
-		});
+      $("#toZonePos4").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos4);
+      });
 
-		$("#toZonePos5").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos5);
-		});
+      $("#toZonePos5").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos5);
+      });
 
-		$("#toZonePos6").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos6);
-		});
+      $("#toZonePos6").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos6);
+      });
 
-		$("#toZonePos7").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos7);
-		});
+      $("#toZonePos7").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos7);
+      });
 
-		$("#toZonePos8").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos8);
-		});
-   
-   $("#toZonePos9").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos9);
-		});
+      $("#toZonePos8").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos8);
+      });
 
-		$("#toZonePos1_1").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos1_1);
-		});
+      $("#toZonePos9").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos9);
+      });
 
-		$("#toZonePos1_2").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos1_2);
-		});
+      $("#toZonePos1_1").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos1_1);
+      });
 
-		$("#toZonePos1_3").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos1_3);
-		});
+      $("#toZonePos1_2").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos1_2);
+      });
 
-		$("#toZonePos1_4").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos1_4);
-		});
+      $("#toZonePos1_3").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos1_3);
+      });
 
-		$("#toZonePos1_5").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos1_5);
-		});
+      $("#toZonePos1_4").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos1_4);
+      });
 
-		$("#toZonePos1_6").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos1_6);
-		});
+      $("#toZonePos1_5").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos1_5);
+      });
 
-		$("#toZonePos1_7").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos1_7);
-		});
+      $("#toZonePos1_6").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos1_6);
+      });
 
-		$("#toZonePos1_8").on("click", function(e) {
-			e.preventDefault();
-			map.panTo(zonePos1_8);
-		});
+      $("#toZonePos1_7").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos1_7);
+      });
 
+      $("#toZonePos1_8").on("click", function (e) {
+        e.preventDefault();
+        map.panTo(zonePos1_8);
+      });
 
-		var BasePOS = new naver.maps.LatLng(35.835297005785364, 129.21146928131697);
-		var zonePos1 = new naver.maps.LatLng(35.83641772664928, 129.20956946605287);	// 황리단길전체
-		var zonePos2 = new naver.maps.LatLng(35.7897363584415, 129.34948654558244);  // 석굴암
-		var zonePos3 = new naver.maps.LatLng(35.8413724565, 129.2114609311);  // 봉황대고분
-		var zonePos4 = new naver.maps.LatLng(35.8333411100388, 129.2267456294713);  // 동궁과월지
-		var zonePos5 = new naver.maps.LatLng(35.834732295, 129.21760174006871);  // 첨성대
-		var zonePos6 = new naver.maps.LatLng(35.8295354455455, 129.2147365822213);  // 교촌마을
-		var zonePos7 = new naver.maps.LatLng(35.8387029950045, 129.20411377849393);  // 경주터미널
-		var zonePos8 = new naver.maps.LatLng(35.7862720928056, 129.32887704033146);  // 불국사
-    var zonePos9 = new naver.maps.LatLng(35.8377193328448, 129.212773131131);  // 대릉원
-		var zonePos1_1 = new naver.maps.LatLng(35.837865076402906, 129.20975070742932);	// 중심1
-		var zonePos1_2 = new naver.maps.LatLng(35.83641772664928, 129.20956946605287);  // 중심2
-		var zonePos1_3 = new naver.maps.LatLng(35.833941723885346, 129.20946758606377);  // 중심3
-		var zonePos1_4 = new naver.maps.LatLng(35.835981903795464, 129.21195304644826);  // 북동
-		var zonePos1_5 = new naver.maps.LatLng(35.83380721693253, 129.21212502399376);  // 동남
-		var zonePos1_6 = new naver.maps.LatLng(35.83483041104162, 129.21478697840539);  // 동방
-		var zonePos1_7 = new naver.maps.LatLng(35.836666537099184, 129.20804378934835);  // 서방
-		var zonePos1_8 = new naver.maps.LatLng(35.83428349727689, 129.2082764896501);  // 서남
+      var BasePOS = new naver.maps.LatLng(35.835297005785364, 129.21146928131697);
+      var zonePos1 = new naver.maps.LatLng(35.83641772664928, 129.20956946605287); // 황리단길전체
+      var zonePos2 = new naver.maps.LatLng(35.7897363584415, 129.34948654558244); // 석굴암
+      var zonePos3 = new naver.maps.LatLng(35.8413724565, 129.2114609311); // 봉황대고분
+      var zonePos4 = new naver.maps.LatLng(35.8333411100388, 129.2267456294713); // 동궁과월지
+      var zonePos5 = new naver.maps.LatLng(35.834732295, 129.21760174006871); // 첨성대
+      var zonePos6 = new naver.maps.LatLng(35.8295354455455, 129.2147365822213); // 교촌마을
+      var zonePos7 = new naver.maps.LatLng(35.8387029950045, 129.20411377849393); // 경주터미널
+      var zonePos8 = new naver.maps.LatLng(35.7862720928056, 129.32887704033146); // 불국사
+      var zonePos9 = new naver.maps.LatLng(35.8377193328448, 129.212773131131); // 대릉원
+      var zonePos1_1 = new naver.maps.LatLng(35.837865076402906, 129.20975070742932); // 중심1
+      var zonePos1_2 = new naver.maps.LatLng(35.83641772664928, 129.20956946605287); // 중심2
+      var zonePos1_3 = new naver.maps.LatLng(35.833941723885346, 129.20946758606377); // 중심3
+      var zonePos1_4 = new naver.maps.LatLng(35.835981903795464, 129.21195304644826); // 북동
+      var zonePos1_5 = new naver.maps.LatLng(35.83380721693253, 129.21212502399376); // 동남
+      var zonePos1_6 = new naver.maps.LatLng(35.83483041104162, 129.21478697840539); // 동방
+      var zonePos1_7 = new naver.maps.LatLng(35.836666537099184, 129.20804378934835); // 서방
+      var zonePos1_8 = new naver.maps.LatLng(35.83428349727689, 129.2082764896501); // 서남
 
-		var mapOptions = {
-		    center: BasePOS,
-			draggable: true,
-			pinchZoom: true,
-            scrollWheel: true,
-            keyboardShortcuts: true,
-            disableDoubleTapZoom: true,
-            disableDoubleClickZoom: true,
-            disableTwoFingerTapZoom: true,
-		    zoom: 17,
-			minZoom: 17, //지도의 최소 줌 레벨
-			maxZoom: 18,
-		};
+      var mapOptions = {
+        center: BasePOS,
+        draggable: true,
+        pinchZoom: true,
+        scrollWheel: true,
+        keyboardShortcuts: true,
+        disableDoubleTapZoom: true,
+        disableDoubleClickZoom: true,
+        disableTwoFingerTapZoom: true,
+        zoom: 17,
+        minZoom: 17, //지도의 최소 줌 레벨
+        maxZoom: 18,
+      };
 
-		var map = new naver.maps.Map('map', mapOptions);
-		map.setMapTypeId(naver.maps.MapTypeId["NORMAL"]);
+      var map = new naver.maps.Map("map", mapOptions);
+      map.setMapTypeId(naver.maps.MapTypeId["NORMAL"]);
 
-		/*API변경*/
-		//var sendinfo = 'http://sacheonchallenge.toysmythiot.com:8000/apis/getHeatData';
-		//var sendinfo = 'http://54.180.158.22:8000/v1/Gasi/DeviceCountDay';
-		var sendinfo = 'http://27.101.12.88:8000/v1/Gyeongju_Hwangridan/DeviceCountHourly';
+      /*API변경*/
+      //var sendinfo = 'http://sacheonchallenge.toysmythiot.com:8000/apis/getHeatData';
+      //var sendinfo = 'http://54.180.158.22:8000/v1/Gasi/DeviceCountDay';
+      var sendinfo = "http://27.101.12.88:8000/v1/Gyeongju_Hwangridan/DeviceCountHourly";
 
-		var CustomOverlay = null;
+      var CustomOverlay = null;
 
-		// 유동량 포인트를 저장하는 배열
-		var peopleposlist = new Array();
+      // 유동량 포인트를 저장하는 배열
+      var peopleposlist = new Array();
 
-		function fn_heatmap (data) {
-			//console.log(data);
+      function fn_heatmap(data) {
+        //console.log(data);
 
-			var toZonePos1Ele = document.getElementById("toZonePos1");
-			var toZonePos2Ele = document.getElementById("toZonePos2");
-			var toZonePos3Ele = document.getElementById("toZonePos3");
-			var toZonePos4Ele = document.getElementById("toZonePos4");
-			var toZonePos5Ele = document.getElementById("toZonePos5");
-			var toZonePos6Ele = document.getElementById("toZonePos6");
-			var toZonePos7Ele = document.getElementById("toZonePos7");
-			var toZonePos8Ele = document.getElementById("toZonePos8");
-      var toZonePos9Ele = document.getElementById("toZonePos9");
+        var toZonePos1Ele = document.getElementById("toZonePos1");
+        var toZonePos2Ele = document.getElementById("toZonePos2");
+        var toZonePos3Ele = document.getElementById("toZonePos3");
+        var toZonePos4Ele = document.getElementById("toZonePos4");
+        var toZonePos5Ele = document.getElementById("toZonePos5");
+        var toZonePos6Ele = document.getElementById("toZonePos6");
+        var toZonePos7Ele = document.getElementById("toZonePos7");
+        var toZonePos8Ele = document.getElementById("toZonePos8");
+        var toZonePos9Ele = document.getElementById("toZonePos9");
 
+        ///존 이름 변경하기 2070-2077
+        var obj = [
+          // 중심거리1
+          { zone_id: "황리단길 중심거리 1", weight: "0.8", lat: "35.838887088834596", lng: "129.20978736380664", data: 0 },
+          { zone_id: "황리단길 중심거리 1", weight: "0.8", lat: "35.83812773143799", lng: "129.20930983188725", data: 0 },
+          { zone_id: "황리단길 중심거리 1", weight: "0.8", lat: "35.83781955276265", lng: "129.21038848917303", data: 0 },
+          { zone_id: "황리단길 중심거리 1", weight: "0.8", lat: "35.8386022983712", lng: "129.2099620478129", data: 0 },
 
-			
-				///존 이름 변경하기 2070-2077
-			var obj = [
-				// 중심거리1
-				{zone_id:'황리단길 중심거리 1', weight:'0.8', lat : '35.838887088834596', lng : '129.20978736380664', data: 0},
-				{zone_id:'황리단길 중심거리 1', weight:'0.8', lat : '35.83812773143799', lng : '129.20930983188725', data: 0},
-				{zone_id:'황리단길 중심거리 1', weight:'0.8', lat : '35.83781955276265', lng : '129.21038848917303', data: 0},
-				{zone_id:'황리단길 중심거리 1', weight:'0.8', lat : '35.8386022983712', lng : '129.2099620478129', data: 0},
+          // 중심거리2
+          { zone_id: "황리단길 중심거리 2", weight: "0.8", lat: "35.836987777754885", lng: "129.2093169397725", data: 0 }, // 1
+          { zone_id: "황리단길 중심거리 2", weight: "0.8", lat: "35.83628830257256", lng: "129.21035982511924", data: 0 }, // 1
+          { zone_id: "황리단길 중심거리 2", weight: "0.8", lat: "35.835533090142604", lng: "129.20941214048275", data: 0 }, // 1
+          { zone_id: "황리단길 중심거리 2", weight: "0.8", lat: "35.83640253944716", lng: "129.20966033523257", data: 0 }, // 1
 
+          // 중심거리3
+          { zone_id: "황리단길 중심거리 3", weight: "0.8", lat: "35.834606114943114", lng: "129.21045422583575", data: 0 }, //1
+          { zone_id: "황리단길 중심거리 3", weight: "0.8", lat: "35.83312459387891", lng: "129.20943662221865", data: 0 }, //1
+          { zone_id: "황리단길 중심거리 3", weight: "0.8", lat: "35.833814362274076", lng: "129.2103907599933", data: 0 }, //1
+          { zone_id: "황리단길 중심거리 3", weight: "0.8", lat: "35.83476801219284", lng: "129.20949050607297", data: 0 }, //1
 
-				// 중심거리2
-				{zone_id:'황리단길 중심거리 2', weight:'0.8', lat : '35.836987777754885', lng : '129.2093169397725', data: 0},	// 1
-				{zone_id:'황리단길 중심거리 2', weight:'0.8', lat : '35.83628830257256', lng : '129.21035982511924', data: 0},	// 1
-				{zone_id:'황리단길 중심거리 2', weight:'0.8', lat : '35.835533090142604', lng : '129.20941214048275', data: 0},	// 1
-				{zone_id:'황리단길 중심거리 2', weight:'0.8', lat : '35.83640253944716', lng : '129.20966033523257', data: 0},	// 1
-				
-				
-				// 중심거리3
-				{zone_id:'황리단길 중심거리 3', weight:'0.8', lat : '35.834606114943114', lng : '129.21045422583575', data: 0},	//1
-				{zone_id:'황리단길 중심거리 3', weight:'0.8', lat : '35.83312459387891', lng : '129.20943662221865', data: 0},	//1
-				{zone_id:'황리단길 중심거리 3', weight:'0.8', lat : '35.833814362274076', lng : '129.2103907599933', data: 0},	//1
-				{zone_id:'황리단길 중심거리 3', weight:'0.8', lat : '35.83476801219284', lng : '129.20949050607297', data: 0},	//1
+          // 북동
+          { zone_id: "황리단길 북동", weight: "0.8", lat: "35.83694150538365", lng: "129.21109721599092", data: 0 }, //1
+          { zone_id: "황리단길 북동", weight: "0.8", lat: "35.836147565167735", lng: "129.21115263378698", data: 0 }, //1
+          { zone_id: "황리단길 북동", weight: "0.8", lat: "35.83596026593102", lng: "129.21202713731108", data: 0 }, //1
+          { zone_id: "황리단길 북동", weight: "0.8", lat: "35.835376432773984", lng: "129.21107036696685", data: 0 }, //1
+          { zone_id: "황리단길 북동", weight: "0.8", lat: "35.83540297634216", lng: "129.212564928862", data: 0 }, //1
 
-				// 북동
-				{zone_id:'황리단길 북동', weight:'0.8', lat : '35.83694150538365', lng : '129.21109721599092', data: 0},	//1
-				{zone_id:'황리단길 북동', weight:'0.8', lat : '35.836147565167735', lng : '129.21115263378698', data: 0},	//1
-				{zone_id:'황리단길 북동', weight:'0.8', lat : '35.83596026593102', lng : '129.21202713731108', data: 0},	//1
-				{zone_id:'황리단길 북동', weight:'0.8', lat : '35.835376432773984', lng : '129.21107036696685', data: 0},	//1
-				{zone_id:'황리단길 북동', weight:'0.8', lat : '35.83540297634216', lng : '129.212564928862', data: 0},	//1
+          // 동남
+          { zone_id: "황리단길 동남", weight: "0.8", lat: "35.83460542631018", lng: "129.21122600875987", data: 0 }, //1
+          { zone_id: "황리단길 동남", weight: "0.8", lat: "35.83444324959859", lng: "129.21208182886335", data: 0 },
+          { zone_id: "황리단길 동남", weight: "0.8", lat: "35.834063439138966", lng: "129.21289010465932", data: 0 },
+          { zone_id: "황리단길 동남", weight: "0.8", lat: "35.83321644146522", lng: "129.2130131867383", data: 0 },
 
-				// 동남
-				{zone_id:'황리단길 동남', weight:'0.8', lat : '35.83460542631018', lng : '129.21122600875987', data: 0},	//1
-				{zone_id:'황리단길 동남', weight:'0.8', lat : '35.83444324959859', lng : '129.21208182886335', data: 0},
-				{zone_id:'황리단길 동남', weight:'0.8', lat : '35.834063439138966', lng : '129.21289010465932', data: 0},
-				{zone_id:'황리단길 동남', weight:'0.8', lat : '35.83321644146522', lng : '129.2130131867383', data: 0},
+          // 동
+          { zone_id: "황리단길 동", weight: "0.8", lat: "35.83558695053971", lng: "129.2140721664656", data: 0 }, //1
+          { zone_id: "황리단길 동", weight: "0.8", lat: "35.83504067170148", lng: "129.21486751574628", data: 0 },
+          { zone_id: "황리단길 동", weight: "0.8", lat: "35.834273515623146", lng: "129.21383648369127", data: 0 },
+          { zone_id: "황리단길 동", weight: "0.8", lat: "35.834178089809136", lng: "129.21534699676553", data: 0 },
 
-				// 동
-				{zone_id:'황리단길 동', weight:'0.8', lat : '35.83558695053971', lng : '129.2140721664656', data: 0},	//1
-				{zone_id:'황리단길 동', weight:'0.8', lat : '35.83504067170148', lng : '129.21486751574628', data: 0},
-				{zone_id:'황리단길 동', weight:'0.8', lat : '35.834273515623146', lng : '129.21383648369127', data: 0},
-				{zone_id:'황리단길 동', weight:'0.8', lat : '35.834178089809136', lng : '129.21534699676553', data: 0},
+          // 서
+          { zone_id: "황리단길 서", weight: "0.8", lat: "35.836701396555206", lng: "129.2077404528328", data: 0 }, //1
+          { zone_id: "황리단길 서", weight: "0.8", lat: "35.83658662618138", lng: "129.2085920847962", data: 0 },
 
-				// 서 
-				{zone_id:'황리단길 서', weight:'0.8', lat : '35.836701396555206', lng : '129.2077404528328', data: 0},	//1
-				{zone_id:'황리단길 서', weight:'0.8', lat : '35.83658662618138', lng : '129.2085920847962', data: 0},
+          // 서남
+          { zone_id: "황리단길 서남", weight: "0.8", lat: "35.835199823822876", lng: "129.20854809789645", data: 0 }, //1
+          { zone_id: "황리단길 서남", weight: "0.8", lat: "35.83482765596948", lng: "129.2084520225768", data: 0 },
+          { zone_id: "황리단길 서남", weight: "0.8", lat: "35.83371128345458", lng: "129.2084017067849", data: 0 },
 
-				// 서남 
-				{zone_id:'황리단길 서남', weight:'0.8', lat : '35.835199823822876', lng : '129.20854809789645', data: 0},	//1
-				{zone_id:'황리단길 서남', weight:'0.8', lat : '35.83482765596948', lng : '129.2084520225768', data: 0},
-				{zone_id:'황리단길 서남', weight:'0.8', lat : '35.83371128345458', lng : '129.2084017067849', data: 0},		
-				
-				// 불국사
-				{zone_id:'불국사존', weight:'0.8', lat : '35.7862720928056', lng : '129.32887704033146', data: 0},	//1
+          // 불국사
+          { zone_id: "불국사존", weight: "0.8", lat: "35.7862720928056", lng: "129.32887704033146", data: 0 }, //1
 
-				// 석굴암
-				{zone_id:'석굴암존', weight:'0.8', lat : '35.7897363584415', lng : '129.34948654558244', data: 0},	//1
+          // 석굴암
+          { zone_id: "석굴암존", weight: "0.8", lat: "35.7897363584415", lng: "129.34948654558244", data: 0 }, //1
 
-				// 봉황대고분
-				{zone_id:'봉황대고분존', weight:'0.8', lat : '35.8418396128661', lng : '129.21178099148273', data: 0},	//1
-				{zone_id:'봉황대고분존', weight:'0.8', lat : '35.8409053010696', lng : '129.21114087085098', data: 0},
+          // 봉황대고분
+          { zone_id: "봉황대고분존", weight: "0.8", lat: "35.8418396128661", lng: "129.21178099148273", data: 0 }, //1
+          { zone_id: "봉황대고분존", weight: "0.8", lat: "35.8409053010696", lng: "129.21114087085098", data: 0 },
 
-				// 동궁과월지
-				{zone_id:'동궁과월지존', weight:'0.8', lat : '35.8333411100388', lng : '129.2267456294713', data: 0},	//1
+          // 동궁과월지
+          { zone_id: "동궁과월지존", weight: "0.8", lat: "35.8333411100388", lng: "129.2267456294713", data: 0 }, //1
 
-				// 첨성대 
-				{zone_id:'첨성대존', weight:'0.8', lat : '35.8350378616362', lng : '129.21660745771885', data: 0},	//1
-				{zone_id:'첨성대존', weight:'0.8', lat : '35.8344267349704', lng : '129.21859602241858', data: 0},
+          // 첨성대
+          { zone_id: "첨성대존", weight: "0.8", lat: "35.8350378616362", lng: "129.21660745771885", data: 0 }, //1
+          { zone_id: "첨성대존", weight: "0.8", lat: "35.8344267349704", lng: "129.21859602241858", data: 0 },
 
-				// 교촌마을
-				{zone_id:'교촌마을존', weight:'0.8', lat : '35.8295354455455', lng : '129.2147365822213', data: 0},	//1
+          // 교촌마을
+          { zone_id: "교촌마을존", weight: "0.8", lat: "35.8295354455455", lng: "129.2147365822213", data: 0 }, //1
 
-				// 경주 터미널
-				{zone_id:'경주 터미널 온누리 약국 앞', weight:'0.8', lat : '35.8387029950045', lng : '129.20411377849393', data: 0},	//1
-        
-        //대릉원
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8353174215028', lng : '129.215251433303', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8355752094232', lng : '129.21519774333', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8365406695692', lng : '129.214391914462', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8376207039304', lng : '129.213724805449', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8382847730464', lng : '129.21355707314', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8390616408639', lng : '129.212542078655', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8394871130952', lng : '129.211945272583', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8357969006013', lng : '129.213436208163', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8395414629309', lng : '129.210950846863', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8389513130652', lng : '129.210826570972', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8381447680199', lng : '129.210710122689', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8382431638111', lng : '129.21172813811', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8375144799504', lng : '129.212521228665', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.8365989098021', lng : '129.212576019852', data: 0},
-				{zone_id:'경주 대릉원', weight:'0.8', lat : '35.83644410787121', lng : '129.21358230785687', data: 0},
+          // 경주 터미널
+          { zone_id: "경주 터미널 온누리 약국 앞", weight: "0.8", lat: "35.8387029950045", lng: "129.20411377849393", data: 0 }, //1
 
-			]
+          //대릉원
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8353174215028", lng: "129.215251433303", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8355752094232", lng: "129.21519774333", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8365406695692", lng: "129.214391914462", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8376207039304", lng: "129.213724805449", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8382847730464", lng: "129.21355707314", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8390616408639", lng: "129.212542078655", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8394871130952", lng: "129.211945272583", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8357969006013", lng: "129.213436208163", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8395414629309", lng: "129.210950846863", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8389513130652", lng: "129.210826570972", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8381447680199", lng: "129.210710122689", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8382431638111", lng: "129.21172813811", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8375144799504", lng: "129.212521228665", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.8365989098021", lng: "129.212576019852", data: 0 },
+          { zone_id: "경주 대릉원", weight: "0.8", lat: "35.83644410787121", lng: "129.21358230785687", data: 0 },
+        ];
 
+        // 맥스
+        var define_max = 100;
 
-			// 맥스
-			var define_max = 100;
+        //존 별 데이터 값 넣기
+        for (var j of data) {
+          for (var i of obj) {
+            if (String(j.zone_id) === i.zone_id) {
+              i.data = j.data;
+              //	console.log(i.zone_id,j.zone_id);
+            }
+          }
+        }
 
-			//존 별 데이터 값 넣기
-			for(var j of data){
-				for(var i of obj){
-					if (String(j.zone_id) === i.zone_id){
-						i.data = j.data;
-					//	console.log(i.zone_id,j.zone_id);
-					}
-					
-					
-				}
-			}
-			
-			//console.log('obj', obj);
+        //console.log('obj', obj);
 
-			var mydata = [];
-			for(var i=0; i < obj.length; i++){
-				var calValue = ((obj[i].weight * obj[i].data) / define_max);
-				
-				if(calValue > 5){
-					calValue = 5;
-				}
+        var mydata = [];
+        for (var i = 0; i < obj.length; i++) {
+          var calValue = (obj[i].weight * obj[i].data) / define_max;
 
-				mydata.push({
-					weight : calValue,
-					location : [obj[i].lng, obj[i].lat]
-				})
-			}
-      //console.log(mydata);
+          if (calValue > 5) {
+            calValue = 5;
+          }
 
-			mydata.push({
-				weight : '0.1',
-				location : [0,0]
-			})
+          mydata.push({
+            weight: calValue,
+            location: [obj[i].lng, obj[i].lat],
+          });
+        }
+        //console.log(mydata);
 
-			var heatmap = new naver.maps.visualization.HeatMap({
-				map: map,
-				data: mydata,
-				radius : 100,
-				opacity : '0.7',
-				colorMap : "PORTLAND",
-			});
+        mydata.push({
+          weight: "0.1",
+          location: [0, 0],
+        });
 
-		}
+        var heatmap = new naver.maps.visualization.HeatMap({
+          map: map,
+          data: mydata,
+          radius: 100,
+          opacity: "0.7",
+          colorMap: "PORTLAND",
+        });
+      }
 
+      function inits() {
+        $.getJSON(sendinfo, {}, function (data) {
+          if (data != null) {
+            fn_heatmap(data);
+            //console.log('a',data)
+          }
+        });
+      }
 
-		function inits(){
-
-			$.getJSON(sendinfo, {}, function (data) {
-				if(data != null) { 
-					fn_heatmap(data);
-					//console.log('a',data)
-				}
-			});
-		}
-
-
-		window.onload=function(){
-			inits();
-		}
-
-	</script>
-</body>
+      window.onload = function () {
+        inits();
+      };
+    </script>
+  </body>
 </html>

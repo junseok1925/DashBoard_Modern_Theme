@@ -87,7 +87,7 @@ const BarChart = ({ daylabel, label, datas, theme }) => {
     scales: {
       x: {
         grid: {
-          color: "rgba(255,255,255,0)",
+          color: "rgba(255, 255, 255, 0.3)",
           //drawBorder: true,
           //borderColor: 'gray',
           fontColor: "rgba(246, 36, 89, 1)",
@@ -99,7 +99,10 @@ const BarChart = ({ daylabel, label, datas, theme }) => {
         stacked: true,
       },
       y: {
-        max: 3,
+        max: 0.05,
+        grid: {
+          color: "rgba(255, 255, 255, 0.3)",
+        },
         ticks: {
           font: {
             // [y축 폰트 스타일 변경]

@@ -32,15 +32,20 @@
          font-weight: bold;
          font-size:12pt;
          color: white;
-         background: rgba(117,166,252,0.99);
-           box-shadow: 0px 4px 0px rgba(168,179,202,1);
+         background: #2D2D42;
+         box-shadow: 0px 4px 0px rgba(168,179,202,1);
       }
 
       .control-btn:hover {
          top: 4px; 
-       box-shadow: 0 0 gray; 
-       background: rgba(168,179,202,0.8);   
+         box-shadow: 0 0 gray; 
+         background: #7AA1CA;   
       }
+
+      .control-btn.active {
+         background: #4165E5 !important;
+      }
+
 
       .buttons2 {
          position: absolute;
@@ -49,47 +54,45 @@
          z-index: 1000;
          padding: 5;
       }
-
-      .buttons2 .control-btn2 {
-         /* margin: 10px 2px 2px 10px;
-         color : darkblue;
+      .control-btn2 {
          border-radius: 5px;
-         cursor: pointer;
-         padding : 10px; */
-         border-radius: 5px;    
          border: 0;
          padding: 3px 15px;
-         margin : 3px;
+         margin: 3px;
          display: inline-block;
          text-align: center;
          font-weight: bold;
-         font-size:11pt;
+         font-size: 11pt;
          color: white;
-         background: rgb(134, 140, 155);   
-      /*box-shadow: 0px 4px 0px rgba(168,179,202,1);*/
+         background: #399AFF;
+         cursor: pointer;
+      }
+      .control-btn2:hover {
+         top: 4px;
+         box-shadow: 0 0 gray;
+         background: #7AA1CA;
       }
 
-      .control-btn2:hover {
-         top: 4px; 
-       box-shadow: 0 0 gray; 
-       background: rgba(168,179,202,0.8);   
+      .control-btn2.active {
+         background: #4165E5 !important;
       }
+
 
       .button {    
-    border-radius: 10px;    
-    border: 0;
-    padding: 5.5px 25px;
-    margin : 4.8px;
-    display: inline-block;
-    text-align: center;
-    font-weight: bold;
-    font-size:12pt;
-    color: white;
-    
-    background: rgba(117,166,252,0.99);
-    box-shadow: 0px 4px 0px rgba(168,179,202,1);
-  }
-  .heatimg {
+      border-radius: 10px;    
+      border: 0;
+      padding: 5.5px 25px;
+      margin : 4.8px;
+      display: inline-block;
+      text-align: center;
+      font-weight: bold;
+      font-size:12pt;
+      color: white;
+      
+      background: rgba(117,166,252,0.99);
+      box-shadow: 0px 4px 0px rgba(168,179,202,1);
+      }
+      .heatimg {
          position: absolute;
          top: 70%;
          right: 0;
@@ -97,52 +100,70 @@
          padding: 5;
       }
    </style>
+   <script>
+      function toggleColor(button) {
+         document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+         button.classList.add('active');
+      }
+
+      function toggleSubColor(button) {
+    // 같은 그룹 내 모든 하위 버튼의 active 클래스 제거
+         let parentDiv = button.parentElement;
+         parentDiv.querySelectorAll('.control-btn2').forEach(btn => btn.classList.remove('active'));
+
+    // 클릭한 버튼에 active 클래스 추가
+         button.classList.add('active');
+}
+      </script>
 </head>
 <body>
 <div id="map" style="width:100%; height:780px;">
    <div class="buttons">
-      <input id="toZonePos1" type="button" value="영일대 권역" class="control-btn" />
-      <input id="toZonePos2" type="button" value="송도해수욕장 권역" class="control-btn" />
-      <input id="toZonePos3" type="button" value="이가리 권역" class="control-btn" />
-      <input id="toZonePos4" type="button" value="내연산/보경사" class="control-btn" />
-      <input id="toZonePos5" type="button" value="호미곶면 권역" class="control-btn" />
-      <input id="toZonePos6" type="button" value="남포항 권역" class="control-btn" />
-
-   </div>      
+      <button id="toZonePos1" class="control-btn" onclick="toggleColor(this)">영일대 권역</button>
+      <button id="toZonePos2" class="control-btn" onclick="toggleColor(this)">송도해수욕장 권역</button>
+      <button id="toZonePos3" class="control-btn" onclick="toggleColor(this)">이가리 권역</button>
+      <button id="toZonePos4" class="control-btn" onclick="toggleColor(this)">내연산/보경사</button>
+      <button id="toZonePos5" class="control-btn" onclick="toggleColor(this)">호미곶면 권역</button>
+      <button id="toZonePos6" class="control-btn" onclick="toggleColor(this)">남포항 권역</button>
+  </div>    
   <img  class="heatimg" src="./images/heatmap2.png" />
    <br />
-   <!-- 영일대 권역 -->
-   <div id="buttons1" class="buttons2" style="display: none;">
-      <input id="toZonePos1_1" type="button" value="영일대해수욕장" class="control-btn2" />
-      <input id="toZonePos1_2" type="button" value="스페이스워크" class="control-btn2" />
-      <input id="toZonePos1_3" type="button" value="해상스카이워크" class="control-btn2" />
-   </div>
-   <!-- 송도해수욕장 권역 -->
-   <div id="buttons2" class="buttons2" style="display: none;">
-      <input id="toZonePos2_1" type="button" value="송도해수욕장" class="control-btn2" />
-      <input id="toZonePos2_2" type="button" value="송도송림테마거리(솔밭도시숲)" class="control-btn2" />
-   </div>
-   <!-- 이가리 권역 -->
-   <div id="buttons3" class="buttons2" style="display: none;">
-      <input id="toZonePos3_1" type="button" value="이가리닻전망대" class="control-btn2" />
-      <input id="toZonePos3_2" type="button" value="사방기념공원" class="control-btn2" />
-   </div>
-   <!-- 보경사 권역 -->
-   <div id="buttons4" class="buttons2" style="display: none;">
-      <!-- <input id="toZonePos4_1" type="button" value="보경사" class="control-btn2" /> -->
-   </div>
-   <!-- 호미곶면 권역 -->
-   <div id="buttons5" class="buttons2" style="display: none;">
-      <input id="toZonePos5_1" type="button" value="연오랑세오녀" class="control-btn2" />
-      <input id="toZonePos5_2" type="button" value="호미곶해맞이공원" class="control-btn2" />
-      <input id="toZonePos5_3" type="button" value="일본인가옥거리" class="control-btn2" />
-   </div>
-   <!-- 남포항 권역 -->
-   <div id="buttons6" class="buttons2" style="display: none;">
-      <input id="toZonePos6_1" type="button" value="오어사" class="control-btn2" />
-      <input id="toZonePos6_2" type="button" value="일월문화공원" class="control-btn2" />
-      <input id="toZonePos6_3" type="button" value="장기유배문화체험촌" class="control-btn2" />
-   </div>
+<!-- 영일대 권역 -->
+<div id="buttons1" class="buttons2" style="display: none;">
+   <button id="toZonePos1_1" class="control-btn2" onclick="toggleSubColor(this)">영일대해수욕장</button>
+   <button id="toZonePos1_2" class="control-btn2" onclick="toggleSubColor(this)">스페이스워크</button>
+   <button id="toZonePos1_3" class="control-btn2" onclick="toggleSubColor(this)">해상스카이워크</button>
+</div>
+
+<!-- 송도해수욕장 권역 -->
+<div id="buttons2" class="buttons2" style="display: none;">
+   <button id="toZonePos2_1" class="control-btn2" onclick="toggleSubColor(this)">송도해수욕장</button>
+   <button id="toZonePos2_2" class="control-btn2" onclick="toggleSubColor(this)">송도송림테마거리(솔밭도시숲)</button>
+</div>
+
+<!-- 이가리 권역 -->
+<div id="buttons3" class="buttons2" style="display: none;">
+   <button id="toZonePos3_1" class="control-btn2" onclick="toggleSubColor(this)">이가리닻전망대</button>
+   <button id="toZonePos3_2" class="control-btn2" onclick="toggleSubColor(this)">사방기념공원</button>
+</div>
+  <!-- 보경사 권역 -->
+<div id="buttons4" class="buttons2" style="display: none;">
+   <!-- <button id="toZonePos4_1" class="control-btn2" onclick="toggleSubColor(this)">보경사</button> -->
+</div>
+
+<!-- 호미곶면 권역 -->
+<div id="buttons5" class="buttons2" style="display: none;">
+   <button id="toZonePos5_1" class="control-btn2" onclick="toggleSubColor(this)">연오랑세오녀</button>
+   <button id="toZonePos5_2" class="control-btn2" onclick="toggleSubColor(this)">호미곶해맞이공원</button>
+   <button id="toZonePos5_3" class="control-btn2" onclick="toggleSubColor(this)">일본인가옥거리</button>
+</div>
+
+<!-- 남포항 권역 -->
+<div id="buttons6" class="buttons2" style="display: none;">
+   <button id="toZonePos6_1" class="control-btn2" onclick="toggleSubColor(this)">오어사</button>
+   <button id="toZonePos6_2" class="control-btn2" onclick="toggleSubColor(this)">일월문화공원</button>
+   <button id="toZonePos6_3" class="control-btn2" onclick="toggleSubColor(this)">장기유배문화체험촌</button>
+</div>
    <script>
 
    $(document).ready(function() { // 페이지가 로딩이 완료되면 실행해라

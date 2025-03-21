@@ -172,7 +172,7 @@ const Background = styled.div`
     display: grid;
     width: 450px;
     height: 820px;
-    background: rgba(255,255,255,0.9);  
+    background: rgba(0, 0, 0, 0.7);  
   }
   .overlaydash {
     width: 450px;
@@ -201,7 +201,6 @@ const Background = styled.div`
     grid-template-columns:2.2fr 1fr 1fr 1fr;
     font-weight: bold;
   }
- 
 
   .scannerbtn {
     margin: 30px;
@@ -233,9 +232,10 @@ const Background = styled.div`
   
   .infotitle {
     margin-top: 20px;
+    margin-bottom: 30px;
     font-weight:bolder;
     font-size: 13.5pt;
-    color: #303030;
+    color:rgb(255, 255, 255);
     text-align: center;
   }
 
@@ -243,6 +243,7 @@ const Background = styled.div`
     margin-top: 15px;
     margin-left : 40px;
     font-size: 10pt;
+    color: white;
   }
 
   .popup {
@@ -285,7 +286,6 @@ const Background = styled.div`
     top:150px;
     right: 450px;
   }
-
 
 `;
 
@@ -470,14 +470,13 @@ const Dash = () => {
   const { zonedatas } = useSelector((state) => state.scanner);
 
   const getAPIdata = async () => {
-    const densityStandard = [10, 6, 2];
+    const densityStandard = [1, 0.5, 0.01];
 
     /**
-     * 밀집도 가져오기 고위험 >= 10 > 위험 >= 6 > 주의 >= 2 > 정상
+     * 밀집도 가져오기 고위험 >= 1 > 위험 >= 0.5 > 주의 >= 0.01 > 정상
      */
     try {
       const responseToday = await axios.get(`${process.env.NEXT_PUBLIC_API_pohang_URL}/DensityZone`);
-      console.log("DensityZone API 주소", `${process.env.NEXT_PUBLIC_API_pohang_URL}/DensityZone`);
       let arrDensity = []; // 초기화
       let arrVisitor = []; // 초기화
       let zoneNames = [];
@@ -809,7 +808,7 @@ const Dash = () => {
             <div className="overlaydash">
               <div>
                 <div className="infotitle">
-                  <Image src={charticon} width={10} height={10} /> 구역별 현재 다중밀집도
+                  <Image src={charticon} width={15} height={15} /> 구역별 현재 다중밀집도
                 </div>
                 <div className="infoexplain">
                   {" "}
@@ -818,9 +817,9 @@ const Dash = () => {
                 </div>
                 <BarChart className="chart" datas={density} daylabel={zoneNamess} />
                 <div className="infotitle">
-                  <Image src={charticon} width={10} height={10} /> 구역별 실시간 방문객{" "}
+                  <Image src={charticon} width={15} height={15} /> 구역별 실시간 방문객{" "}
                 </div>
-                <DoughnutChart className="chart" datas={visitor} label={zoneNamess} />
+                <DoughnutChart className="doughnutChart" datas={visitor} label={zoneNamess} />
               </div>
             </div>
           </div>

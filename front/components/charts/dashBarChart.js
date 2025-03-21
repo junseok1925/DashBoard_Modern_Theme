@@ -77,7 +77,6 @@ const BarChart = ({ daylabel, label, datas, theme }) => {
         ticks: {
           color: "white", // X축 라벨(글자) 색상을 흰색으로
         },
-
         stacked: true,
       },
       y: {

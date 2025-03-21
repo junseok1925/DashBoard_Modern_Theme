@@ -1,11 +1,4 @@
-import {
-  all,
-  fork,
-  put,
-  takeEvery,
-  takeLatest,
-  call,
-} from "redux-saga/effects";
+import { all, fork, put, takeEvery, takeLatest, call } from "redux-saga/effects";
 import axios from "axios";
 import {
   LOG_IN_FAILURE,
@@ -106,11 +99,7 @@ function* signUp(action) {
 
 //계정권한 변경
 function changeAccountAPI(data) {
-  return axios.patch(
-    "/accounts/authority",
-    { authority: data.authority, id: data.id },
-    { withCredentials: true }
-  ); //백엔드 서버 연결
+  return axios.patch("/accounts/authority", { authority: data.authority, id: data.id }, { withCredentials: true }); //백엔드 서버 연결
 }
 
 function* changeAccount(action) {
@@ -130,11 +119,7 @@ function* changeAccount(action) {
 
 //대시보드 유형 변경
 function changeSectionAPI(data) {
-  return axios.patch(
-    "/accounts/section",
-    { section: data.section, id: data.id },
-    { withCredentials: true }
-  ); //백엔드 서버 연결
+  return axios.patch("/accounts/section", { section: data.section, id: data.id }, { withCredentials: true }); //백엔드 서버 연결
 }
 
 function* changeSection(action) {
@@ -154,11 +139,7 @@ function* changeSection(action) {
 
 //계정 삭제
 function removeAccountAPI(data) {
-  return axios.delete(
-    `/accounts/${data}`,
-    { authority: data.authority, id: data.id },
-    { withCredentials: true }
-  ); //백엔드 서버 연결
+  return axios.delete(`/accounts/${data}`, { authority: data.authority, id: data.id }, { withCredentials: true }); //백엔드 서버 연결
 }
 
 function* removeAccount(action) {
@@ -218,11 +199,7 @@ function* loadAccounts(action) {
 
 //비밀번호 변경
 function changePasswordAPI(data) {
-  return axios.patch(
-    "/accounts/password",
-    { id: data.id, password: data.password },
-    { withCredentials: true }
-  ); //백엔드 서버 연결
+  return axios.patch("/accounts/password", { id: data.id, password: data.password }, { withCredentials: true }); //백엔드 서버 연결
 }
 
 function* changePassword(action) {
@@ -243,11 +220,7 @@ function* changePassword(action) {
 
 //테마 변경
 function changeThemeAPI(data) {
-  return axios.patch(
-    "/user/theme",
-    { id: data.id, theme: data.theme },
-    { withCredentials: true }
-  ); //백엔드 서버 연결
+  return axios.patch("/user/theme", { id: data.id, theme: data.theme }, { withCredentials: true }); //백엔드 서버 연결
 }
 
 function* changeTheme(action) {

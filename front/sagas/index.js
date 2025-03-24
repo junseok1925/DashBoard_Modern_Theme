@@ -7,7 +7,7 @@ import logSaga from "./log";
 import scannerSaga from "./scanner";
 import ardataSaga from "./ardata";
 
-//axios.defaults.baseURL = "http://14.63.184.15:4000"; //포항 서버 환경에서 실행 할 때
+//axios.defaults.baseURL = "http://localhost:4000"; //포항 서버 환경에서 실행 할 때
 axios.defaults.baseURL = "http://localhost:4000"; //local 환경에서 실행 할 때
 
 //axios.defaults.withCredentials = true;

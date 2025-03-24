@@ -194,7 +194,7 @@ const Report = () => {
   const [datas, setDatas] = useState(null);
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [urlPdf, setUrlPdf] = useState("http://14.63.184.15:4000/reportinfo.pdf");
+  const [urlPdf, setUrlPdf] = useState("http://localhost:4000/reportinfo.pdf");
   const [loading, setLoading] = useState(false);
 
   //const zones = [2070, 2071, 2072, 2073, 2074, 2075, 2076, 2077];
@@ -238,7 +238,7 @@ const Report = () => {
     var yearmonthStr = String(year) + String(month);
     var yearmonth = year + "-" + month;
     setStrYear(yearmonthStr);
-    setUrlPdf("http://14.63.184.15:4000/pohang" + strYear + ".pdf");
+    setUrlPdf("http://localhost:4000/pohang" + strYear + ".pdf");
 
     const lastMonthlasts = (y, m) => {
       //저번달 말일
@@ -669,7 +669,7 @@ const Report = () => {
   const onClickReport = useCallback((e) => {
     //e.preventDefault();
     var yearmonthStr = selectYear + e;
-    //setUrlPdf('http://14.63.184.15:4000/goseong'+yearmonthStr+'.pdf');
+    //setUrlPdf('http://localhost:4000/goseong'+yearmonthStr+'.pdf');
     setSelectMonth(e); //날짜
     //console.log('url2:',urlPdf,'  ', yearmonthStr,'e :',e);
     getAPIdata(e);
@@ -701,8 +701,8 @@ const Report = () => {
       month = selectMonth;
     }
     var yearmonthStr = selectYear + selectMonth;
-    if (urlPdf !== "http://14.63.184.15:4000/reportinfo.pdf") {
-      setUrlPdf("http://14.63.184.15:4000/pohang" + selectYear + month + ".pdf");
+    if (urlPdf !== "http://localhost:4000/reportinfo.pdf") {
+      setUrlPdf("http://localhost:4000/pohang" + selectYear + month + ".pdf");
     }
   }, [urlPdf]);
 
@@ -713,7 +713,7 @@ const Report = () => {
     }
     //let yearMonth = String(selected) + String(selectMonth);
     //let src = process.env.REACT_APP_RESTAPI_URL + "/sacheon" + yearMonth + ".pdf";
-    let src = "http://14.63.184.15:4000/pohang" + strYear + ".pdf";
+    let src = "http://localhost:4000/pohang" + strYear + ".pdf";
     window.open("about:blank").location.href = src;
   };
   const onLoadError = () => {

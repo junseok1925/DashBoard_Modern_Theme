@@ -11,9 +11,6 @@ import menuicon from "../../public/images/menu.png";
 import { App2 } from "../styles/HeaderStyle";
 import { logoutRequestAction, CHANGE_PASSWORD_REQUEST } from "../../reducers/auth";
 
-const { Inko } = require("inko");
-const inko = new Inko();
-
 export const App = styled.div`
   background: white;
 
@@ -22,12 +19,12 @@ export const App = styled.div`
     top: 65px;
     left: 91%;
     transform: translate(-50%);
-    background: gray;
+    background: white;
     z-index: 100;
     width: 250px;
     border-radius: 5px;
     text-align: center;
-    color: white;
+    color: black;
     box-shadow: 0 0 2px gray;
   }
   .title {
@@ -36,7 +33,7 @@ export const App = styled.div`
     line-height: 50px;
     border-bottom: solid 1px #e5e5e5;
     &:hover {
-      background: #e5e5e5;
+      background: #e3f1ff;
       cursor: pointer;
     }
   }

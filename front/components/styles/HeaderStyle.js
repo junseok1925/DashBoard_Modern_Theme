@@ -6,6 +6,8 @@ import Responsive from "../common/Responsive";
  */
 
 export const HeaderBlock = styled.div`
+  font-family: "Pretendard", sans-serif;
+
   width: 100%;
   height: 3.8rem;
   color: white;
@@ -57,6 +59,8 @@ export const HeaderBlock = styled.div`
 
 //모달창
 export const App2 = styled.div`
+  font-family: "Pretendard", sans-serif;
+
   background: white;
 
   .modals {
@@ -96,7 +100,7 @@ export const App2 = styled.div`
     padding: 3px 15px 3px 15px;
     margin: 5px 4px 5px 4px;
     border-radius: 5px;
-    background: #0062aa;
+    background: #4165e5;
     height: 40px;
     width: 120px;
 
@@ -107,9 +111,9 @@ export const App2 = styled.div`
 
   .buttonC {
     text-transform: uppercase;
-    border: 2px solid #0062aa;
+    border: 0.5px solid #black;
     text-align: center;
-    color: #0062aa;
+    color: black;
     font-size: 17px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
@@ -117,7 +121,7 @@ export const App2 = styled.div`
     padding: 3px 15px 3px 15px;
     margin: 5px 4px 5px 4px;
     border-radius: 5px;
-    background: white;
+    background: #f6f5fd;
     height: 40px;
     width: 120px;
 

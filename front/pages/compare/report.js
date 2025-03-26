@@ -29,13 +29,14 @@ const Background = styled.div`
     font-weight: bolder;
   }
   .report_page {
+    display: flex;
     width: 100%;
     float: left;
   }
   .report_list_m {
-    width: 19%;
+    width: 20%;
     color: black;
-    margin: 5px 0.5% 0 0.5%;
+    margin: 5px 0.5% 0 9%;
     padding: 0 0 20px 0;
     background-color: white;
     border-radius: 5px;
@@ -86,7 +87,7 @@ const Background = styled.div`
   .report_down:hover,
   .report_down:active,
   .report_down:focus {
-    background: #d59866;
+    background: #51518b;
   }
   .b3_off {
     background: #4d4c54;
@@ -135,7 +136,7 @@ const Background = styled.div`
 
   .pdf_view {
     display: block;
-    width: 95%;
+    width: 100%;
     height: 720px;
     border: 0px;
     overflow: auto;
@@ -816,7 +817,7 @@ const Report = () => {
                 <div className="pdf_view">
                   <Document file={urlPdf} onLoadSuccess={onDocumentLoadSuccess} onLoadError={onLoadError}>
                     {Array.from(new Array(numPages), (el, index) => (
-                      <Page key={`page_${index + 1}`} pageNumber={index + 1} scale={1.5} />
+                      <Page key={`page_${index + 1}`} pageNumber={index + 1} scale={1.25} />
                     ))}
                   </Document>
                 </div>

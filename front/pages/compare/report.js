@@ -18,6 +18,8 @@ import wrapper from "../../store/configureStore";
 import { PUT_REPORTDATA_REQUEST } from "../../reducers/report";
 
 const Background = styled.div`
+  font-family: "Pretendard", sans-serif;
+
   .page_title {
     float: left;
     font-size: 20.5px;
@@ -62,20 +64,19 @@ const Background = styled.div`
     text-transform: uppercase;
     border: 0;
     text-align: center;
-    color: #e4e1e1;
     font-size: 14px;
-    font-weight: bolder;
+    font-weight: 600;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
-    padding: 6px 15px 6px 15px;
-    margin: 3px 10px 20px 20px;
+    padding: 3px 5px 2px 5px;
+    margin: 0px 0px 20px 15px;
     border-radius: 5px;
   }
 
   /*--안내문구--*/
   .report_info {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 140%;
     padding: 0 8% 10px 8%;
     display: block;
@@ -88,7 +89,7 @@ const Background = styled.div`
     background: #d59866;
   }
   .b3_off {
-    background: #9c9c9c;
+    background: #4d4c54;
     color: white;
   }
 
@@ -105,7 +106,7 @@ const Background = styled.div`
   }
 
   .report_list .tr:nth-child(1) {
-    background-color: #dae3f3;
+    background-color: #4165e5;
     line-height: 40px;
     color: #000;
   }
@@ -113,7 +114,7 @@ const Background = styled.div`
   .report_list .th {
     border: solid 1px #ccc;
     line-height: 40px;
-    color: #000;
+    color: white;
   }
 
   .report_list .td {
@@ -122,8 +123,7 @@ const Background = styled.div`
   }
 
   .report_list .td:hover {
-    background-color: #ccc;
-    color: #fff;
+    background-color: #e3f1ff;
     cursor: pointer;
   }
 
@@ -135,7 +135,7 @@ const Background = styled.div`
 
   .pdf_view {
     display: block;
-    width: 100%;
+    width: 95%;
     height: 720px;
     border: 0px;
     overflow: auto;
@@ -723,101 +723,103 @@ const Report = () => {
   return (
     <Background>
       <div className={me && me.theme === "dark" ? "darkback" : "lightback"}>
-        <Header page={"0"} />
-        <Nav value={"3"} bottomValue={"6"} />
-        <div className="wrap">
-          <div className="page_title">주요관광지 유동인구 분석자료</div>
-          <div className="report_page">
-            <div className="report_list_m">
-              &nbsp;&nbsp;&nbsp;분석년도&nbsp;&nbsp;
-              <select className="form-control2" onChange={onClickYear} value={selectYear}>
-                {selectList.map((item) => (
-                  <option value={item} key={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-              <button type="button" className="report_down b3_off" onClick={pdfDownHandler}>
-                보고서 다운로드
-              </button>
-              <br />
-              <span className="report_info">※ 해당월의 분석자료를 클릭 후 보고서 다운로드 버튼을 클릭하여 주세요.</span>
-              <span className="report_info">※ 분석자료 로딩 실패시 해당월을 한번 더 클릭해주세요.</span>
-              <div className="report_list">
-                <div className="tr">
-                  <div className="th">월별 분석 자료</div>
-                </div>
-                <div className="tr">
-                  <div className="td" onClick={() => onClickReport(1)}>
-                    1월 분석 자료
+        <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
+          <Header page={"0"} />
+          <Nav value={"3"} bottomValue={"6"} />
+          <div className="wrap">
+            <div className="page_title">주요관광지 유동인구 분석자료</div>
+            <div className="report_page">
+              <div className="report_list_m">
+                &nbsp;&nbsp;&nbsp;분석년도&nbsp;&nbsp;
+                <select className="form-control2" onChange={onClickYear} value={selectYear}>
+                  {selectList.map((item) => (
+                    <option value={item} key={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+                <button type="button" className="report_down b3_off" onClick={pdfDownHandler}>
+                  보고서 다운로드
+                </button>
+                <br />
+                <span className="report_info">※ 해당월의 분석자료를 클릭 후 보고서 다운로드 버튼을 클릭하여 주세요.</span>
+                <span className="report_info">※ 분석자료 로딩 실패시 해당월을 한번 더 클릭해주세요.</span>
+                <div className="report_list">
+                  <div className="tr">
+                    <div className="th">월별 분석 자료</div>
                   </div>
-                </div>
-                <div className="tr">
-                  <div className="td" onClick={() => onClickReport(2)}>
-                    2월 분석 자료
+                  <div className="tr">
+                    <div className="td" onClick={() => onClickReport(1)}>
+                      1월 분석 자료
+                    </div>
                   </div>
-                </div>
-                <div className="tr">
-                  <div className="td" onClick={() => onClickReport(3)}>
-                    3월 분석 자료
+                  <div className="tr">
+                    <div className="td" onClick={() => onClickReport(2)}>
+                      2월 분석 자료
+                    </div>
                   </div>
-                </div>
-                <div className="tr">
-                  <div className="td" onClick={() => onClickReport(4)}>
-                    4월 분석 자료
+                  <div className="tr">
+                    <div className="td" onClick={() => onClickReport(3)}>
+                      3월 분석 자료
+                    </div>
                   </div>
-                </div>
-                <div className="tr">
-                  <div className="td" onClick={() => onClickReport(5)}>
-                    5월 분석 자료
+                  <div className="tr">
+                    <div className="td" onClick={() => onClickReport(4)}>
+                      4월 분석 자료
+                    </div>
                   </div>
-                </div>
-                <div className="tr">
-                  <div className="td" onClick={() => onClickReport(6)}>
-                    6월 분석 자료
+                  <div className="tr">
+                    <div className="td" onClick={() => onClickReport(5)}>
+                      5월 분석 자료
+                    </div>
                   </div>
-                </div>
-                <div className="tr">
-                  <div className="td" onClick={() => onClickReport(7)}>
-                    7월 분석 자료
+                  <div className="tr">
+                    <div className="td" onClick={() => onClickReport(6)}>
+                      6월 분석 자료
+                    </div>
                   </div>
-                </div>
-                <div className="tr">
-                  <div className="td" onClick={() => onClickReport(8)}>
-                    8월 분석 자료
+                  <div className="tr">
+                    <div className="td" onClick={() => onClickReport(7)}>
+                      7월 분석 자료
+                    </div>
                   </div>
-                </div>
-                <div className="tr">
-                  <div className="td" onClick={() => onClickReport(9)}>
-                    9월 분석 자료
+                  <div className="tr">
+                    <div className="td" onClick={() => onClickReport(8)}>
+                      8월 분석 자료
+                    </div>
                   </div>
-                </div>
-                <div className="tr">
-                  <div className="td" onClick={() => onClickReport(10)}>
-                    10월 분석 자료
+                  <div className="tr">
+                    <div className="td" onClick={() => onClickReport(9)}>
+                      9월 분석 자료
+                    </div>
                   </div>
-                </div>
-                <div className="tr">
-                  <div className="td" onClick={() => onClickReport(11)}>
-                    11월 분석 자료
+                  <div className="tr">
+                    <div className="td" onClick={() => onClickReport(10)}>
+                      10월 분석 자료
+                    </div>
                   </div>
-                </div>
-                <div className="tr">
-                  <div className="td" onClick={() => onClickReport(12)}>
-                    12월 분석 자료
+                  <div className="tr">
+                    <div className="td" onClick={() => onClickReport(11)}>
+                      11월 분석 자료
+                    </div>
+                  </div>
+                  <div className="tr">
+                    <div className="td" onClick={() => onClickReport(12)}>
+                      12월 분석 자료
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            {/*
+              {/*
                 <!--분석결과 페이지--> */}
-            <div className="report_view">
-              <div className="pdf_view">
-                <Document file={urlPdf} onLoadSuccess={onDocumentLoadSuccess} onLoadError={onLoadError}>
-                  {Array.from(new Array(numPages), (el, index) => (
-                    <Page key={`page_${index + 1}`} pageNumber={index + 1} scale={1.5} />
-                  ))}
-                </Document>
+              <div className="report_view">
+                <div className="pdf_view">
+                  <Document file={urlPdf} onLoadSuccess={onDocumentLoadSuccess} onLoadError={onLoadError}>
+                    {Array.from(new Array(numPages), (el, index) => (
+                      <Page key={`page_${index + 1}`} pageNumber={index + 1} scale={1.5} />
+                    ))}
+                  </Document>
+                </div>
               </div>
             </div>
           </div>

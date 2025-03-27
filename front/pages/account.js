@@ -13,6 +13,8 @@ import { LOAD_ACCOUNTS_REQUEST, LOAD_MY_INFO_REQUEST } from "../reducers/auth";
 import wrapper from "../store/configureStore";
 
 const AuthTableBlock = styled.div`
+  font-family: "Pretendard", sans-serif;
+
   position: absolute;
   left: 5%;
   top: 20%;
@@ -20,11 +22,11 @@ const AuthTableBlock = styled.div`
   height: 70%;
   text-align: center;
   //background: #3c496e;
-  background: white;
+  background: #2d2d42;
   box-shadow: 0px 0px 5px #5f5f5f;
   border-radius: 0.2em;
   font-family: NanumSquareRoundR;
-  border: 2px solid #ffffff;
+  border: 2px solid #606e8e;
   overflow: auto;
 
   .click {
@@ -33,6 +35,9 @@ const AuthTableBlock = styled.div`
 `;
 
 const AuthBody = styled.div`
+
+  font-family: "Pretendard", sans-serif;
+
 
   height:100%
   width: 100%;
@@ -49,7 +54,7 @@ const AuthBody = styled.div`
 
   th{
     //color:white;
-    color:black; 
+    color:white; 
     font-weight: blod; 
   }
 
@@ -57,11 +62,10 @@ const AuthBody = styled.div`
     line-height: 40px;
   }
   tbody tr{
-    //color:white;
-    color:black;
+    color:white;
     line-height: 30px;
-    border-top: solid 1px #ccc;
-    border-bottom: solid 1px #ccc;
+    border-top: solid 1px #606e8e;
+    border-bottom: solid 1px #606e8e;
     
   }
   .darkuser{
@@ -73,7 +77,7 @@ const AuthBody = styled.div`
   }
 
   .lightuser{
-    color:black;
+    color:white;
     font-family: NanumSquareRoundR;
     font-size: 22pt;
     margin: 1% 0 1% 0;
@@ -88,18 +92,18 @@ const AuthBody = styled.div`
     border: 0;
     text-align: center;
     color: white;
-    font-size: 15px;
+    font-size: 14px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
-    padding: 3px 15px 3px 15px;
+    padding: 0px 15px 3px 15px;
     margin: 5px 4px 5px 4px;
     border-radius: 5px;
-    background: #7b8df8;
+    background: #4165E5;
     height: 30px;
 
     &:hover {
-      background: #e5e5e5;
+      background: #399AFF;
       color:black;
     }
   }
@@ -128,25 +132,27 @@ const AccountPage = () => {
         <title>계정 관리</title>
       </Head>
       <AuthBody>
-        <Header />
-        <Nav value={"4"} />
-        <AuthTableBlock>
-          <div className="lightuser">사용자 목록</div>
-          <table>
-            <thead>
-              <tr>
-                {columns.map((column) => (
-                  <th key={column}>{column}</th>
+        <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
+          <Header />
+          <Nav value={"4"} />
+          <AuthTableBlock>
+            <div className="lightuser">사용자 목록</div>
+            <table>
+              <thead>
+                <tr>
+                  {columns.map((column) => (
+                    <th key={column}>{column}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {auths.map((account) => (
+                  <Account key={account.id} account={account} />
                 ))}
-              </tr>
-            </thead>
-            <tbody>
-              {auths.map((account) => (
-                <Account key={account.id} account={account} />
-              ))}
-            </tbody>
-          </table>
-        </AuthTableBlock>
+              </tbody>
+            </table>
+          </AuthTableBlock>
+        </div>
       </AuthBody>
     </>
   );

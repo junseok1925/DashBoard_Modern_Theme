@@ -12,6 +12,8 @@ import { App2 } from "../styles/HeaderStyle";
 import { logoutRequestAction, CHANGE_PASSWORD_REQUEST } from "../../reducers/auth";
 
 export const App = styled.div`
+  font-family: "Pretendard", sans-serif;
+
   background: white;
 
   .modalss {

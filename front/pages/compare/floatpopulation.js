@@ -25,6 +25,20 @@ const Background = styled.div`
   font-family: "Pretendard", sans-serif;
 
   background-color: black;
+
+  input[type="date"],
+  select {
+    background-color: #2c2c2c; /* 어두운 배경 */
+    color: white; /* 입력값 색상 */
+    border: 1px solid #555;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* 달력 아이콘 색상 변경 */
+  }
+
   .researchBox {
     display: grid;
     grid-template-columns: 2fr 7fr 0.1fr 3fr 0.7fr;
@@ -92,12 +106,6 @@ const Background = styled.div`
   .slick-dots li.slick-active button:before {
     color: white;
     opacity: 1;
-  }
-
-  .currentDateInput {
-    background-color: #2d2d42;
-    color: white;
-    border: 1.5px solid gray;
   }
 `;
 

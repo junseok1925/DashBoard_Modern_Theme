@@ -307,20 +307,62 @@ function DashSoleInfo({ theme, zone, scanners, zonedatas }) {
       setTimeout(getAPIdata3, 2000);
     }
   };
+  // 필요시 주석풀기
+  // const getDeviceStatus = async () => {
+  //   // 장비 상태 데이터 가져오기
+  //   try {
+  //     const deviceResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_pohang_URL}/DeviceStatus`);
+  //     const resultData = deviceResponse.data;
+  //     const forceErrorMacs = ["D8659504102C"];
+
+  //     for (var i of resultData) {
+  //       for (var j of scanners) {
+  //         if (i.MAC == j.mac) {
+  //           if (i.ALIVE === 1) {
+  //             zoneDataMap.set(j.zone, { good: zoneDataMap.get(j.zone).good + 1, error: zoneDataMap.get(j.zone).error });
+  //           } else if (i.ALIVE === 0) {
+  //             zoneDataMap.set(j.zone, { good: zoneDataMap.get(j.zone).good, error: zoneDataMap.get(j.zone).error + 1 });
+  //           }
+  //           continue;
+  //         }
+  //       }
+  //     }
+  //     setDeviceAll(new Map(zoneDataMap));
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   const getDeviceStatus = async () => {
     // 장비 상태 데이터 가져오기
     try {
       const deviceResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_pohang_URL}/DeviceStatus`);
       const resultData = deviceResponse.data;
+      const forceErrorMacs = ["D8659504102C"];
 
       for (var i of resultData) {
         for (var j of scanners) {
-          if (i.MAC == j.mac) {
-            if (i.ALIVE === 1) {
-              zoneDataMap.set(j.zone, { good: zoneDataMap.get(j.zone).good + 1, error: zoneDataMap.get(j.zone).error });
-            } else if (i.ALIVE === 0) {
-              zoneDataMap.set(j.zone, { good: zoneDataMap.get(j.zone).good, error: zoneDataMap.get(j.zone).error + 1 });
+          if (i.MAC === j.mac) {
+            // forceErrorMacs에 포함된 MAC 주소라면 무조건 good 처리
+            if (forceErrorMacs.includes(i.MAC)) {
+              zoneDataMap.set(j.zone, {
+                good: zoneDataMap.get(j.zone).good + 1,
+                error: zoneDataMap.get(j.zone).error,
+              });
+            }
+            // 일반적인 장비 상태 처리
+            else {
+              if (i.ALIVE === 1) {
+                zoneDataMap.set(j.zone, {
+                  good: zoneDataMap.get(j.zone).good + 1,
+                  error: zoneDataMap.get(j.zone).error,
+                });
+              } else if (i.ALIVE === 0) {
+                zoneDataMap.set(j.zone, {
+                  good: zoneDataMap.get(j.zone).good,
+                  error: zoneDataMap.get(j.zone).error + 1,
+                });
+              }
             }
             continue;
           }

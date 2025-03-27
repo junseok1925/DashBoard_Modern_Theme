@@ -425,20 +425,47 @@ const Dash = () => {
         j.info = ScannerStatus(j);
       }
 
+      // try {
+      //   // 장비정보가져오기 API
+      //   const deviceResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_pohang_URL}/DeviceStatus`);
+      //   const resultData = deviceResponse.data;
+      //   // resultData에서 MAC과 ALIVE 값을 가져와 scanDevices와 비교
+      //   for (let i of resultData) {
+      //     for (let j of scanDevices) {
+      //       if (j.mac === i.MAC) {
+      //         // ALIVE 값에 따라 상태 설정
+      //         j.status = i.ALIVE === 1 ? "ON" : "OFF";
+      //         // j.status = "ON";
+      //         j.info = ScannerStatus(j);
+      //       }
+      //     }
+      //   }
+
+      //   // mapConfig(); // 필요한 경우 주석을 해제해 사용
+      // } catch (err) {
+      //   console.error(err);
+      // }
+
       try {
-        // 장비정보가져오기 API
-
+        // 장비정보 가져오기 API
         const deviceResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_pohang_URL}/DeviceStatus`);
-
         const resultData = deviceResponse.data;
+
+        // 강제 ON 처리할 MAC 주소 목록
+        const forceErrorMacs = ["D8659504102C"];
 
         // resultData에서 MAC과 ALIVE 값을 가져와 scanDevices와 비교
         for (let i of resultData) {
           for (let j of scanDevices) {
             if (j.mac === i.MAC) {
-              // ALIVE 값에 따라 상태 설정
-              j.status = i.ALIVE === 1 ? "ON" : "OFF";
-              // j.status = "ON";
+              // forceErrorMacs 목록에 포함된 MAC이면 무조건 "ON" 상태
+              if (forceErrorMacs.includes(j.mac)) {
+                j.status = "ON";
+              } else {
+                // ALIVE 값에 따라 상태 설정
+                j.status = i.ALIVE === 1 ? "ON" : "OFF";
+              }
+
               j.info = ScannerStatus(j);
             }
           }

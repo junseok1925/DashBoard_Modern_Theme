@@ -77,8 +77,14 @@ const Header = () => {
           </div>
           <div className="right">
             {me ? me.username : ""} 님 &nbsp;&nbsp;
-            <button className="logoutbtn" onClick={onLogout}>
-              LOGOUT <img src="/images/logout_icon.png" className="logout" style={{ marginBottom: "4px" }} />
+            <button
+              className="logoutbtn"
+              onClick={onLogout}
+              onMouseEnter={(e) => (e.currentTarget.querySelector("img").src = "/images/logout_icon_white.png")}
+              onMouseLeave={(e) => (e.currentTarget.querySelector("img").src = "/images/logout_icon.png")}
+            >
+              LOGOUT
+              <img src="/images/logout_icon.png" className="logout" style={{ marginBottom: "4px" }} />
             </button>
             <div className="menu">
               <Menu me={me} />

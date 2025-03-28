@@ -11,7 +11,6 @@ import DashTotalInfo from "../components/info/DashTotalInfo";
 import DashAreaInfo from "../components/info/DashAreaInfo";
 import DashSoleInfo from "../components/info/DashSoleInfo";
 import charticon from "../public/images/chart_icon.png";
-import charticon2 from "../public/images/chart_icon2.png";
 import nexticon from "../public/images/next.png";
 import previcon from "../public/images/prev.png";
 
@@ -1685,7 +1684,7 @@ const Dash = () => {
               <br />
               <div>
                 <div className="charttitle" style={{ color: "white", display: "flex", alignItems: "center" }}>
-                  <Image src={charticon2} width={15} height={15} style={{ verticalAlign: "middle" }} />
+                  <Image src={charticon} width={15} height={15} style={{ verticalAlign: "middle" }} />
                   &nbsp;&nbsp;
                   {zoneSection == "영일대 권역"
                     ? "영일대 권역 "
@@ -1739,7 +1738,7 @@ const Dash = () => {
               <br />
               <div>
                 <div className="charttitle" style={{ color: "white", display: "flex", alignItems: "center" }}>
-                  <Image src={charticon2} width={15} height={15} style={{ verticalAlign: "middle" }} />
+                  <Image src={charticon} width={15} height={15} style={{ verticalAlign: "middle" }} />
                   &nbsp;&nbsp;
                   {zoneSection == "영일대 권역"
                     ? "영일대 권역 "
@@ -1796,7 +1795,7 @@ const Dash = () => {
               ) : (
                 <div>
                   <div className="charttitle" style={{ color: "white", display: "flex", alignItems: "center" }}>
-                    <Image src={charticon2} width={15} height={15} style={{ verticalAlign: "middle" }} />
+                    <Image src={charticon} width={15} height={15} style={{ verticalAlign: "middle" }} />
                     &nbsp;&nbsp;
                     {zoneSection == "영일대 권역"
                       ? "영일대 권역 "

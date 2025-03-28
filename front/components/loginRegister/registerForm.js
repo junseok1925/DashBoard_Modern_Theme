@@ -19,6 +19,7 @@ const inko = new Inko();
  */
 
 const AuthFormBlock = styled.div`
+  font-family: "Pretendard";
   p {
     margin: 0;
     color: gray;
@@ -91,7 +92,7 @@ const Footer = styled.div`
   margin-top: 2rem;
   text-align: right;
   a {
-    color: gray;
+    color: #a8b3ca;
     text-decoration: underline;
     &:hover {
       color: gray;

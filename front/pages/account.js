@@ -25,7 +25,6 @@ const AuthTableBlock = styled.div`
   background: #2d2d42;
   box-shadow: 0px 0px 5px #5f5f5f;
   border-radius: 0.2em;
-  font-family: NanumSquareRoundR;
   border: 2px solid #606e8e;
   overflow: auto;
 
@@ -70,7 +69,6 @@ const AuthBody = styled.div`
   }
   .darkuser{
     color:white;
-    font-family: NanumSquareRoundR;
     font-size: 22pt;
     margin-top: 2%;
     
@@ -78,7 +76,6 @@ const AuthBody = styled.div`
 
   .lightuser{
     color:white;
-    font-family: NanumSquareRoundR;
     font-size: 22pt;
     margin: 1% 0 1% 0;
     width: 100%;

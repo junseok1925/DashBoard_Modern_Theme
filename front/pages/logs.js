@@ -69,7 +69,6 @@ const Block = styled.div`
   }
   .darkuser{
     color:white;
-    font-family: NanumSquareRoundR;
     font-size: 22pt;
     margin-top: 2%;
     
@@ -95,7 +94,6 @@ const Block = styled.div`
   background: #2d2d42;
   box-shadow: 0px 0px 5px #5F5F5F;
   border-radius: 0.2em;
-  font-family: NanumSquareRoundR;
   border: 2px solid #606E8E;
   overflow:auto;
   text-align: center;

@@ -56,7 +56,7 @@ const Background = styled.div`
     display: flex;
     width: 100%;
     height: 40px;
-    background-color: gray;
+    background-color: #2D2D42;
     font-weight: 600;
     font-size: 20px;
     border-radius: 5px 5px 0 0;
@@ -77,7 +77,7 @@ const Background = styled.div`
   }
 
   .total_graph {
-    background-color: gray;
+    background-color: #2D2D42;
     border-radius: 0 0 5px 5px;
     padding: 10px 5px 0 0;
     height: 280px;

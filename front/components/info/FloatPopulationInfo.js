@@ -30,7 +30,6 @@ const BoxBlock = styled.div`
 
   .box_content_table {
     font-size: 20px;
-    font-weight: 600;
     line-height: 21px;
     padding-top: 10px;
     color: white;

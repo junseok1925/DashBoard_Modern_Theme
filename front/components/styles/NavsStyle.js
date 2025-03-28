@@ -1,6 +1,8 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 export const Block = styled.div`
+  font-family: "Pretendard", sans-serif;
+
   .lightblock {
     // display: flex;
     background: #2d2d42;
@@ -44,6 +46,8 @@ export const Block = styled.div`
 `;
 
 export const Topnavmenu = styled.div`
+  font-family: "Pretendard", sans-serif;
+
   //margin-left:9%;
   margin-bottom: 7px;
   width: 100%;
@@ -103,14 +107,14 @@ export const Topnavmenu = styled.div`
     //background: #d5d5d5;
     background: rgba(0, 0, 0, 0);
     border: 0;
-    border-bottom: 3.5px solid #7b8df8;
+    border-bottom: 3.5px solid #d9e2ff;
+    font-weight: bold;
   }
   .top_analysis_b3 {
     text-transform: uppercase;
     text-align: center;
     color: white;
     font-size: 15px;
-    font-weight: bolder;
     cursor: pointer;
     padding: 0px 10px 0px 10px;
     margin: 0;

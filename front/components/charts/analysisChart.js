@@ -45,9 +45,7 @@ const Chart = ({ labels, label, datas, theme }) => {
       mode: "index", //툴팁 전체 출력
       intersect: false,
     },
-    //maxBarThickness: 15,    // bar 타입 막대의 최대 굵기
     layout: {
-      backgroundColor: "rgba(255, 0, 0, 0.3)",
       padding: {
         top: 30,
       },
@@ -67,8 +65,8 @@ const Chart = ({ labels, label, datas, theme }) => {
         align: "top", //top bottom middle 데이터 라벨 표시 위치
         color: ["white"],
         font: {
-          size: 16,
-          weight: 600,
+          size: 14,
+          // weight:600,
         },
         formatter: function (value, context) {
           //데이터 값이 0 이면 출력 안함

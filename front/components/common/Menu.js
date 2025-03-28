@@ -140,7 +140,7 @@ const Menu = ({ me }) => {
             <div className="title">
               <b>비밀번호 변경</b>
             </div>
-            <hr />
+            <hr className="strokeLine" />
             <div>
               <b>비밀번호 입력 </b>
               <input className="password" type="password" placeholder="  비밀번호를 입력하시오" value={ConfirmPassword} onChange={onChangePwConfrim} />
@@ -150,7 +150,7 @@ const Menu = ({ me }) => {
               <input className="password" type="password" placeholder="  비밀번호를 입력하시오" value={Password} onChange={onChangePw} />
             </div>
             <br />
-            <hr />
+            <hr className="strokeLine" />
             <button className="button" onClick={onChangePassword}>
               <b>변경</b>
             </button>{" "}

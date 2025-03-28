@@ -1,69 +1,57 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import CloseButton from './CloseButton';
-import Portal from './Portal';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import CloseButton from "./CloseButton";
+import Portal from "./Portal";
 
-function Modal({
-  className,
-  onClose,
-  maskClosable,
-  closable,
-  visible,
-  children,
-}) {
+function Modal({ className, onClose, maskClosable, closable, visible, children }) {
   const onMaskClick = (e) => {
     if (e.target === e.currentTarget) {
-      onClose(e)
+      onClose(e);
     }
-  }
+  };
 
   const close = (e) => {
     if (onClose) {
-      onClose(e)
+      onClose(e);
     }
-  }
+  };
 
   useEffect(() => {
-    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`
+    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
     return () => {
-      const scrollY = document.body.style.top
-      document.body.style.cssText = `position: ""; top: "";`
-      window.scrollTo(0, parseInt(scrollY || '0') * -1)
-    }
-  }, [])
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = `position: ""; top: "";`;
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    };
+  }, []);
 
   return (
     <Portal elementId="modal-root">
       <ModalOverlay visible={visible} />
-      <ModalWrapper
-        className={className}
-        onClick={maskClosable ? onMaskClick : null}
-        tabIndex={-1}
-        visible={visible}
-      >
+      <ModalWrapper className={className} onClick={maskClosable ? onMaskClick : null} tabIndex={-1} visible={visible}>
         <ModalInner tabIndex={0} className="modal-inner">
           {closable && <CloseButton className="modal-close" onClick={close} />}
           {children}
         </ModalInner>
       </ModalWrapper>
     </Portal>
-  )
+  );
 }
 
 Modal.defaultProps = {
   visible: false,
   closable: true,
   maskClosable: true,
-}
+};
 
 Modal.propTypes = {
   visible: PropTypes.bool,
-}
+};
 
 const ModalWrapper = styled.div`
   box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
+  display: ${(props) => (props.visible ? "block" : "none")};
   position: fixed;
   top: 0;
   right: 0;
@@ -72,11 +60,11 @@ const ModalWrapper = styled.div`
   z-index: 1000;
   overflow: auto;
   outline: 0;
-`
+`;
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
+  display: ${(props) => (props.visible ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;
@@ -84,7 +72,7 @@ const ModalOverlay = styled.div`
   right: 0;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 999;
-`
+`;
 
 const ModalInner = styled.div`
   box-sizing: border-box;
@@ -98,6 +86,6 @@ const ModalInner = styled.div`
   transform: translateY(-50%);
   margin: 0 auto;
   padding: 40px 20px;
-`
+`;
 
 export default Modal;

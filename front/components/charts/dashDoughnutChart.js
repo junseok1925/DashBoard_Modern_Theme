@@ -14,8 +14,8 @@ const DoughnutChart = ({ datas, label }) => {
       {
         label: "# of Votes",
         data: datas,
-        backgroundColor: ["#4077F8", "#4042C5", "#95CEFF", "rgba(75, 192, 192, 0.4)", "rgba(54, 162, 235, 0.4)", "rgba(70, 65, 217, 0.4)", "rgba(153, 102, 255, 0.4)", "rgba(243, 51, 145, 0.4)"],
-        borderColor: ["#4077F8", "#4042C5", "#95CEFF", "rgba(75, 192, 192, 1)", "rgba(54, 162, 235, 1)", "rgba(70, 65, 217, 1)", "rgba(153, 102, 255, 1)", "rgba(243, 51, 145, 0.9)"],
+        backgroundColor: ["#5F85E4", "#4042C5", "#95CEFF"],
+        borderColor: ["#5F85E4", "#4042C5", "#95CEFF"],
         borderWidth: 1,
         cutout: "45%",
       },
@@ -31,6 +31,7 @@ const DoughnutChart = ({ datas, label }) => {
         labels: {
           color: "white",
           font: {
+            family: "Pretendard", //  폰트 추가
             size: 12,
             //weight: "600",
           },
@@ -40,6 +41,7 @@ const DoughnutChart = ({ datas, label }) => {
         display: false,
         text: "실시간 방문객",
         font: {
+          family: "Pretendard", //  폰트 추가
           size: 16,
         },
       },
@@ -62,8 +64,9 @@ const DoughnutChart = ({ datas, label }) => {
           {
             text: "test",
             font: {
+              family: "Pretendard", //  폰트 추가
               size: 17,
-              weight: "bold",
+              weight: "600",
             },
           },
           {

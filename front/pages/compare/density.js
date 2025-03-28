@@ -28,6 +28,8 @@ import styled from "styled-components";
 
 //지도 css
 const Mapp = styled.div`
+  font-family: "Pretendard", sans-serif;
+
   background-color: #1b2137;
   margin-top:100px
   width: 100%;
@@ -154,6 +156,8 @@ const Mapp = styled.div`
 
 //대시보드 전체 css
 const Background = styled.div`
+  font-family: "Pretendard", sans-serif;
+
   height:820px;
   .iframeBox {
     position:relative
@@ -167,7 +171,7 @@ const Background = styled.div`
   }
   .overlay {
     position:absolute;
-    top:142px;
+    top:136px;
     right: 0;
     display: grid;
     width: 450px;
@@ -178,6 +182,7 @@ const Background = styled.div`
     width: 450px;
     height: 820px;
     right: 0;
+    top : 0;
     //background: rgba(255,255,255,0.7);
     transform: translate(0px, 0px);
     transition-duration: 0.5s;

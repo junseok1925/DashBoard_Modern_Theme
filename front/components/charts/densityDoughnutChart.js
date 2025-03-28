@@ -14,8 +14,8 @@ const DoughnutChart = ({ datas, label }) => {
       {
         label: "# of Votes",
         data: datas,
-        backgroundColor: ["#001FDA", "#282DE2", "#399AFF", "#3E8BFF", "#4042C5", "#4077F8", "#4165E5", "#4233E8", "#4AAAFF", "#573BF1", "#68BAFF"],
-        borderColor: ["#001FDA", "#282DE2", "#399AFF", "#3E8BFF", "#4042C5", "#4077F8", "#4165E5", "#4233E8", "#4AAAFF", "#573BF1", "#68BAFF"],
+        backgroundColor: ["#4042C5", "#4155D7", "#4077F8", "#3E8BFF", "#399AFF", "#4AAAFF", "#68BAFF", "#95CEFF", "#BFE0FF", "#001FDA", "#282DE2", "#4233E8", "#543CEB"],
+        borderColor: ["#4042C5", "#4155D7", "#4077F8", "#3E8BFF", "#399AFF", "#4AAAFF", "#68BAFF", "#95CEFF", "#BFE0FF", "#001FDA", "#282DE2", "#4233E8", "#543CEB"],
         borderWidth: 1,
         cutout: "45%",
       },
@@ -33,7 +33,8 @@ const DoughnutChart = ({ datas, label }) => {
           pointStyle: "circle", // ⬅️ 원 모양 설정
           font: {
             size: 12, // 글자 크기
-            weight: "normal", // 글꼴 굵기
+            // weight: "normal", // 글꼴 굵기
+            family: "Pretendard", //  폰트 추가
           },
           color: "white", // 글자 색상
         },
@@ -42,11 +43,13 @@ const DoughnutChart = ({ datas, label }) => {
         display: false,
         text: "실시간 방문객",
         font: {
-          weight: "bold",
+          family: "Pretendard", //  폰트 추가
+          weight: "600",
         },
       },
       datalabels: {
         font: {
+          family: "Pretendard", //  폰트 추가
           size: 12,
           weight: "600",
         },

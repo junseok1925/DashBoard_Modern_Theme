@@ -65,7 +65,7 @@ export const App2 = styled.div`
 
   .modals {
     position: absolute;
-    top: 30%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
@@ -81,11 +81,14 @@ export const App2 = styled.div`
     margin-top: 17px;
     font-size: 23px;
   }
+  .strokeLine {
+    border: 1px solid #89898f; /* 원하는 색상 설정 */
+  }
   .password {
     margin-top: 17px;
     margin-bottom: 5px;
     border-width: 0px 0px 1px 0px;
-    border-color: gray;
+    border-bottom: 1px solid #89898f;
     width: 300px;
   }
   .button {
@@ -111,7 +114,7 @@ export const App2 = styled.div`
 
   .buttonC {
     text-transform: uppercase;
-    border: 0.5px solid #black;
+    border: 0.5px solid #89898f;
     text-align: center;
     color: black;
     font-size: 17px;

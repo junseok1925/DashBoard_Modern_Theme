@@ -70,7 +70,7 @@ const Background = styled.div`
     background: #4165e5;
 
     &:hover {
-      background: #d59866;
+      background: #399aff;
     }
   }
   .compare_list {

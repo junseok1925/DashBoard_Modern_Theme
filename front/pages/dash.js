@@ -64,6 +64,12 @@ const Mapp = styled.div`
     
   }
   
+  .button:hover {
+    background: rgba(117, 166, 252, 1);  /* hover 시 색상 변경 */
+    cursor: pointer;
+    transform: scale(1.05);  /* 약간 확대 */
+    transition: all 0.2s ease-in-out;
+  }
    .blue {
     background: rgba(117, 166, 252,0.7);
     //background: rgba(64, 66, 197,0.5);
@@ -103,7 +109,7 @@ const Mapp = styled.div`
 .tourOn {
   border-radius: 10px;    
   border: 0;
-  background:  rgb(255, 255, 255);
+  background: rgb(255, 255, 255);
   box-shadow: 0px 4px 8px rgba(50, 50, 50, 0.5);
   margin: 3px;
   display: inline-block;
@@ -114,6 +120,11 @@ const Mapp = styled.div`
   width: 85px;
   text-align: center;
   transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background: #e0e0e0; /* 밝은 회색 */
+    cursor: pointer;
+  }
 }
 
 .tourOff {
@@ -129,7 +140,13 @@ const Mapp = styled.div`
   width: 85px;
   text-align: center;
   transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background:rgb(56, 56, 92); /* 살짝 밝은 회색 계열 */
+    cursor: pointer;
+  }
 }
+
 
   .scanner {
     background: linear-gradient(to right, #75A6FC, #F2D9D8);
@@ -277,15 +294,19 @@ const Background = styled.div`
     text-align: center;
   }
 
-  .zoneSelct {
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-  }
+.zoneSelct {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
 
-  .zoneNotSelct {
-    background: rgb(93, 99, 114);
+.zoneNotSelct {
+  background: rgb(93, 99, 114);
+
+  &:hover {
+    background: rgba(117, 166, 252, 0.7); /* 밝은 블루 */
   }
-  
+}
+
   .total2 {
     margin-bottom: 0;
   }

@@ -475,7 +475,7 @@ const Dash = () => {
   const { zonedatas } = useSelector((state) => state.scanner);
 
   const getAPIdata = async () => {
-    const densityStandard = [1, 0.5, 0.01];
+    const densityStandard = [1, 3, 5];
 
     /**
      * 밀집도 가져오기 고위험 >= 1 > 위험 >= 0.5 > 주의 >= 0.01 > 정상

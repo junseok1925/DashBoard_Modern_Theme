@@ -115,13 +115,13 @@ const Block = styled.div`
     padding: 3px 15px 3px 15px;
     margin: 5px 4px 5px 4px;
     border-radius: 5px;
-    background: #7b8df8;
+    background: #4165E5;
     height: 30px;
     font-weight: bold;
 
     &:hover {
-      background: #e5e5e5;
-      color:black;
+      background: #399AFF;
+      color:white;
     }
   }
 

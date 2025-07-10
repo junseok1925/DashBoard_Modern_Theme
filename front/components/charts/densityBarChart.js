@@ -99,7 +99,7 @@ const BarChart = ({ daylabel, label, datas, theme }) => {
         stacked: true,
       },
       y: {
-        max: 0.05,
+        max: 5,
         grid: {
           color: "rgba(255, 255, 255, 0.3)",
         },

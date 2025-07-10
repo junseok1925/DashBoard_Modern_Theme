@@ -101,7 +101,7 @@ const AuthBody = styled.div`
 
     &:hover {
       background: #399AFF;
-      color:black;
+      color:white;
     }
   }
 `;

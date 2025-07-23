@@ -73,5 +73,5 @@ app.use("/log", logRouter);
 app.use("/scanner", scannerRouter);
 
 app.listen(4000, () => {
-  console.log("서버가 4000번 포트에서 실행 중입니다.");
+  console.log("server is running on port 4000");
 });

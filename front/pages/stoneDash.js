@@ -386,7 +386,6 @@ const Dash = () => {
 
       try {
         //장비정보가져오기API
-        //const deviceResponse = await axios.get(`http://54.180.158.22:8000/v1/DaeguDalseong/DeviceStatus`);
         const deviceResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_pohang_URL}/DeviceStatus`);
         const resultData = deviceResponse.data;
 

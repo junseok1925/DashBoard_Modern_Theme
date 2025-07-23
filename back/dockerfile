@@ -1,0 +1,15 @@
+FROM node:22.15.0
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+# 환경 변수 파일 (.env)도 복사하고 싶으면 필요
+# COPY .env .env
+
+EXPOSE 4000
+
+CMD ["npm", "run", "dev"]

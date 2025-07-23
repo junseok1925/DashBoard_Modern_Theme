@@ -1,0 +1,36 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@jsreport/nodejs-client": "^3.0.0",
+    "axios": "^1.1.0",
+    "bcrypt": "5.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "date-utils": "^1.2.21",
+    "dayjs": "^1.11.6",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "helmet": "^6.0.0",
+    "hpp": "^0.2.3",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "request": "^2.88.2",
+    "sequelize": "^6.21.4",
+    "sequelize-cli": "^6.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

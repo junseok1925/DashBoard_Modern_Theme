@@ -1,0 +1,10 @@
+{
+    "apps": [
+        {
+            "name": "back",
+            "cwd": "/Users/kangjunseok/Documents/GitHub/DashBoard_Modern_Theme/back",
+            "script": "npm",
+            "args": "run dev"
+        }
+    ]
+}

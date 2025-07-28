@@ -1,0 +1,23 @@
+{
+    "recipe": "chrome-pdf",
+    "engine": "handlebars",
+    "data": null,
+    "name": "pohang-main",
+    "chrome": {
+        "printBackground": true,
+        "marginTop": "1cm",
+        "marginRight": "1cm",
+        "marginBottom": "1cm",
+        "marginLeft": "1cm",
+        "landscape": true
+    },
+    "creationDate": {
+        "$$date": 1707375724812
+    },
+    "modificationDate": {
+        "$$date": 1736404944746
+    },
+    "shortid": "VBERwF0",
+    "_id": "1Cy9jwXE64PwXfZY",
+    "$entitySet": "templates"
+}

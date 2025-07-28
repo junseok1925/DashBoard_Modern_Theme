@@ -1,0 +1,1117 @@
+<html>
+<head>
+    <meta content="text/html; charset=utf8" http-equiv="Content-Type">
+    <style>
+        {{asset "gosung.css" "utf8"}}
+    </style>
+	<script src="https://unpkg.com/numbro@2.1.2/dist/numbro.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+	<script src="https://unpkg.com/chartjs-plugin-datalabels@0.6.0/dist/chartjs-plugin-datalabels.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+</head>
+
+<body>
+	{{!-- 표지 --}}
+	<div id="report_page">
+		<div id="cover_page">
+			<div class="cover_title1">포항시 관광지 통계분석의 새로운 변화를 위한</div>
+			<div class="cover_title2">주요 관광지 유동인구 <br>분석자료 [{{report_date}}]</div>
+			<div class="cover_logo"><img src="{{asset "sacheonsolution_cover_logo_img.gif" "dataURI"}}"></div>
+		</div>
+	</div>
+
+	{{!-- 목차 --}}
+	<div id="report_page">
+		<div id="contents_page">
+			<div class="contents_title1">주요관광지 유동인구<br>분석자료</div>
+			<div class="contents_logo"><img src="{{asset "sacheonsolution_contents_logo_img.gif" "dataURI"}}"></div>
+			<div class="contents_box">
+				<div class="contents_title2">contents</div>
+				<div class="contents_title3">1 측정데이터 범위<br>2 포항시 주요 관광지 분석자료<br>별첨. 측정데이터 세부자료</div>
+			</div>
+		</div>
+	</div>
+
+	{{!-- 측정 데이터 범위 --}}
+	<div id="report_page">
+		<div id="report_top">
+			<div class="report_title">1.측정 데이터 범위</div>
+			<div class="report_title3">스마트센서 빅데이터 분석자료</div>
+			<div class="top_rogo_img"><img src="{{asset "sacheonsolution_songwoo.png" "dataURI"}}"></div>
+		</div>
+		<div id="report_middle">
+			<div class="map_guide">
+				<h2>가. 공간적 범위</h2>
+				<div class="map_img">
+					{{!-- <div class="map_title1">1. 사천 바다케이블카</div>
+					<div class="map_title2">2. 사천 삼천포대교공원</div>
+					<div class="map_title3">3. 사천 삼천포용궁시장</div> --}}
+				</div>
+			</div>
+			<div class="info_box1">
+				<h2>나. 시간적 범위</h2>
+				<div class="info_box">
+					■ 측정일 : 2024년 12월 31일 ~  <br>
+					■ 측정시간 : 매일 00:00 ~ 23:59
+				</div>
+			</div>
+			<div class="info_box2">
+				<h2>다. 내용적 범위</h2>
+				<div class="info_box">
+					<table >
+						<tr>
+							<td>■ 방문자 수</td>
+							<td>■ 미세먼지</td>
+						</tr>
+						{{!-- <tr>
+							<td>■ 온도</td>
+							<td>■ 초미세먼지</td>
+						</tr>
+						<tr>
+							<td>■ 습도</td>
+							<td>■ TVOC(휘발성 유기 화합물)</td>
+						</tr> --}}
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id="report_bottom">
+			<div class="top_bar"></div>
+		</div>
+	</div>
+
+	
+	{{!-- 분석자료 --}}
+
+	{{#each zone_data}}
+	<div id="report_page">
+		<div id="report_top">
+			<div class="report_title">2.포항 관광지 분석자료</div>
+			<div class="report_title2">{{inc @index}} {{zone_name}}</div>
+			<div class="report_title3">스마트센서 빅데이터 분석자료</div>
+			<div class="top_rogo_img"><img src="{{asset "sacheonsolution_songwoo.png" "dataURI"}}"></div>
+		</div>
+		<div id="report_middle">
+			<div class="report_info">
+				<div class="ment">
+					{{comment}}
+				</div>
+				<div class="chart_top">
+					<h2>요일별 방문자수</h2>
+					<table class="chart_table">
+						<tr bgcolor="#4472c4" style="color:#fff;">
+							<td>요일별</td>
+							<td>월요일</td>
+							<td>화요일</td>
+							<td>수요일</td>
+							<td>목요일</td>
+							<td>금요일</td>
+							<td>토요일</td>
+							<td>일요일</td>
+						</tr>
+						<tr bgcolor="#cfd5ea">
+							<td>방문자</td>
+							<td>{{comma week_visitor.mon_visitor}} 명</td>
+							<td>{{comma week_visitor.tue_visitor}} 명</td>
+							<td>{{comma week_visitor.wed_visitor}} 명</td>
+							<td>{{comma week_visitor.thu_visitor}} 명</td>
+							<td>{{comma week_visitor.fri_visitor}} 명</td>
+							<td>{{comma week_visitor.sat_visitor}} 명</td>
+							<td>{{comma week_visitor.sun_visitor}} 명</td>
+						</tr>
+						<tr bgcolor="#e9ebf5">
+							<td>백분율</td>
+							<td>{{week_visitor.mon_percent}} %</td>
+							<td>{{week_visitor.tue_percent}} %</td>
+							<td>{{week_visitor.wed_percent}} %</td>
+							<td>{{week_visitor.thu_percent}} %</td>
+							<td>{{week_visitor.fri_percent}} %</td>
+							<td>{{week_visitor.sat_percent}} %</td>
+							<td>{{week_visitor.sun_percent}} %</td>
+						</tr>
+					</table>
+				</div>
+				<div class="chart_left">
+					<h2>일별 방문자 수</h2><small>(단위:명)</small>
+					<table class="chart_table2">
+						<tr bgcolor="#4472c4" style="color:#fff;">
+							<td>날짜</td>
+							<td>방문자수</td>
+							<td>날짜</td>
+							<td>방문자수</td>
+						</tr>
+						<tr bgcolor="#cfd5ea">
+							<td>{{day_visitor.0.day_str}}</td>
+							<td>{{comma day_visitor.0.visitor_cnt}}</td>
+							<td>{{day_visitor.16.day_str}}</td>
+							<td>{{comma day_visitor.16.visitor_cnt}}</td>
+						</tr>
+						<tr>
+							<td>{{day_visitor.1.day_str}}</td>
+							<td>{{comma day_visitor.1.visitor_cnt}}</td>
+							<td>{{day_visitor.17.day_str}}</td>
+							<td>{{comma day_visitor.17.visitor_cnt}}</td>
+						</tr>
+						<tr bgcolor="#cfd5ea">
+							<td>{{day_visitor.2.day_str}}</td>
+							<td>{{comma day_visitor.2.visitor_cnt}}</td>
+							<td>{{day_visitor.18.day_str}}</td>
+							<td>{{comma day_visitor.18.visitor_cnt}}</td>
+						</tr>
+						<tr>
+							<td>{{day_visitor.3.day_str}}</td>
+							<td>{{comma day_visitor.3.visitor_cnt}}</td>
+							<td>{{day_visitor.19.day_str}}</td>
+							<td>{{comma day_visitor.19.visitor_cnt}}</td>
+						</tr>
+						<tr bgcolor="#cfd5ea">
+							<td>{{day_visitor.4.day_str}}</td>
+							<td>{{comma day_visitor.4.visitor_cnt}}</td>
+							<td>{{day_visitor.20.day_str}}</td>
+							<td>{{comma day_visitor.20.visitor_cnt}}</td>
+						</tr>
+						<tr>
+							<td>{{day_visitor.5.day_str}}</td>
+							<td>{{comma day_visitor.5.visitor_cnt}}</td>
+							<td>{{day_visitor.21.day_str}}</td>
+							<td>{{comma day_visitor.21.visitor_cnt}}</td>
+						</tr>
+						<tr bgcolor="#cfd5ea">
+							<td>{{day_visitor.6.day_str}}</td>
+							<td>{{comma day_visitor.6.visitor_cnt}}</td>
+							<td>{{day_visitor.22.day_str}}</td>
+							<td>{{comma day_visitor.22.visitor_cnt}}</td>
+						</tr>
+						<tr>
+							<td>{{day_visitor.7.day_str}}</td>
+							<td>{{comma day_visitor.7.visitor_cnt}}</td>
+							<td>{{day_visitor.23.day_str}}</td>
+							<td>{{comma day_visitor.23.visitor_cnt}}</td>
+						</tr>
+						<tr bgcolor="#cfd5ea">
+							<td>{{day_visitor.8.day_str}}</td>
+							<td>{{comma day_visitor.8.visitor_cnt}}</td>
+							<td>{{day_visitor.24.day_str}}</td>
+							<td>{{comma day_visitor.24.visitor_cnt}}</td>
+						</tr>
+						<tr>
+							<td>{{day_visitor.9.day_str}}</td>
+							<td>{{comma day_visitor.9.visitor_cnt}}</td>
+							<td>{{day_visitor.25.day_str}}</td>
+							<td>{{comma day_visitor.25.visitor_cnt}}</td>
+						</tr>
+						<tr bgcolor="#cfd5ea">
+							<td>{{day_visitor.10.day_str}}</td>
+							<td>{{comma day_visitor.10.visitor_cnt}}</td>
+							<td>{{day_visitor.26.day_str}}</td>
+							<td>{{comma day_visitor.26.visitor_cnt}}</td>
+						</tr>
+						<tr>
+							<td>{{day_visitor.11.day_str}}</td>
+							<td>{{comma day_visitor.11.visitor_cnt}}</td>
+							<td>{{day_visitor.27.day_str}}</td>
+							<td>{{comma day_visitor.27.visitor_cnt}}</td>
+						</tr>
+						<tr bgcolor="#cfd5ea">
+							<td>{{day_visitor.12.day_str}}</td>
+							<td>{{comma day_visitor.12.visitor_cnt}}</td>
+							<td>{{day_visitor.28.day_str}}</td>
+							<td>{{comma day_visitor.28.visitor_cnt}}</td>
+						</tr>
+						<tr>
+							<td>{{day_visitor.13.day_str}}</td>
+							<td>{{comma day_visitor.13.visitor_cnt}}</td>
+							<td>{{day_visitor.29.day_str}}</td>
+							<td>{{comma day_visitor.29.visitor_cnt}}</td>
+						</tr>
+						<tr bgcolor="#cfd5ea">
+							<td>{{day_visitor.14.day_str}}</td>
+							<td>{{comma day_visitor.14.visitor_cnt}}</td>
+							<td>{{day_visitor.30.day_str}}</td>
+							<td>{{comma day_visitor.30.visitor_cnt}}</td>
+						</tr>
+						<tr>
+							<td>{{day_visitor.15.day_str}}</td>
+							<td>{{comma day_visitor.15.visitor_cnt}}</td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<div class="chart_right">
+					<div class="graph12">
+						<div class="title">일별 방문자 수</div>
+						<div class="title2">요일별 방문자 수</div>
+						<div id="visit2" style="width:50%; height:250px; float:left;">
+							<canvas id="chart-left-{{inc @index}}" width="420" height="240"></canvas>
+						</div>
+						<div id="visit4" style="width:50%; height:250px; float:right;">
+							<canvas id="chart-right-{{inc @index}}" width="400" height="240" style="margin-left : 20px;"></canvas>
+						</div>
+					</div>
+					<div class="graph3456">
+						<div class="title">온도</div>
+						<div class="title">습도</div>
+						<div class="title">미세먼지</div>
+						<div class="title">초미세먼지</div>
+						<div class="title">TVOC</div>
+						<div id="visit5" class="graph_box"><canvas id="chartenv1-{{inc @index}}" width="165px" height="160px"></canvas></div>
+						<div id="visit6" class="graph_box"><canvas id="chartenv2-{{inc @index}}" width="165px" height="160px"></canvas></div>
+						<div id="visit7" class="graph_box"><canvas id="chartenv3-{{inc @index}}" width="165px" height="160px"></canvas></div>
+						<div id="visit8" class="graph_box"><canvas id="chartenv4-{{inc @index}}" width="165px" height="160px"></canvas></div>
+						<div id="visit9" class="graph_box"><canvas id="chartenv5-{{inc @index}}" width="165px" height="160px"></canvas></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="report_bottom">
+			<div class="top_bar"></div>
+		</div>
+	</div>
+	{{/each}}
+
+	{{!-- 데이터세부자료 --}}
+	{{#each zone_data}}
+	{{#if (env zone_id)}}
+	<div id="report_page">
+		<div id="report_top">
+			<div class="report_title">별첨. 측정 데이터 세부자료</div>
+			<div class="report_title2">{{inc @index}} {{zone_name}}</div>
+			<div class="report_title3">스마트센서 빅데이터 분석자료</div>
+			<div class="top_rogo_img"><img src="{{asset "sacheonsolution_songwoo.png" "dataURI"}}"></div>
+		</div>
+		<div id="report_middle">
+			<div class="report_info">
+				<h2>■ 위치 측위 센서 원본 자료</h2>
+				<div class="table_left">
+					<table>
+						<tr>
+							<td>측정일</td>
+							<td>방문자</td>
+							{{!-- <td>온도</td>
+							<td>습도</td>
+							<td>미세먼지</td>
+							<td>초미세먼지</td>
+							<td>tvoc</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.0.day_str}}</td>
+							<td>{{add_visi day_visitor.0.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.0.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.0.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.0.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.0.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.0.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.1.day_str}}</td>
+							<td>{{add_visi day_visitor.1.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.1.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.1.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.1.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.1.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.1.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.2.day_str}}</td>
+							<td>{{add_visi day_visitor.2.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.2.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.2.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.2.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.2.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.2.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.3.day_str}}</td>
+							<td>{{add_visi day_visitor.3.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.3.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.3.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.3.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.3.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.3.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.4.day_str}}</td>
+							<td>{{add_visi day_visitor.4.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.4.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.4.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.4.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.4.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.4.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.5.day_str}}</td>
+							<td>{{add_visi day_visitor.5.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.5.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.5.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.5.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.5.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.5.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.6.day_str}}</td>
+							<td>{{add_visi day_visitor.6.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.6.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.6.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.6.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.6.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.6.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.7.day_str}}</td>
+							<td>{{add_visi day_visitor.7.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.7.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.7.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.7.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.7.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.7.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.8.day_str}}</td>
+							<td>{{add_visi day_visitor.8.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.8.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.8.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.8.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.8.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.8.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.9.day_str}}</td>
+							<td>{{add_visi day_visitor.9.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.9.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.9.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.9.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.9.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.9.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.10.day_str}}</td>
+							<td>{{add_visi day_visitor.10.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.10.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.10.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.10.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.10.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.10.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.11.day_str}}</td>
+							<td>{{add_visi day_visitor.11.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.11.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.11.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.11.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.11.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.11.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.12.day_str}}</td>
+							<td>{{add_visi day_visitor.12.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.12.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.12.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.12.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.12.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.12.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.13.day_str}}</td>
+							<td>{{add_visi day_visitor.13.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.13.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.13.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.13.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.13.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.13.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.14.day_str}}</td>
+							<td>{{add_visi day_visitor.14.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.14.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.14.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.14.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.14.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.14.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.15.day_str}}</td>
+							<td>{{add_visi day_visitor.15.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.15.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.15.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.15.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.15.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.15.tvoc}}</td> --}}
+						</tr>
+					</table>
+				</div>
+				<div class="table_right">
+					<table>
+						<tr>
+							<td>측정일</td>
+							<td>방문자</td>
+							{{!-- <td>온도</td>
+							<td>습도</td>
+							<td>미세먼지</td>
+							<td>초미세먼지</td>
+							<td>tvoc</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.16.day_str}}</td>
+							<td>{{add_visi day_visitor.16.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.16.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.16.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.16.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.16.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.16.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.17.day_str}}</td>
+							<td>{{add_visi day_visitor.17.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.17.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.17.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.17.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.17.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.17.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.18.day_str}}</td>
+							<td>{{add_visi day_visitor.18.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.18.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.18.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.18.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.18.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.18.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.19.day_str}}</td>
+							<td>{{add_visi day_visitor.19.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.19.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.19.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.19.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.19.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.19.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.20.day_str}}</td>
+							<td>{{add_visi day_visitor.20.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.20.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.20.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.20.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.20.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.20.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.21.day_str}}</td>
+							<td>{{add_visi day_visitor.21.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.21.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.21.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.21.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.21.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.21.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.22.day_str}}</td>
+							<td>{{add_visi day_visitor.22.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.22.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.22.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.22.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.22.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.22.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.23.day_str}}</td>
+							<td>{{add_visi day_visitor.23.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.23.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.23.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.23.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.23.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.23.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.24.day_str}}</td>
+							<td>{{add_visi day_visitor.24.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.24.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.24.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.24.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.24.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.24.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.25.day_str}}</td>
+							<td>{{add_visi day_visitor.25.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.25.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.25.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.25.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.25.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.25.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.26.day_str}}</td>
+							<td>{{add_visi day_visitor.26.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.26.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.26.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.26.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.26.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.26.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.27.day_str}}</td>
+							<td>{{add_visi day_visitor.27.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.27.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.27.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.27.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.27.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.27.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.28.day_str}}</td>
+							<td>{{add_visi day_visitor.28.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.28.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.28.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.28.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.28.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.28.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.29.day_str}}</td>
+							<td>{{add_visi day_visitor.29.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.29.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.29.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.29.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.29.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.29.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.30.day_str}}</td>
+							<td>{{add_visi day_visitor.30.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.30.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.30.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.30.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.30.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.30.tvoc}}</td> --}}
+						</tr>
+						<tr>
+							<td>{{add_date day_visitor.31.day_str}}</td>
+							<td>{{add_visi day_visitor.31.visitor_cnt}}</td>
+							{{!-- <td>{{add_temp day_visitor.31.temp}}</td> --}}
+							{{!-- <td>{{add_humi day_visitor.31.humi}}</td>/// --}}
+							{{!-- <td>{{add_dust day_visitor.31.dust}}</td> --}}
+							{{!-- <td>{{add_dust day_visitor.31.ultra_dust}}</td> --}}
+							{{!-- <td>{{add_tvoc day_visitor.31.tvoc}}</td> --}}
+						</tr>
+			
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id="report_bottom">
+			<div class="top_bar"></div>
+		</div>
+	</div>
+	{{/if}}
+	{{/each}}
+	
+	{{!-- 맨뒷장 --}}
+	<div id="report_page">
+		<div id="last_page">
+			<img src="{{asset "sacheonsolution_last_image.jpg" "dataURI"}}">
+		</div>
+	</div>
+
+	{{!-- 테스트용도 --}}
+	{{!-- <div id="report_page">
+		<div id="newtest" style="color:black;">
+		</div>
+	</div> --}}
+	
+
+	<script>
+
+		for(var z=1; z < 18; z++){
+
+			const index = z;
+			const arrIndex = z - 1;
+			
+			const chartLeft = document.getElementById('chart-left-' + index);
+			const tasks = {{{toJS zone_data}}}
+			const day_visitorData = tasks[arrIndex].day_visitor_arr;
+
+			let labelArr = [];
+			let newVisitorArr = [];
+			for(var i=1; i < day_visitorData.length+1; i ++){
+				if(i% 2 != 0){
+					labelArr.push(i);
+					newVisitorArr.push(day_visitorData[i-1]);
+				}
+			}
+			// let newtest = document.getElementById('newtest');
+			// newtest.innerHTML = newVisitorArr;
+
+			const chartleftContainer = new Chart(chartLeft.getContext('2d'), {
+				type: 'line',
+				data: {
+					labels: labelArr,
+					datasets: [{
+						data: newVisitorArr,
+						// backgroundColor: byPriorityKeys.map(() => barColor)
+						borderColor :"#D98AAC",
+						backgroundColor: "#ffffff",
+					}]
+				},
+				options: {
+					responsive: false,
+					legend:{
+						display:false,
+						fontcolor: 'rgba(32, 32, 32, 1)',
+						position: "bottom",
+						labels: {
+							fontColor: '#000000'
+						}
+					},
+				},
+				scales: {
+					xAxes:[{
+						ticks:{
+							beginAtZero: true,
+							padding: 3,
+							fontColor: 'rgba(32, 32, 32, 1)',
+						},
+						gridLines:{
+							display: true,
+							drawBorder: true,
+							color: 'rgba(234, 234, 234, 1)',
+							drawOnChartArea: false,
+							drawTicks: false,
+						}
+					}],
+					yAxes: [{
+						gridLines:{
+							display: true,
+							drawBorder: true,
+							color: 'rgba(234, 234, 234, 1)',
+							drawOnChartArea: false,
+							drawTicks: false,
+						},
+						ticks: {
+							beginAtZero: true,
+							min: 0,
+							// max: 110,
+							// stepSize: 100,
+							padding: 3,
+							fontColor: 'rgba(32, 32, 32, 1)',
+						},
+						display: true,
+						stacked: false,
+					}]
+				}
+			})
+
+			const chartRight = document.getElementById('chart-right-' + index);
+
+			const week_visitorData = tasks[arrIndex].week_visitor_arr;
+
+			const chartRightContainer = new Chart(chartRight.getContext('2d'), {
+				type: 'bar',
+				data: {
+					labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+					datasets: [{
+						data: week_visitorData, 
+						backgroundColor: ["#4472c5","#ed7e30","#a5a5a5","#ffc100","#5c9bd5","#70ad46","#264478"],
+						borderColor :"#000000"
+						// minBarLength : 5,
+					}
+				]
+				},
+				options: {
+					responsive: false,
+					plugins: {
+						datalabels: {
+							color: 'white'
+						}
+					},
+					legend:{
+						display:false,
+						fontcolor: 'rgba(32, 32, 32, 1)',
+						position: "bottom",
+						labels: {
+							fontColor: '#000000'
+						}
+					},
+					scales: {
+						xAxes:[{
+							ticks:{
+								beginAtZero: true,
+								padding: 3,
+								fontColor: 'rgba(32, 32, 32, 1)',
+							},
+							gridLines:{
+								display: true,
+								drawBorder: true,
+								color: 'white',
+								drawOnChartArea: false,
+								drawTicks: false,
+							}
+						}],
+						yAxes: [{
+							gridLines:{
+								display: true,
+								drawBorder: true,
+								color: 'rgba(234, 234, 234, 1)',
+								drawOnChartArea: false,
+								drawTicks: false,
+							},
+							ticks: {
+								beginAtZero: true,
+								min: 0,
+								// max: 110,
+								// stepSize: 100,
+								// padding: 8,
+								padding: 3,
+								fontColor: 'rgba(32, 32, 32, 1)'
+							},
+							display: true,
+							stacked: false,
+						}],
+					}
+				}
+			})
+
+			const chartenv1 = document.getElementById('chartenv1-' + index);
+			const tempData = tasks[arrIndex].temp_arr;
+			const chartenv1Container = new Chart(chartenv1.getContext('2d'), {
+				type: 'line',
+				data: {
+					labels: [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31],
+					datasets: [{
+						label: '온도',
+						data: tempData, 
+						borderColor :"#D98AAC",
+						backgroundColor: "#ffffff",
+					}
+				]
+				},
+				options: {
+					responsive: true,
+					plugins: {
+						datalabels: {
+							display: false,
+							}
+					},
+					legend:{
+						display:false,
+						fontcolor: 'rgba(32, 32, 32, 1)',
+						position: "bottom",
+						labels: {
+							fontColor: '#000000'
+						}
+					},
+					scales: {
+					xAxes:[{
+						ticks:{
+							// beginAtZero: true,
+							padding: 2,
+							fontColor: 'rgba(32, 32, 32, 1)',
+						},
+						gridLines:{
+							display: true,
+							drawBorder: true,
+							color: 'rgba(234, 234, 234, 1)',
+							drawOnChartArea: false,
+							drawTicks: false,
+						}
+					}],
+					yAxes: [{
+						gridLines:{
+							display: true,
+							drawBorder: true,
+							color: 'rgba(234, 234, 234, 1)',
+							drawOnChartArea: false,
+							drawTicks: false,
+						},
+						ticks: {
+							// min: -20,
+							// max: 40,
+							// stepSize: 10,
+							// fontColor: '#ffffcc'
+							padding : 2,
+							fontColor: 'rgba(32, 32, 32, 1)',
+						},
+						display: true,
+						stacked: false,
+					}],
+					}
+				}
+			})	
+
+			
+
+			const chartenv2 = document.getElementById('chartenv2-' + index);
+			const humiData = tasks[arrIndex].humi_arr;
+			const chartenv2Container = new Chart(chartenv2.getContext('2d'), {
+				type: 'line',
+				data: {
+					labels: [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31],
+					datasets: [{
+						label: '습도',
+						data: humiData, 
+						borderColor :"#D98AAC",
+						backgroundColor: "#ffffff",
+					}
+				]
+				},
+				options: {
+					responsive: true,
+					plugins: {
+						datalabels: {
+							display: false,
+							}
+					},
+					legend:{
+						display:false,
+						fontcolor: 'rgba(32, 32, 32, 1)',
+						position: "bottom",
+						labels: {
+							fontColor: '#000000'
+						}
+					},
+					scales: {
+					xAxes:[{
+						ticks:{
+							// beginAtZero: true,
+							padding: 2,
+							fontColor: 'rgba(32, 32, 32, 1)',
+						},
+						gridLines:{
+							display: true,
+							drawBorder: true,
+							color: 'rgba(234, 234, 234, 1)',
+							drawOnChartArea: false,
+							drawTicks: false,
+						}
+					}],
+					yAxes: [{
+						gridLines:{
+							display: true,
+							drawBorder: true,
+							color: 'rgba(234, 234, 234, 1)',
+							drawOnChartArea: false,
+							drawTicks: false,
+						},
+						ticks: {
+							// min: -20,
+							// max: 40,
+							// stepSize: 10,
+							// fontColor: '#ffffcc'
+							padding : 2,
+							fontColor: 'rgba(32, 32, 32, 1)',
+						},
+						display: true,
+						stacked: false,
+					}],
+					}
+				}
+			})	
+
+			const chartenv3 = document.getElementById('chartenv3-' + index);
+			const dustData = tasks[arrIndex].dust_arr;
+			const chartenv3Container = new Chart(chartenv3.getContext('2d'), {
+				type: 'line',
+				data: {
+					labels: [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31],
+					datasets: [{
+						label: '미세먼지',
+						data: dustData, 
+						borderColor :"#D98AAC",
+						backgroundColor: "#ffffff",
+					}
+				]
+				},
+				options: {
+					responsive: true,
+					plugins: {
+						datalabels: {
+							display: false,
+							}
+					},
+					legend:{
+						display:false,
+						fontcolor: 'rgba(32, 32, 32, 1)',
+						position: "bottom",
+						labels: {
+							fontColor: '#000000'
+						}
+					},
+					scales: {
+					xAxes:[{
+						ticks:{
+							// beginAtZero: true,
+							padding: 2,
+							fontColor: 'rgba(32, 32, 32, 1)',
+						},
+						gridLines:{
+							display: true,
+							drawBorder: true,
+							color: 'rgba(234, 234, 234, 1)',
+							drawOnChartArea: false,
+							drawTicks: false,
+						}
+					}],
+					yAxes: [{
+						gridLines:{
+							display: true,
+							drawBorder: true,
+							color: 'rgba(234, 234, 234, 1)',
+							drawOnChartArea: false,
+							drawTicks: false,
+						},
+						ticks: {
+							// min: -20,
+							// max: 40,
+							// stepSize: 10,
+							// fontColor: '#ffffcc'
+							padding : 2,
+							fontColor: 'rgba(32, 32, 32, 1)',
+						},
+						display: true,
+						stacked: false,
+					}],
+					}
+				}
+			})	
+
+			const chartenv4 = document.getElementById('chartenv4-' + index);
+			const ultradustData = tasks[arrIndex].ultradust_arr;
+			const chartenv4Container = new Chart(chartenv4.getContext('2d'), {
+				type: 'line',
+				data: {
+					labels: [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31],
+					datasets: [{
+						label: '초미세먼지',
+						data: ultradustData, 
+						borderColor :"#D98AAC",
+						backgroundColor: "#ffffff",
+					}
+				]
+				},
+				options: {
+					responsive: true,
+					 plugins: {
+						datalabels: {
+							display: false,
+							}
+					},
+					legend:{
+						display:false,
+						fontcolor: 'rgba(32, 32, 32, 1)',
+						position: "bottom",
+						labels: {
+							fontColor: '#000000'
+						}
+					},
+					scales: {
+					xAxes:[{
+						ticks:{
+							// beginAtZero: true,
+							padding: 2,
+							fontColor: 'rgba(32, 32, 32, 1)',
+						},
+						gridLines:{
+							display: true,
+							drawBorder: true,
+							color: 'rgba(234, 234, 234, 1)',
+							drawOnChartArea: false,
+							drawTicks: false,
+						}
+					}],
+					yAxes: [{
+						gridLines:{
+							display: true,
+							drawBorder: true,
+							color: 'rgba(234, 234, 234, 1)',
+							drawOnChartArea: false,
+							drawTicks: false,
+						},
+						ticks: {
+							// min: -20,
+							// max: 40,
+							// stepSize: 10,
+							// fontColor: '#ffffcc'
+							padding : 2,
+							fontColor: 'rgba(32, 32, 32, 1)',
+						},
+						display: true,
+						stacked: false,
+					}],
+					}
+				}
+			})	
+
+			const chartenv5 = document.getElementById('chartenv5-' + index);
+			const tvocData = tasks[arrIndex].tvoc_arr;
+			const chartenv5Container = new Chart(chartenv5.getContext('2d'), {
+				type: 'line',
+				data: {
+					labels: [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31],
+					datasets: [{
+						label: 'tvoc',
+						data: tvocData, 
+						borderColor :"#D98AAC",
+						backgroundColor: "#ffffff",
+					}
+				]
+				},
+				options: {
+					responsive: true,
+					plugins: {
+						datalabels: {
+							display: false,
+							}
+					},
+					legend:{
+						display:false,
+						fontcolor: 'rgba(32, 32, 32, 1)',
+						position: "bottom",
+						labels: {
+							fontColor: '#000000'
+						}
+					},
+					scales: {
+					xAxes:[{
+						ticks:{
+							// beginAtZero: true,
+							padding: 2,
+							fontColor: 'rgba(32, 32, 32, 1)',
+						},
+						gridLines:{
+							display: true,
+							drawBorder: true,
+							color: 'rgba(234, 234, 234, 1)',
+							drawOnChartArea: false,
+							drawTicks: false,
+						}
+					}],
+					yAxes: [{
+						gridLines:{
+							display: true,
+							drawBorder: true,
+							color: 'rgba(234, 234, 234, 1)',
+							drawOnChartArea: false,
+							drawTicks: false,
+						},
+						ticks: {
+							// min: -20,
+							// max: 40,
+							// stepSize: 10,
+							// fontColor: '#ffffcc'
+							padding : 2,
+							fontColor: 'rgba(32, 32, 32, 1)',
+						},
+						display: true,
+						stacked: false,
+					}],
+					}
+				}
+			})	
+		}
+		
+		window.JSREPORT_READY_TO_START = true
+
+	</script>
+</body>
+</html>
